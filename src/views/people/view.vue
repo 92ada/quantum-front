@@ -1,10 +1,7 @@
 <template>
   <el-form ref="postForm" :model="postForm" class="form-container" label-position="right" label-width="100px" size="small">
-    <el-link icon="el-icon-edit" @click="closeThisView">取消编辑</el-link>
-    <people-detail type="edit" :post-form="postForm" />
-    <el-button v-loading="loading" style="margin-left: 20px;" type="primary" @click="submitForm">
-      {{ $t('common.update') }}
-    </el-button>
+    <el-link icon="el-icon-edit" @click="goToEdit">编辑</el-link>
+    <people-detail type="view" :post-form="postForm" />
   </el-form>
 </template>
 <script>
@@ -12,7 +9,7 @@ import PeopleDetail from './components/PeopleDetail'
 import { fetchPeopleInfo } from '../../api/people'
 
 export default {
-  name: 'EditPeople',
+  name: 'ViewPeople',
   components: { PeopleDetail },
   data() {
     return {
@@ -50,36 +47,16 @@ export default {
       })
     },
     setTagsViewTitle() {
-      const title = this.lang === 'zh' ? '编辑' : 'Edit'
+      const title = this.lang === 'zh' ? '人员详情' : 'Personal Info'
       const route = Object.assign({}, this.tempRoute, { title: `${title}-${this.postForm.id}` })
       this.$store.dispatch('tagsView/updateVisitedView', route)
     },
     setPageTitle() {
-      const title = 'Edit'
+      const title = 'Personal Info'
       document.title = `${title} - ${this.postForm.id}`
     },
-    closeThisView() {
-      // TODO: 改成this.$store.dispatch
-      const btn = document.getElementById('close-' + this.$route.path)
-      btn.click()
-    },
-    submitForm() {
-      this.$refs.postForm.validate(valid => {
-        if (valid) {
-          this.loading = true
-          this.$notify({
-            title: '成功',
-            message: '更新成功',
-            type: 'success',
-            duration: 2000
-          })
-          console.log(this.postForm)
-          this.loading = false
-        } else {
-          console.log('error submit!!')
-          return false
-        }
-      })
+    goToEdit() {
+      this.$router.push('/people/edit/' + this.postForm.id)
     }
   }
 }

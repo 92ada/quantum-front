@@ -13,7 +13,12 @@
         @contextmenu.prevent.native="openMenu(tag,$event)"
       >
         {{ generateTitle(tag.title) }}
-        <span v-if="!tag.meta.affix" class="el-icon-close" @click.prevent.stop="closeSelectedTag(tag)" />
+        <span
+          v-if="!tag.meta.affix"
+          :id="'close-'+tag.path"
+          class="el-icon-close"
+          @click.prevent.stop="closeSelectedTag(tag)"
+        />
       </router-link>
     </scroll-pane>
     <ul v-show="visible" :style="{left:left+'px',top:top+'px'}" class="contextmenu">
@@ -143,6 +148,7 @@ export default {
       })
     },
     closeSelectedTag(view) {
+      console.log('in closeSelectedTag', view)
       this.$store.dispatch('tagsView/delView', view).then(({ visitedViews }) => {
         if (this.isActive(view)) {
           this.toLastView(visitedViews, view)

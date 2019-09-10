@@ -10,7 +10,8 @@ export default {
     researcher: '研究人员',
     teacher: '教辅人员',
     administration: '行政人员',
-    peopleDetail: '人员详情'
+    peopleDetail: '人员详情',
+    edit: '编辑'
   },
   navbar: {
     dashboard: '首页',

@@ -105,16 +105,30 @@ export const asyncRoutes = [
     path: '/people',
     component: Layout,
     redirect: '/people/list',
-    name: 'Example',
+    name: 'PeopleList',
     meta: {
       title: 'people',
-      icon: 'list'
+      icon: 'user'
     },
     children: [
       {
         path: 'edit/:id(\\d+)',
         component: () => import('@/views/people/edit'),
+        name: 'EditPersonalInfo',
+        meta: { title: 'edit', noCache: true, activeMenu: '/people/view' },
+        hidden: true
+      },
+      {
+        path: 'view/:id(\\d+)',
+        component: () => import('@/views/people/view'),
         name: 'PersonalInfo',
+        meta: { title: 'peopleDetail', noCache: true, activeMenu: '/people/list' },
+        hidden: true
+      },
+      {
+        path: 'create/:id(\\d+)',
+        component: () => import('@/views/people/create'),
+        name: 'CreateNewPerson',
         meta: { title: 'peopleDetail', noCache: true, activeMenu: '/people/list' },
         hidden: true
       },
@@ -122,13 +136,13 @@ export const asyncRoutes = [
         path: 'list/researcher',
         component: () => import('@/views/people/list'),
         name: 'researcher',
-        meta: { title: 'researcher', icon: 'people' }
+        meta: { title: 'researcher', icon: 'list' }
       },
       {
         path: 'list/administration',
         component: () => import('@/views/people/list'),
         name: 'administration',
-        meta: { title: 'administration', icon: 'people' }
+        meta: { title: 'administration', icon: 'list' }
       }
     ]
   },

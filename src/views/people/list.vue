@@ -94,7 +94,7 @@ export default {
       })
     },
     goToDetail(row, event, column) {
-      this.$router.push('/people/edit/' + row.id)
+      this.$router.push('/people/view/' + row.id)
     }
   }
 }
