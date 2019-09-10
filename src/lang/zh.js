@@ -1,6 +1,7 @@
 export default {
   common: {
     update: '更新',
+    create: '创建',
     pleaseChoose: '请选择'
   },
   route: {
@@ -11,7 +12,8 @@ export default {
     teacher: '教辅人员',
     administration: '行政人员',
     peopleDetail: '人员详情',
-    edit: '编辑'
+    edit: '编辑',
+    create: '创建'
   },
   navbar: {
     dashboard: '首页',

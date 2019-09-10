@@ -13,9 +13,7 @@ export default {
   components: { PeopleDetail },
   data() {
     return {
-      postForm: undefined,
-      editHref: undefined,
-      loading: false
+      postForm: undefined
     }
   },
   computed: {

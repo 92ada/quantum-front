@@ -126,10 +126,10 @@ export const asyncRoutes = [
         hidden: true
       },
       {
-        path: 'create/:id(\\d+)',
+        path: 'create/:type',
         component: () => import('@/views/people/create'),
         name: 'CreateNewPerson',
-        meta: { title: 'peopleDetail', noCache: true, activeMenu: '/people/list' },
+        meta: { title: 'create', noCache: true, activeMenu: '/people/list' },
         hidden: true
       },
       {

@@ -1,5 +1,6 @@
 <template>
   <div class="app-container">
+    <el-link class="create-btn" icon="el-icon-edit" @click="goToCreate">新建</el-link>
     <el-table
       v-loading="listLoading"
       :data="list"
@@ -95,19 +96,18 @@ export default {
     },
     goToDetail(row, event, column) {
       this.$router.push('/people/view/' + row.id)
+    },
+    goToCreate() {
+      const type = this.$route.path.split('/').reverse()[0]
+      this.$router.push('/people/create/' + type)
     }
   }
 }
 </script>
 
 <style scoped>
-  .edit-input {
-    padding-right: 100px;
-  }
-
-  .cancel-btn {
-    position: absolute;
-    right: 15px;
-    top: 10px;
+  .create-btn {
+    margin: 10px 10px 10px 10px;
+    float: right;
   }
 </style>

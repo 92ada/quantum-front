@@ -17,7 +17,6 @@ export default {
   data() {
     return {
       postForm: undefined,
-      editHref: undefined,
       loading: false
     }
   },
@@ -55,7 +54,7 @@ export default {
       this.$store.dispatch('tagsView/updateVisitedView', route)
     },
     setPageTitle() {
-      const title = 'Edit'
+      const title = this.lang === 'zh' ? '编辑' : 'Edit'
       document.title = `${title} - ${this.postForm.id}`
     },
     closeThisView() {
