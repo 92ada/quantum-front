@@ -1,66 +1,67 @@
 <template>
-  <el-form ref="postForm" :model="postForm" class="form-container" label-position="right" label-width="100px" size="small">
-    <el-link icon="el-icon-edit" @click="goToEdit">编辑</el-link>
-    <people-detail type="view" :post-form="postForm" />
-  </el-form>
+  <div class="app-container">
+    <el-link v-if="type === 'edit'" icon="el-icon-edit" @click="closeThisView">{{ $t('common.cancel_edit') }}</el-link>
+    <el-link v-if="type === 'show'" icon="el-icon-edit" @click="goToEdit">{{ $t('common.edit') }}</el-link>
+    <people-detail :type="type" :peopleId="peopleId" />
+  </div>
 </template>
 <script>
 import PeopleDetail from './components/PeopleDetail'
-import { fetchPeopleInfo } from '../../api/people'
 
 export default {
   name: 'ViewPeople',
   components: { PeopleDetail },
   data() {
     return {
-      postForm: undefined
-    }
-  },
-  computed: {
-    lang() {
-      return this.$store.getters.language
+      tempRoute: {},
+      type: '',
+      peopleId: -1
     }
   },
   created() {
-    const id = this.$route.params && this.$route.params.id
-    this.fetchData(id)
-
     // Why need to make a copy of this.$route here?
     // Because if you enter this page and quickly switch tag, may be in the execution of the setTagsViewTitle function, this.$route is no longer pointing to the current page
     // https://github.com/PanJiaChen/vue-element-admin/issues/1221
     this.tempRoute = Object.assign({}, this.$route)
+
+    console.log('in people view page')
+    const lang = this.$store.getters.language
+    const peopleId = this.$route.params.id
+    this.type = this.$route.params.type // set type on created
+    this.peopleId = peopleId
+    this.setTagsViewTitle(lang, peopleId)
+    this.setPageTitle(lang, peopleId)
   },
   methods: {
-    fetchData(id) {
-      fetchPeopleInfo(id).then(response => {
-        this.postForm = response.data
-
-        // set tagsview title
-        this.setTagsViewTitle()
-
-        // set page title
-        this.setPageTitle()
-      }).catch(err => {
-        console.log(err)
-      })
+    getTitle(lang, id) {
+      let title
+      if (this.type === 'show') title = lang === 'zh' ? '人员详情' : 'Personal Info'
+      if (this.type === 'edit') title = lang === 'zh' ? '编辑' : 'Edit'
+      if (this.type === 'create') title = lang === 'zh' ? '创建' : 'Create'
+      return `${title}-${id}`
     },
-    setTagsViewTitle() {
-      const title = this.lang === 'zh' ? '人员详情' : 'Personal Info'
-      const route = Object.assign({}, this.tempRoute, { title: `${title}-${this.postForm.id}` })
+    setTagsViewTitle(lang, id) {
+      const route = Object.assign({}, this.tempRoute, { title: this.getTitle(lang, id) })
       this.$store.dispatch('tagsView/updateVisitedView', route)
     },
-    setPageTitle() {
-      const title = 'Personal Info'
-      document.title = `${title} - ${this.postForm.id}`
+    setPageTitle(lang, id) {
+      document.title = this.getTitle(lang, id)
     },
     goToEdit() {
-      this.$router.push('/people/edit/' + this.postForm.id)
+      const id = this.$route.params.id
+      const url = `/people/edit/${id}`
+      this.$router.push(url)
+    },
+    closeThisView() {
+      // TODO: 改成this.$store.dispatch
+      const btn = document.getElementById('close-' + this.$route.path)
+      btn.click()
     }
   }
 }
 </script>
 <style lang="scss" scoped>
-  .form-container {
-    margin: 40px 40px 40px 80px;
+  .app-container {
+    margin: 20px;
   }
 </style>

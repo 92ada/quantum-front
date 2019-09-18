@@ -33,10 +33,10 @@ export function getLanguage() {
   return 'en'
 }
 const i18n = new VueI18n({
-  // set locale
-  // options: en | zh | es
   locale: getLanguage(),
-  // set locale messages
+  missing: (locale, key, vm) => {
+    return null
+  },
   messages
 })
 

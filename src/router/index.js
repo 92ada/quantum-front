@@ -112,19 +112,26 @@ export const asyncRoutes = [
     },
     children: [
       {
-        path: 'edit/:id(\\d+)',
-        component: () => import('@/views/people/edit'),
-        name: 'EditPersonalInfo',
-        meta: { title: 'edit', noCache: true, activeMenu: '/people/view' },
-        hidden: true
-      },
-      {
-        path: 'view/:id(\\d+)',
+        path: ':type(\\w+)/:id(\\d+)',
         component: () => import('@/views/people/view'),
         name: 'PersonalInfo',
-        meta: { title: 'peopleDetail', noCache: true, activeMenu: '/people/list' },
+        meta: { title: 'PersonalInfo', noCache: true, activeMenu: '/people/view' },
         hidden: true
       },
+      // {
+      //   path: 'edit/:id(\\d+)',
+      //   component: () => import('@/views/people/edit'),
+      //   name: 'EditPersonalInfo',
+      //   meta: { title: 'edit', noCache: true, activeMenu: '/people/view' },
+      //   hidden: true
+      // },
+      // {
+      //   path: 'view/:id(\\d+)',
+      //   component: () => import('@/views/people/view'),
+      //   name: 'PersonalInfo',
+      //   meta: { title: 'peopleDetail', noCache: true, activeMenu: '/people/list' },
+      //   hidden: true
+      // },
       {
         path: 'create/:type',
         component: () => import('@/views/people/create'),

@@ -127,7 +127,7 @@ export const asyncRoutes = [
   },
 
   {
-    path: '/components',
+    path: '/components_old',
     component: 'layout/Layout',
     redirect: 'noRedirect',
     name: 'ComponentDemo',
@@ -138,85 +138,85 @@ export const asyncRoutes = [
     children: [
       {
         path: 'tinymce',
-        component: 'views/components-demo/tinymce',
+        component: 'views/components_old-demo/tinymce',
         name: 'TinymceDemo',
         meta: { title: 'tinymce' }
       },
       {
         path: 'markdown',
-        component: 'views/components-demo/markdown',
+        component: 'views/components_old-demo/markdown',
         name: 'MarkdownDemo',
         meta: { title: 'markdown' }
       },
       {
         path: 'json-editor',
-        component: 'views/components-demo/json-editor',
+        component: 'views/components_old-demo/json-editor',
         name: 'JsonEditorDemo',
         meta: { title: 'jsonEditor' }
       },
       {
         path: 'split-pane',
-        component: 'views/components-demo/split-pane',
+        component: 'views/components_old-demo/split-pane',
         name: 'SplitpaneDemo',
         meta: { title: 'splitPane' }
       },
       {
         path: 'avatar-upload',
-        component: 'views/components-demo/avatar-upload',
+        component: 'views/components_old-demo/avatar-upload',
         name: 'AvatarUploadDemo',
         meta: { title: 'avatarUpload' }
       },
       {
         path: 'dropzone',
-        component: 'views/components-demo/dropzone',
+        component: 'views/components_old-demo/dropzone',
         name: 'DropzoneDemo',
         meta: { title: 'dropzone' }
       },
       {
         path: 'sticky',
-        component: 'views/components-demo/sticky',
+        component: 'views/components_old-demo/sticky',
         name: 'StickyDemo',
         meta: { title: 'sticky' }
       },
       {
         path: 'count-to',
-        component: 'views/components-demo/count-to',
+        component: 'views/components_old-demo/count-to',
         name: 'CountToDemo',
         meta: { title: 'countTo' }
       },
       {
         path: 'mixin',
-        component: 'views/components-demo/mixin',
+        component: 'views/components_old-demo/mixin',
         name: 'ComponentMixinDemo',
         meta: { title: 'componentMixin' }
       },
       {
         path: 'back-to-top',
-        component: 'views/components-demo/back-to-top',
+        component: 'views/components_old-demo/back-to-top',
         name: 'BackToTopDemo',
         meta: { title: 'backToTop' }
       },
       {
         path: 'drag-dialog',
-        component: 'views/components-demo/drag-dialog',
+        component: 'views/components_old-demo/drag-dialog',
         name: 'DragDialogDemo',
         meta: { title: 'dragDialog' }
       },
       {
         path: 'drag-select',
-        component: 'views/components-demo/drag-select',
+        component: 'views/components_old-demo/drag-select',
         name: 'DragSelectDemo',
         meta: { title: 'dragSelect' }
       },
       {
         path: 'dnd-list',
-        component: 'views/components-demo/dnd-list',
+        component: 'views/components_old-demo/dnd-list',
         name: 'DndListDemo',
         meta: { title: 'dndList' }
       },
       {
         path: 'drag-kanban',
-        component: 'views/components-demo/drag-kanban',
+        component: 'views/components_old-demo/drag-kanban',
         name: 'DragKanbanDemo',
         meta: { title: 'dragKanban' }
       }

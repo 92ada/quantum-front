@@ -95,7 +95,9 @@ export default {
       })
     },
     goToDetail(row, event, column) {
-      this.$router.push('/people/view/' + row.id)
+      const url = `/people/show/${row.id}`
+      console.log('>> url: ' + url)
+      this.$router.push(url)
     },
     goToCreate() {
       const type = this.$route.path.split('/').reverse()[0]

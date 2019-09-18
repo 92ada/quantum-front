@@ -1,6 +1,8 @@
 export default {
   common: {
     update: '更新',
+    edit: '编辑',
+    cancel_edit: '取消编辑',
     create: '创建',
     pleaseChoose: '请选择'
   },
@@ -11,7 +13,7 @@ export default {
     researcher: '研究人员',
     teacher: '教辅人员',
     administration: '行政人员',
-    peopleDetail: '人员详情',
+    PersonalInfo: '人员详情',
     edit: '编辑',
     create: '创建'
   },
@@ -45,8 +47,8 @@ export default {
     fixedHeader: '固定 Header',
     sidebarLogo: '侧边栏 Logo'
   },
-  people: {
-    id: '工号',
+  basic_info: {
+    uid: '工号',
     type: '人员类型',
     status: '状态',
     name: '姓名',
@@ -79,5 +81,14 @@ export default {
     annual_salary: '年薪',
     monthly_salary: '折合月薪',
     housing_subsidy: '房补'
+  },
+  emergency_contact: {
+    name: '姓名',
+    relationship: '关系',
+    phone: '电话'
+  },
+  titles: {
+    basic_info: '基本信息',
+    emergency_contact: '紧急联系人信息'
   }
 }

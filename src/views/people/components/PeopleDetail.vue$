@@ -1,0 +1,27 @@
+<template>
+  <div>
+    <qt-form :status="status" :data-source-url="basicInfoUrl" />
+    <qt-form :status="status" :data-source-url="emergencyContactUrl" />
+  </div>
+</template>
+
+<script>
+import QtForm from '../../../components/Form/QtForm'
+
+export default {
+  name: 'PeopleDetail',
+  components: { QtForm },
+  props: {
+    status: {
+      type: String,
+      default: 'edit'
+    }
+  },
+  data() {
+    return {
+      basicInfoUrl: '/people/basic_info',
+      emergencyContactUrl: '/people/emergency_contact'
+    }
+  }
+}
+</script>
