@@ -4,7 +4,7 @@ import Router from 'vue-router'
 Vue.use(Router)
 
 /* Layout */
-import Layout from '@/layout'
+import Layout from '../layout'
 
 /* Router Modules */
 
@@ -105,37 +105,23 @@ export const asyncRoutes = [
     path: '/people',
     component: Layout,
     redirect: '/people/list',
-    name: 'PeopleList',
+    name: 'peopleList',
     meta: {
       title: 'people',
-      icon: 'user'
+      icon: 'peoples'
     },
     children: [
       {
-        path: ':type(\\w+)/:id(\\d+)',
-        component: () => import('@/views/people/view'),
-        name: 'PersonalInfo',
-        meta: { title: 'PersonalInfo', noCache: true, activeMenu: '/people/view' },
+        path: ':action_type(\\w+)/:id(\\d+)',
+        component: () => import('@/views/people/detail'),
+        name: 'personalInfo',
+        meta: { title: 'personalInfo', noCache: true, activeMenu: '/people/list' },
         hidden: true
       },
-      // {
-      //   path: 'edit/:id(\\d+)',
-      //   component: () => import('@/views/people/edit'),
-      //   name: 'EditPersonalInfo',
-      //   meta: { title: 'edit', noCache: true, activeMenu: '/people/view' },
-      //   hidden: true
-      // },
-      // {
-      //   path: 'view/:id(\\d+)',
-      //   component: () => import('@/views/people/view'),
-      //   name: 'PersonalInfo',
-      //   meta: { title: 'peopleDetail', noCache: true, activeMenu: '/people/list' },
-      //   hidden: true
-      // },
       {
-        path: 'create/:type',
-        component: () => import('@/views/people/create'),
-        name: 'CreateNewPerson',
+        path: ':action_type(create)/:type(\\w+)',
+        component: () => import('@/views/people/detail'),
+        name: 'peopleCreate',
         meta: { title: 'create', noCache: true, activeMenu: '/people/list' },
         hidden: true
       },
@@ -150,6 +136,235 @@ export const asyncRoutes = [
         component: () => import('@/views/people/list'),
         name: 'administration',
         meta: { title: 'administration', icon: 'list' }
+      },
+      {
+        path: 'list/visitor',
+        component: () => import('@/views/people/list'),
+        name: 'visitor',
+        meta: { title: 'visitor', icon: 'list' }
+      },
+      {
+        path: 'list/postdoctoral',
+        component: () => import('@/views/people/list'),
+        name: 'postdoctoral',
+        meta: { title: 'postdoctoral', icon: 'list' }
+      },
+      {
+        path: 'list/student',
+        component: () => import('@/views/people/list'),
+        name: 'student',
+        meta: { title: 'student', icon: 'list' }
+      },
+      {
+        path: 'list/all',
+        component: () => import('@/views/people/list'),
+        name: 'allPeople',
+        meta: { title: 'allPeople' },
+        hidden: true
+      }
+    ]
+  },
+  {
+    path: '/research',
+    component: Layout,
+    redirect: '/research/list',
+    name: 'researchList',
+    meta: {
+      title: 'research',
+      icon: 'example'
+    },
+    children: [
+      {
+        path: ':action_type(\\w+)/:id(\\d+)',
+        component: () => import('@/views/people/detail'),
+        name: 'researchInfo',
+        meta: { title: 'researchInfo', noCache: true, activeMenu: '/people/view' },
+        hidden: true
+      },
+      {
+        path: ':action_type(create)/:type(\\w+)',
+        component: () => import('@/views/people/detail'),
+        name: 'researchCreate',
+        meta: { title: 'create', noCache: true, activeMenu: '/people/list' },
+        hidden: true
+      },
+      {
+        path: 'list/patent',
+        component: () => import('@/views/people/list'),
+        name: 'patent',
+        meta: { title: 'patent', icon: 'component' }
+      },
+      {
+        path: 'list/paper',
+        component: () => import('@/views/people/list'),
+        name: 'paper',
+        meta: { title: 'paper', icon: 'component' }
+      },
+      {
+        path: 'list/project',
+        component: () => import('@/views/people/list'),
+        name: 'project',
+        meta: { title: 'project', icon: 'component' }
+      },
+      {
+        path: 'list/reward',
+        component: () => import('@/views/people/list'),
+        name: 'reward',
+        meta: { title: 'reward', icon: 'component' }
+      },
+      {
+        path: 'list/all',
+        component: () => import('@/views/people/list'),
+        name: 'allResearch',
+        meta: { title: 'allResearch' },
+        hidden: true
+      }
+    ]
+  },
+  {
+    path: '/finance',
+    component: Layout,
+    redirect: '/finance/list',
+    name: 'financeList',
+    meta: {
+      title: 'finance',
+      icon: 'money'
+    },
+    children: [
+      {
+        path: ':action_type(\\w+)/:id(\\d+)',
+        component: () => import('@/views/people/detail'),
+        name: 'financeInfo',
+        meta: { title: 'financeInfo', noCache: true, activeMenu: '/people/view' },
+        hidden: true
+      },
+      {
+        path: ':action_type(create)/:type(\\w+)',
+        component: () => import('@/views/people/detail'),
+        name: 'financeCreate',
+        meta: { title: 'create', noCache: true, activeMenu: '/people/list' },
+        hidden: true
+      },
+      {
+        path: 'list/insurance',
+        component: () => import('@/views/people/list'),
+        name: 'insurance',
+        meta: { title: 'insurance', icon: 'chart' }
+      },
+      {
+        path: 'list/expenditure',
+        component: () => import('@/views/people/list'),
+        name: 'expenditure',
+        meta: { title: 'expenditure', icon: 'chart' }
+      },
+      {
+        path: 'list/all',
+        component: () => import('@/views/people/list'),
+        name: 'allFinance',
+        meta: { title: 'allFinance' },
+        hidden: true
+      }
+    ]
+  },
+  {
+    path: '/daily',
+    component: Layout,
+    redirect: '/daily/list',
+    name: 'dailyList',
+    meta: {
+      title: 'daily',
+      icon: 'documentation'
+    },
+    children: [
+      {
+        path: ':action_type(\\w+)/:id(\\d+)',
+        component: () => import('@/views/people/detail'),
+        name: 'dailyInfo',
+        meta: { title: 'dailyInfo', noCache: true, activeMenu: '/people/view' },
+        hidden: true
+      },
+      {
+        path: ':action_type(create)/:type(\\w+)',
+        component: () => import('@/views/people/detail'),
+        name: 'dailyCreate',
+        meta: { title: 'create', noCache: true, activeMenu: '/people/list' },
+        hidden: true
+      },
+      {
+        path: 'list/travel',
+        component: () => import('@/views/people/list'),
+        name: 'travel',
+        meta: { title: 'travel', icon: 'guide' }
+      },
+      {
+        path: 'list/visit',
+        component: () => import('@/views/people/list'),
+        name: 'visit',
+        meta: { title: 'visit', icon: 'guide' }
+      },
+      {
+        path: 'list/report',
+        component: () => import('@/views/people/list'),
+        name: 'report',
+        meta: { title: 'report', icon: 'guide' }
+      },
+      {
+        path: 'list/hosting',
+        component: () => import('@/views/people/list'),
+        name: 'hosting',
+        meta: { title: 'hosting', icon: 'guide' }
+      },
+      {
+        path: 'list/all',
+        component: () => import('@/views/people/list'),
+        name: 'allDaily',
+        meta: { title: 'allDaily' },
+        hidden: true
+      }
+    ]
+  },
+  {
+    path: '/equipment',
+    component: Layout,
+    redirect: '/equipment/list',
+    name: 'equipmentList',
+    meta: {
+      title: 'equipment',
+      icon: 'lock'
+    },
+    children: [
+      {
+        path: ':action_type(\\w+)/:id(\\d+)',
+        component: () => import('@/views/people/detail'),
+        name: 'equipmentInfo',
+        meta: { title: 'equipmentInfo', noCache: true, activeMenu: '/people/view' },
+        hidden: true
+      },
+      {
+        path: ':action_type(create)/:type(\\w+)',
+        component: () => import('@/views/people/detail'),
+        name: 'equipmentCreate',
+        meta: { title: 'create', noCache: true, activeMenu: '/people/list' },
+        hidden: true
+      },
+      {
+        path: 'list/purchasing',
+        component: () => import('@/views/people/list'),
+        name: 'purchasing',
+        meta: { title: 'purchasing', icon: 'table' }
+      },
+      {
+        path: 'list/stock',
+        component: () => import('@/views/people/list'),
+        name: 'stock',
+        meta: { title: 'stock', icon: 'table' }
+      },
+      {
+        path: 'list/all',
+        component: () => import('@/views/people/list'),
+        name: 'allEquipment',
+        meta: { title: 'allEquipment' },
+        hidden: true
       }
     ]
   },

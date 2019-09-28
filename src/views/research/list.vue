@@ -54,11 +54,11 @@
 </template>
 
 <script>
-import { fetchList } from '../../api/people'
+import { fetchList } from '../../api/research'
 import Pagination from '../../components/Pagination' // Secondary package based on el-pagination
 
 export default {
-  name: 'PeopleList',
+  name: 'ResearchList',
   components: { Pagination },
   filters: {
     statusFilter(status) {
@@ -98,12 +98,12 @@ export default {
       })
     },
     goToDetail(row, event, column) {
-      const url = `/people/show/${row.uid}`
+      const url = `/research/show/${row.uid}`
       this.$router.push(url)
     },
     goToCreate() {
       const type = this.$route.path.split('/').reverse()[0]
-      this.$router.push('/people/create/' + type)
+      this.$router.push('/research/create/' + type)
     }
   }
 }

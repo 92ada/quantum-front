@@ -1,3 +1,6 @@
+import PeopleTranslation from './zh/people'
+import RouteTranslation from './zh/route'
+
 export default {
   common: {
     update: '更新',
@@ -6,17 +9,14 @@ export default {
     create: '创建',
     pleaseChoose: '请选择'
   },
-  route: {
-    dashboard: '首页',
-    profile: '个人中心',
-    people: '人员',
-    researcher: '研究人员',
-    teacher: '教辅人员',
-    administration: '行政人员',
-    PersonalInfo: '人员详情',
-    edit: '编辑',
-    create: '创建'
-  },
+  // titles: {
+  //   basic_info: '基本信息',
+  //   emergency_contact: '紧急联系人信息'
+  // },
+
+  route: RouteTranslation,
+  people: PeopleTranslation,
+
   navbar: {
     dashboard: '首页',
     github: '项目地址',
@@ -46,49 +46,5 @@ export default {
     tagsView: '开启 Tags-View',
     fixedHeader: '固定 Header',
     sidebarLogo: '侧边栏 Logo'
-  },
-  basic_info: {
-    uid: '工号',
-    type: '人员类型',
-    status: '状态',
-    name: '姓名',
-    identity_type: '证件类型',
-    identity_no: '证件号码',
-    identity_photo_url: '证件照片',
-    birth_date: '出生日期',
-    phone: '电话',
-    email: '邮箱',
-    political_status: '政治面貌',
-    describe: '个人简介',
-    emergency_contact: '紧急联系人信息',
-    entry_date: '入职时间',
-    departure_date: '离职时间',
-    gender: '性别',
-    lab: '课题组',
-    relationship: '与员工关系',
-    position_title: '岗位名称',
-    job: '职务',
-    social_job: '社会职务',
-    achievements: '历史获奖情况',
-    is_phd_mentor: '是否博导',
-    is_master_mentor: '是否硕导',
-    is_union_member: '是否工会成员',
-    salary_card_no: '工资卡卡号',
-    bank: '开户行',
-    contract_no: '合同编号',
-    contract_start_date: '合同开始时间',
-    contract_end_date: '合同结束时间',
-    annual_salary: '年薪',
-    monthly_salary: '折合月薪',
-    housing_subsidy: '房补'
-  },
-  emergency_contact: {
-    name: '姓名',
-    relationship: '关系',
-    phone: '电话'
-  },
-  titles: {
-    basic_info: '基本信息',
-    emergency_contact: '紧急联系人信息'
   }
 }

@@ -1,14 +1,16 @@
 <template>
   <div class="dashboard-editor-container">
-    1
+    <panel-group />
   </div>
 </template>
 
 <script>
 
+import PanelGroup from './components/PanelGroup'
 export default {
   name: 'DashboardAdmin',
   components: {
+    PanelGroup
   },
   data() {
     return {

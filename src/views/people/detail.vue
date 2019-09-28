@@ -2,19 +2,20 @@
   <div class="app-container">
     <el-link v-if="type === 'edit'" icon="el-icon-edit" @click="closeThisView">{{ $t('common.cancel_edit') }}</el-link>
     <el-link v-if="type === 'show'" icon="el-icon-edit" @click="goToEdit">{{ $t('common.edit') }}</el-link>
-    <people-detail :type="type" :peopleId="peopleId" />
+    <qt-form :type="type" :data-source-url="requestUrl + peopleId" />
   </div>
 </template>
 <script>
-import PeopleDetail from './components/PeopleDetail'
+import QtForm from '../../components/Form/QtForm'
 
 export default {
-  name: 'ViewPeople',
-  components: { PeopleDetail },
+  name: 'PeopleDetail',
+  components: { QtForm },
   data() {
     return {
       tempRoute: {},
       type: '',
+      requestUrl: '/api/people/detail/',
       peopleId: -1
     }
   },
@@ -27,25 +28,28 @@ export default {
     console.log('in people view page')
     const lang = this.$store.getters.language
     const peopleId = this.$route.params.id
-    this.type = this.$route.params.type // set type on created
+    const type = this.$route.params.action_type
+    const idOrType = type === 'create' ? this.$route.params.type : peopleId
+
+    this.type = type
     this.peopleId = peopleId
-    this.setTagsViewTitle(lang, peopleId)
-    this.setPageTitle(lang, peopleId)
+    this.setTagsViewTitle(lang, idOrType)
+    this.setPageTitle(lang, idOrType)
   },
   methods: {
-    getTitle(lang, id) {
+    getTitle(lang, idOrType) {
       let title
       if (this.type === 'show') title = lang === 'zh' ? '人员详情' : 'Personal Info'
       if (this.type === 'edit') title = lang === 'zh' ? '编辑' : 'Edit'
       if (this.type === 'create') title = lang === 'zh' ? '创建' : 'Create'
-      return `${title}-${id}`
+      return `${title}-${idOrType}`
     },
-    setTagsViewTitle(lang, id) {
-      const route = Object.assign({}, this.tempRoute, { title: this.getTitle(lang, id) })
+    setTagsViewTitle(lang, idOrType) {
+      const route = Object.assign({}, this.tempRoute, { title: this.getTitle(lang, idOrType) })
       this.$store.dispatch('tagsView/updateVisitedView', route)
     },
-    setPageTitle(lang, id) {
-      document.title = this.getTitle(lang, id)
+    setPageTitle(lang, idOrType) {
+      document.title = this.getTitle(lang, idOrType)
     },
     goToEdit() {
       const id = this.$route.params.id
