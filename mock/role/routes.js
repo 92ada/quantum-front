@@ -331,10 +331,10 @@ export const asyncRoutes = [
         hidden: true
       },
       {
-        path: 'list',
+        path: 'patent.vue',
         component: 'views/people/list',
         name: 'ArticleList',
-        meta: { title: 'articleList', icon: 'list' }
+        meta: { title: 'articleList', icon: 'patent.vue' }
       }
     ]
   },

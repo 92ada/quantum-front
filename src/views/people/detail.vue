@@ -15,7 +15,7 @@ export default {
     return {
       tempRoute: {},
       type: '',
-      requestUrl: '/api/people/detail/',
+      requestUrl: '/api/people/',
       peopleId: -1
     }
   },
@@ -28,8 +28,10 @@ export default {
     console.log('in people view page')
     const lang = this.$store.getters.language
     const peopleId = this.$route.params.id
-    const type = this.$route.params.action_type
+    const type = this.$route.params.action_type || 'show'
     const idOrType = type === 'create' ? this.$route.params.type : peopleId
+
+    console.log(peopleId, type, idOrType)
 
     this.type = type
     this.peopleId = peopleId
@@ -53,7 +55,7 @@ export default {
     },
     goToEdit() {
       const id = this.$route.params.id
-      const url = `/people/edit/${id}`
+      const url = `/people/${id}/edit`
       this.$router.push(url)
     },
     closeThisView() {

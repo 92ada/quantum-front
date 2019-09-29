@@ -69,7 +69,7 @@ export default {
   },
   methods: {
     goTo(where) {
-      this.$router.push({ path: `${where}/list/all` })
+      this.$router.push({ path: `${where}` })
     }
   }
 }

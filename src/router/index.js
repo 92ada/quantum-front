@@ -112,51 +112,58 @@ export const asyncRoutes = [
     },
     children: [
       {
-        path: ':action_type(\\w+)/:id(\\d+)',
+        path: ':id(\\d+)',
         component: () => import('@/views/people/detail'),
         name: 'personalInfo',
         meta: { title: 'personalInfo', noCache: true, activeMenu: '/people/list' },
         hidden: true
       },
       {
-        path: ':action_type(create)/:type(\\w+)',
+        path: ':id(\\d+)/:action_type(edit)',
+        component: () => import('@/views/people/detail'),
+        name: 'peopleEdit',
+        meta: { title: 'peopleEdit', noCache: true, activeMenu: '/people/list' },
+        hidden: true
+      },
+      {
+        path: ':type(\\w+)/:action_type(create)',
         component: () => import('@/views/people/detail'),
         name: 'peopleCreate',
         meta: { title: 'create', noCache: true, activeMenu: '/people/list' },
         hidden: true
       },
       {
-        path: 'list/researcher',
+        path: 'researcher',
         component: () => import('@/views/people/list'),
         name: 'researcher',
         meta: { title: 'researcher', icon: 'list' }
       },
       {
-        path: 'list/administration',
+        path: 'administration',
         component: () => import('@/views/people/list'),
         name: 'administration',
         meta: { title: 'administration', icon: 'list' }
       },
       {
-        path: 'list/visitor',
+        path: 'visitor',
         component: () => import('@/views/people/list'),
         name: 'visitor',
         meta: { title: 'visitor', icon: 'list' }
       },
       {
-        path: 'list/postdoctoral',
+        path: 'postdoctoral',
         component: () => import('@/views/people/list'),
         name: 'postdoctoral',
         meta: { title: 'postdoctoral', icon: 'list' }
       },
       {
-        path: 'list/student',
+        path: 'student',
         component: () => import('@/views/people/list'),
         name: 'student',
         meta: { title: 'student', icon: 'list' }
       },
       {
-        path: 'list/all',
+        path: '',
         component: () => import('@/views/people/list'),
         name: 'allPeople',
         meta: { title: 'allPeople' },
@@ -190,7 +197,7 @@ export const asyncRoutes = [
       },
       {
         path: 'list/patent',
-        component: () => import('@/views/people/list'),
+        component: () => import('@/views/research/list/patent'),
         name: 'patent',
         meta: { title: 'patent', icon: 'component' }
       },

@@ -3,16 +3,16 @@
     <el-link class="create-btn" icon="el-icon-edit" @click="goToCreate">新建</el-link>
     <el-table
       v-loading="listLoading"
-      :data="list"
+      :data="patent"
       border
       fit
       highlight-current-row
       style="width: 100%"
       @row-click="goToDetail"
     >
-      <el-table-column align="center" :label="$t('people.uid')" width="100" sortable prop="id">
+      <el-table-column align="center" :label="$t('patent.patent_id')" width="100" sortable prop="id">
         <template slot-scope="scope">
-          <span>{{ scope.row.uid }}</span>
+          <span>{{ scope.row.patent_id }}</span>
         </template>
       </el-table-column>
 
@@ -54,8 +54,8 @@
 </template>
 
 <script>
-import { fetchList } from '../../api/research'
-import Pagination from '../../components/Pagination' // Secondary package based on el-pagination
+import { fetchList } from '../../../api/research'
+import Pagination from '../../../components/Pagination/index' // Secondary package based on el-pagination
 
 export default {
   name: 'ResearchList',
@@ -98,7 +98,8 @@ export default {
       })
     },
     goToDetail(row, event, column) {
-      const url = `/research/show/${row.uid}`
+      // window.location.href + row.id
+      const url = `/research/show/${row.patent_id}`
       this.$router.push(url)
     },
     goToCreate() {

@@ -1,6 +1,6 @@
 <template>
   <div class="app-container">
-    <el-link class="create-btn" icon="el-icon-edit" @click="goToCreate">新建</el-link>
+    <el-link v-if="peopleType" class="create-btn" icon="el-icon-edit" @click="goToCreate">新建</el-link>
     <el-table
       v-loading="listLoading"
       :data="list"
@@ -79,17 +79,22 @@ export default {
       listQuery: {
         page: 1,
         limit: 20
-      }
+      },
+      peopleType: undefined
     }
   },
   created() {
-    this.getList()
+    this.peopleType = this.getType()
+    this.getList(this.peopleType)
   },
   methods: {
-    getList() {
-      this.listLoading = true
-      let type = this.$route.path.split('/').reverse()[0]
+    getType() {
+      let type = this.$route.path.split('/')[2]
       if (type === 'all') type = undefined
+      return type
+    },
+    getList(type) {
+      this.listLoading = true
       fetchList({ ...this.listQuery, type: type }).then(response => {
         console.log(response)
         this.list = response.data.items
@@ -98,12 +103,11 @@ export default {
       })
     },
     goToDetail(row, event, column) {
-      const url = `/people/show/${row.uid}`
+      const url = `/people/${row.uid}`
       this.$router.push(url)
     },
     goToCreate() {
-      const type = this.$route.path.split('/').reverse()[0]
-      this.$router.push('/people/create/' + type)
+      this.$router.push(`/people/${this.peopleType}/create`)
     }
   }
 }

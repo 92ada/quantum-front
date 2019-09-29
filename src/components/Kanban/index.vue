@@ -4,12 +4,12 @@
       {{ headerText }}
     </div>
     <draggable
-      :list="list"
+      :list="patent"
       v-bind="$attrs"
       class="board-column-content"
       :set-data="setData"
     >
-      <div v-for="element in list" :key="element.id" class="board-item">
+      <div v-for="element in patent" :key="element.id" class="board-item">
         {{ element.name }} {{ element.id }}
       </div>
     </draggable>
