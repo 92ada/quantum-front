@@ -10,29 +10,27 @@
       style="width: 100%"
       @row-click="goToDetail"
     >
-      <el-table-column align="center" :label="$t('research.id')" width="80" sortable prop="id">
+      <el-table-column align="center" :label="$t('daily.travel.id')" width="80" sortable prop="id">
         <template slot-scope="scope">
           <span>{{ scope.row.id }}</span>
         </template>
       </el-table-column>
 
-      <el-table-column width="420" align="center" :label="$t('research.title')" sortable prop="name">
+      <el-table-column width="420" align="center" :label="$t('daily.travel.people')" sortable prop="name">
         <template slot-scope="scope">
-          <span>{{ scope.row.title }}</span>
+          <span>{{ scope.row.people }}</span>
         </template>
       </el-table-column>
 
-      <el-table-column width="180" align="center" :label="$t('research.applicant')">
+      <el-table-column width="180" align="center" :label="$t('daily.travel.type')">
         <template slot-scope="scope">
-          <span>{{ scope.row.applicant }}</span>
+          <span>{{ scope.row.type }}</span>
         </template>
       </el-table-column>
 
-      <el-table-column class-name="status-col" :label="$t('research.status')" width="180" sortable prop="status">
-        <template slot-scope="{row}">
-          <el-tag :type="row.status | statusFilter">
-            {{ row.status }}
-          </el-tag>
+      <el-table-column width="180" align="center" :label="$t('daily.travel.start_date')">
+        <template slot-scope="scope">
+          <span>{{ scope.row.start_date }}</span>
         </template>
       </el-table-column>
     </el-table>
@@ -48,7 +46,7 @@
 </template>
 
 <script>
-import { fetchPatentList } from '../../../api/research'
+import { fetchTravels } from '../../../api/daily'
 import Pagination from '../../../components/Pagination/index' // Secondary package based on el-pagination
 
 export default {
@@ -80,7 +78,7 @@ export default {
   methods: {
     getList() {
       this.listLoading = true
-      fetchPatentList(this.listQuery).then(response => {
+      fetchTravels(this.listQuery).then(response => {
         console.log(response)
         this.list = response.data.items
         this.total = response.data.total
@@ -88,11 +86,11 @@ export default {
       })
     },
     goToDetail(row, event, column) {
-      const url = `/research/patent/${row.id}`
+      const url = `/daily/travel/${row.id}`
       this.$router.push(url)
     },
     goToCreate() {
-      this.$router.push('/research/patent/create')
+      this.$router.push('/daily/travel/create')
     }
   }
 }

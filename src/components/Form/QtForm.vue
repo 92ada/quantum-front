@@ -2,7 +2,7 @@
   <div>
     <div v-for="(form, index) in dataSource" :key="index" class="form-container">
       <h3>{{ form.title.name }}</h3>
-      <el-form label-position="right" label-width="100px" size="small">
+      <el-form label-position="right" label-width="120px" size="small">
         <el-row>
           <el-col v-for="(col) in form.columns" :key="col.index" :span="12">
             <form-item v-if="col.type === 'string'" :label="col.name+':'" :editable="col.editable" class="form-item">

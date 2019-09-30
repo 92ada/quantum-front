@@ -46,7 +46,7 @@ for (let i = 0; i < count; i++) {
         'position_title|1': ['教授', '副教授', '助理教授', '研究员'],
         'job': '@word',
         'social_job': '@title',
-        'achievements': '@paragraph',
+        'achievements': '@sentence',
         'is_phd_mentor|1-2': true,
         'is_master_mentor|1-2': true,
         'is_union_member|1-2': true,

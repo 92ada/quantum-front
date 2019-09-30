@@ -182,46 +182,53 @@ export const asyncRoutes = [
     },
     children: [
       {
-        path: ':action_type(\\w+)/:id(\\d+)',
-        component: () => import('@/views/people/detail'),
+        path: ':type(\\w+)/:id(\\w+)',
+        component: () => import('@/views/research/detail'),
         name: 'researchInfo',
-        meta: { title: 'researchInfo', noCache: true, activeMenu: '/people/view' },
+        meta: { title: 'researchInfo', noCache: true, activeMenu: '/research' },
         hidden: true
       },
       {
-        path: ':action_type(create)/:type(\\w+)',
-        component: () => import('@/views/people/detail'),
+        path: ':type(\\w+)/:id(\\d+)/:action_type(edit)',
+        component: () => import('@/views/research/detail'),
+        name: 'researchEdit',
+        meta: { title: 'researchEdit', noCache: true, activeMenu: '/research' },
+        hidden: true
+      },
+      {
+        path: ':type(\\w+)/:action_type(create)',
+        component: () => import('@/views/research/detail'),
         name: 'researchCreate',
-        meta: { title: 'create', noCache: true, activeMenu: '/people/list' },
+        meta: { title: 'create', noCache: true, activeMenu: '/research' },
         hidden: true
       },
       {
-        path: 'list/patent',
+        path: 'patent',
         component: () => import('@/views/research/list/patent'),
         name: 'patent',
         meta: { title: 'patent', icon: 'component' }
       },
       {
-        path: 'list/paper',
-        component: () => import('@/views/people/list'),
+        path: 'paper',
+        component: () => import('@/views/research/list/paper'),
         name: 'paper',
         meta: { title: 'paper', icon: 'component' }
       },
       {
-        path: 'list/project',
-        component: () => import('@/views/people/list'),
+        path: 'project',
+        component: () => import('@/views/research/list/project'),
         name: 'project',
         meta: { title: 'project', icon: 'component' }
       },
       {
-        path: 'list/reward',
-        component: () => import('@/views/people/list'),
+        path: 'reward',
+        component: () => import('@/views/research/list/reward'),
         name: 'reward',
         meta: { title: 'reward', icon: 'component' }
       },
       {
-        path: 'list/all',
-        component: () => import('@/views/people/list'),
+        path: '',
+        component: () => import('@/views/research/list'),
         name: 'allResearch',
         meta: { title: 'allResearch' },
         hidden: true
@@ -284,46 +291,53 @@ export const asyncRoutes = [
     },
     children: [
       {
-        path: ':action_type(\\w+)/:id(\\d+)',
-        component: () => import('@/views/people/detail'),
+        path: ':type(\\w+)/:id(\\w+)',
+        component: () => import('@/views/daily/detail'),
         name: 'dailyInfo',
-        meta: { title: 'dailyInfo', noCache: true, activeMenu: '/people/view' },
+        meta: { title: 'researchInfo', noCache: true, activeMenu: '/daily' },
         hidden: true
       },
       {
-        path: ':action_type(create)/:type(\\w+)',
-        component: () => import('@/views/people/detail'),
+        path: ':type(\\w+)/:id(\\d+)/:action_type(edit)',
+        component: () => import('@/views/daily/detail'),
+        name: 'dailyEdit',
+        meta: { title: 'researchEdit', noCache: true, activeMenu: '/daily' },
+        hidden: true
+      },
+      {
+        path: ':type(\\w+)/:action_type(create)',
+        component: () => import('@/views/daily/detail'),
         name: 'dailyCreate',
-        meta: { title: 'create', noCache: true, activeMenu: '/people/list' },
+        meta: { title: 'create', noCache: true, activeMenu: '/daily' },
         hidden: true
       },
       {
-        path: 'list/travel',
-        component: () => import('@/views/people/list'),
+        path: 'travel',
+        component: () => import('@/views/daily/list/travel'),
         name: 'travel',
         meta: { title: 'travel', icon: 'guide' }
       },
       {
-        path: 'list/visit',
-        component: () => import('@/views/people/list'),
+        path: 'visit',
+        component: () => import('@/views/daily/list/visit'),
         name: 'visit',
         meta: { title: 'visit', icon: 'guide' }
       },
       {
-        path: 'list/report',
-        component: () => import('@/views/people/list'),
+        path: 'report',
+        component: () => import('@/views/daily/list/report'),
         name: 'report',
         meta: { title: 'report', icon: 'guide' }
       },
       {
-        path: 'list/hosting',
-        component: () => import('@/views/people/list'),
+        path: 'hosting',
+        component: () => import('@/views/daily/list/hosting'),
         name: 'hosting',
         meta: { title: 'hosting', icon: 'guide' }
       },
       {
-        path: 'list/all',
-        component: () => import('@/views/people/list'),
+        path: '',
+        component: () => import('@/views/daily/list'),
         name: 'allDaily',
         meta: { title: 'allDaily' },
         hidden: true

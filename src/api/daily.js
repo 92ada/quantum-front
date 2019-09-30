@@ -1,32 +1,32 @@
 import request from '../utils/request'
 
-export function fetchPatentList(query) {
+export function fetchTravels(query) {
   return request({
-    url: '/api/research/patent',
+    url: '/api/daily/travel',
     method: 'get',
     params: query
   })
 }
 
-export function fetchPaperList(query) {
+export function fetchVisits(query) {
   return request({
-    url: '/api/research/paper',
+    url: '/api/daily/visit',
     method: 'get',
     params: query
   })
 }
 
-export function fetchProjectList(query) {
+export function fetchReports(query) {
   return request({
-    url: '/api/research/project',
+    url: '/api/daily/report',
     method: 'get',
     params: query
   })
 }
 
-export function fetchRewardList(query) {
+export function fetchHostings(query) {
   return request({
-    url: '/api/research/reward',
+    url: '/api/daily/reward',
     method: 'get',
     params: query
   })

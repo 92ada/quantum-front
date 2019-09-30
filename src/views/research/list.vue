@@ -1,6 +1,5 @@
 <template>
   <div class="app-container">
-    <el-link class="create-btn" icon="el-icon-edit" @click="goToCreate">新建</el-link>
     <el-table
       v-loading="listLoading"
       :data="list"
@@ -22,19 +21,12 @@
         </template>
       </el-table-column>
 
-      <el-table-column width="180" align="center" :label="$t('research.applicant')">
+      <el-table-column width="180" align="center" :label="$t('research.research_type')">
         <template slot-scope="scope">
-          <span>{{ scope.row.applicant }}</span>
+          <span>{{ $t('route.' + scope.row.research_type) }}</span>
         </template>
       </el-table-column>
 
-      <el-table-column class-name="status-col" :label="$t('research.status')" width="180" sortable prop="status">
-        <template slot-scope="{row}">
-          <el-tag :type="row.status | statusFilter">
-            {{ row.status }}
-          </el-tag>
-        </template>
-      </el-table-column>
     </el-table>
 
     <pagination
@@ -48,21 +40,12 @@
 </template>
 
 <script>
-import { fetchPatentList } from '../../../api/research'
-import Pagination from '../../../components/Pagination/index' // Secondary package based on el-pagination
+import { fetchAllResearchList } from '../../api/research'
+import Pagination from '../../components/Pagination/index' // Secondary package based on el-pagination
 
 export default {
   name: 'PatentList',
   components: { Pagination },
-  filters: {
-    statusFilter(status) {
-      const statusMap = {
-        '授权': 'success',
-        '申请': 'info'
-      }
-      return statusMap[status]
-    }
-  },
   data() {
     return {
       list: null,
@@ -80,7 +63,7 @@ export default {
   methods: {
     getList() {
       this.listLoading = true
-      fetchPatentList(this.listQuery).then(response => {
+      fetchAllResearchList(this.listQuery).then(response => {
         console.log(response)
         this.list = response.data.items
         this.total = response.data.total
@@ -88,11 +71,8 @@ export default {
       })
     },
     goToDetail(row, event, column) {
-      const url = `/research/patent/${row.id}`
+      const url = `/research/${row.research_type}/${row.id}`
       this.$router.push(url)
-    },
-    goToCreate() {
-      this.$router.push('/research/patent/create')
     }
   }
 }

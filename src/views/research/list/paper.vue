@@ -16,23 +16,21 @@
         </template>
       </el-table-column>
 
-      <el-table-column width="420" align="center" :label="$t('research.title')" sortable prop="name">
+      <el-table-column width="400" align="center" :label="$t('research.title')" sortable prop="name">
         <template slot-scope="scope">
           <span>{{ scope.row.title }}</span>
         </template>
       </el-table-column>
 
-      <el-table-column width="180" align="center" :label="$t('research.applicant')">
+      <el-table-column width="180" align="center" :label="$t('research.paper_info.author')">
         <template slot-scope="scope">
-          <span>{{ scope.row.applicant }}</span>
+          <span>{{ scope.row.author }}</span>
         </template>
       </el-table-column>
 
-      <el-table-column class-name="status-col" :label="$t('research.status')" width="180" sortable prop="status">
-        <template slot-scope="{row}">
-          <el-tag :type="row.status | statusFilter">
-            {{ row.status }}
-          </el-tag>
+      <el-table-column class-name="status-col" :label="$t('research.paper_info.journal_conference_title')" width="400" sortable prop="status">
+        <template slot-scope="scope">
+          <span>{{ scope.row.journal_conference_title }}</span>
         </template>
       </el-table-column>
     </el-table>
@@ -48,21 +46,12 @@
 </template>
 
 <script>
-import { fetchPatentList } from '../../../api/research'
+import { fetchPaperList } from '../../../api/research'
 import Pagination from '../../../components/Pagination/index' // Secondary package based on el-pagination
 
 export default {
-  name: 'PatentList',
+  name: 'PaperList',
   components: { Pagination },
-  filters: {
-    statusFilter(status) {
-      const statusMap = {
-        '授权': 'success',
-        '申请': 'info'
-      }
-      return statusMap[status]
-    }
-  },
   data() {
     return {
       list: null,
@@ -80,7 +69,7 @@ export default {
   methods: {
     getList() {
       this.listLoading = true
-      fetchPatentList(this.listQuery).then(response => {
+      fetchPaperList(this.listQuery).then(response => {
         console.log(response)
         this.list = response.data.items
         this.total = response.data.total
@@ -88,11 +77,11 @@ export default {
       })
     },
     goToDetail(row, event, column) {
-      const url = `/research/patent/${row.id}`
+      const url = `/research/paper/${row.id}`
       this.$router.push(url)
     },
     goToCreate() {
-      this.$router.push('/research/patent/create')
+      this.$router.push('/research/paper/create')
     }
   }
 }

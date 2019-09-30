@@ -25,6 +25,8 @@ export default {
   paper: '论文',
   reward: '获奖',
   project: '项目',
+  researchInfo: '科研详情',
+  allResearch: '所有科研情况',
 
   /**
    *  path: /finance

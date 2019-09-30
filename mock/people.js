@@ -2,6 +2,7 @@ import LabList from './const_data/options/lab.js'
 
 import { BasicInfoList, EmergencyContactList, OtherInfoList } from './random_data/people'
 import { toObjectList } from './util'
+import constBasicInfo from './const_data/people/basic_info/1'
 
 export default [
   {
@@ -22,12 +23,13 @@ export default [
       const result = {
         postUrl: `/api/people/${id}`,
         data: [
-          {
-            title: {
-              'index': 'people.basic_info'
-            },
-            columns: toObjectList(filteredBasicInfoList)
-          },
+          constBasicInfo,
+          // {
+          //   title: {
+          //     'index': 'people.basic_info'
+          //   },
+          //   columns: toObjectList(filteredBasicInfoList)
+          // },
           {
             title: {
               'index': 'people.emergency_contact'

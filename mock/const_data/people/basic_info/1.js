@@ -1,5 +1,4 @@
 export default {
-  'request_url': 'https://api.xx.com/people/123',
   'title': {
     'name': 'Basic Info',
     'index': 'people.basic_info'
@@ -7,13 +6,13 @@ export default {
   'columns': [
     {
       'name': 'User Id',
-      'value': '1',
+      'value': 1,
       'index': 'uid',
       'type': 'string'
     },
     {
       'name': 'Name',
-      'value': '小亦',
+      'value': '张三',
       'index': 'name',
       'type': 'string',
       'require': true
@@ -49,7 +48,8 @@ export default {
       'name': 'Birth Date',
       'value': '1971-04-01',
       'index': 'birth_date',
-      'type': 'date'
+      'type': 'date',
+      'editable': true
     },
     {
       'name': 'Contact',
@@ -89,14 +89,15 @@ export default {
       'value': 'Male',
       'index': 'gender',
       'type': 'enum',
-      'options': ['Male', 'Female', 'Unknown']
+      'options': ['Male', 'Female', 'Unknown'],
+      'editable': true
     },
     {
       'name': 'Lab',
       'value': 'Xintong',
       'index': 'lab',
       'type': 'reference',
-      'option_url': '/options/lab',
+      'option_url': '/api/labs',
       'editable': true
     },
     {

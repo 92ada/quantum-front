@@ -1,6 +1,7 @@
 <template>
-  <div class="app-container">
-    <el-link class="create-btn" icon="el-icon-edit" @click="goToCreate">新建</el-link>
+  <div style="padding-top: 20px;">
+    <h3 class="project-funds-title">经费到账情况</h3>
+    <el-link class="create-btn" icon="el-icon-edit" @click="goToCreate">新增到账记录</el-link>
     <el-table
       v-loading="listLoading"
       :data="list"
@@ -10,31 +11,30 @@
       style="width: 100%"
       @row-click="goToDetail"
     >
-      <el-table-column align="center" :label="$t('research.id')" width="80" sortable prop="id">
+      <el-table-column align="center" :label="$t('research.project_funds_info.id')" width="80" sortable prop="id">
         <template slot-scope="scope">
           <span>{{ scope.row.id }}</span>
         </template>
       </el-table-column>
 
-      <el-table-column width="420" align="center" :label="$t('research.title')" sortable prop="name">
+      <el-table-column width="180" align="center" :label="$t('research.project_funds_info.arrival_date')" sortable prop="name">
         <template slot-scope="scope">
-          <span>{{ scope.row.title }}</span>
+          <span>{{ scope.row.arrival_date }}</span>
         </template>
       </el-table-column>
 
-      <el-table-column width="180" align="center" :label="$t('research.applicant')">
+      <el-table-column width="180" align="center" :label="$t('research.project_funds_info.amount')">
         <template slot-scope="scope">
-          <span>{{ scope.row.applicant }}</span>
+          <span>{{ scope.row.amount }}</span>
         </template>
       </el-table-column>
 
-      <el-table-column class-name="status-col" :label="$t('research.status')" width="180" sortable prop="status">
-        <template slot-scope="{row}">
-          <el-tag :type="row.status | statusFilter">
-            {{ row.status }}
-          </el-tag>
+      <el-table-column width="400" align="center" :label="$t('research.project_funds_info.remark')">
+        <template slot-scope="scope">
+          <span>{{ scope.row.remark }}</span>
         </template>
       </el-table-column>
+
     </el-table>
 
     <pagination
@@ -48,8 +48,8 @@
 </template>
 
 <script>
-import { fetchPatentList } from '../../../api/research'
 import Pagination from '../../../components/Pagination/index' // Secondary package based on el-pagination
+import { fetchProjectFundsByProject } from '../../../api/research'
 
 export default {
   name: 'PatentList',
@@ -63,6 +63,7 @@ export default {
       return statusMap[status]
     }
   },
+  props: ['projectId'],
   data() {
     return {
       list: null,
@@ -80,7 +81,7 @@ export default {
   methods: {
     getList() {
       this.listLoading = true
-      fetchPatentList(this.listQuery).then(response => {
+      fetchProjectFundsByProject(this.peopleId).then(response => {
         console.log(response)
         this.list = response.data.items
         this.total = response.data.total
@@ -88,19 +89,23 @@ export default {
       })
     },
     goToDetail(row, event, column) {
-      const url = `/research/patent/${row.id}`
+      const url = `/research/project/${this.projectId}/funds/${row.id}`
       this.$router.push(url)
     },
     goToCreate() {
-      this.$router.push('/research/patent/create')
+      this.$router.push(`/research/project/${this.projectId}/funds/create`)
     }
   }
 }
 </script>
 
 <style scoped>
+  .project-funds-title {
+    margin-top: 10px;
+    float: left;
+  }
   .create-btn {
-    margin: 10px 10px 10px 10px;
+    margin: 13px 10px 10px 10px;
     float: right;
   }
 </style>

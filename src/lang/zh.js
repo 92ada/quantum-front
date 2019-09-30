@@ -1,5 +1,7 @@
 import PeopleTranslation from './zh/people'
 import RouteTranslation from './zh/route'
+import ResearchTranslation from './zh/research'
+import DailyTranslation from './zh/daily'
 
 export default {
   common: {
@@ -16,6 +18,8 @@ export default {
 
   route: RouteTranslation,
   people: PeopleTranslation,
+  research: ResearchTranslation,
+  daily: DailyTranslation,
 
   navbar: {
     dashboard: '首页',
