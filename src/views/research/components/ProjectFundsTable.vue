@@ -89,11 +89,11 @@ export default {
       })
     },
     goToDetail(row, event, column) {
-      const url = `/research/project/${this.projectId}/funds/${row.id}`
-      this.$router.push(url)
+      // const url = `/research/project/${this.projectId}/funds/${row.id}`
+      // this.$router.push(url)
     },
     goToCreate() {
-      this.$router.push(`/research/project/${this.projectId}/funds/create`)
+      // this.$router.push(`/research/project/${this.projectId}/funds/create`)
     }
   }
 }
