@@ -34,7 +34,7 @@ for (let i = 0; i < count; i++) {
     'receptionist': '@first @last',
     'identity_type|1': ['ID Card', 'Passport'],
     'identity_no|1000000-9999999': 1,
-    'phone_no': '@phone',
+    'phone_no|15602900000-18909909999': 1,
     'email': '@email',
     'accommodation': true,
     'needs_pick_up|1': true,
@@ -53,7 +53,7 @@ for (let i = 0; i < count; i++) {
     'inviter': '@first @last',
     'title': '@title',
     'time': '@datetime',
-    'invitee': '@first @last',
+    'invitee_name': '@first @last',
     'people_count|10-100': 1
   }))
 }
@@ -66,16 +66,16 @@ for (let i = 0; i < count; i++) {
     'id': '@increment',
     'title': '@title',
     'time': '@datetime',
-    'site': '@sentence'
+    'site': '@word @word'
   }))
 }
 
 /**
- * Flight
+ * Flight Info
  * */
 for (let i = 0; i < 3; i++) {
   FlightList.push(Mock.mock({
-    'id': '@increment',
+    'id': 1,
     'departure_time': '@datetime',
     'arrival_time': '@datetime',
     'departure_site': '@word',

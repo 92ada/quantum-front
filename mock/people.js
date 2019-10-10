@@ -23,13 +23,12 @@ export default [
       const result = {
         postUrl: `/api/people/${id}`,
         data: [
-          constBasicInfo,
-          // {
-          //   title: {
-          //     'index': 'people.basic_info'
-          //   },
-          //   columns: toObjectList(filteredBasicInfoList)
-          // },
+          {
+            title: {
+              'index': 'people.basic_info'
+            },
+            columns: toObjectList(filteredBasicInfoList)
+          },
           {
             title: {
               'index': 'people.emergency_contact'

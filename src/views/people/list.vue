@@ -10,31 +10,31 @@
       style="width: 100%"
       @row-click="goToDetail"
     >
-      <el-table-column align="center" :label="$t('people.uid')" width="100" sortable prop="id">
+      <el-table-column align="center" :label="$t('people.uid')" min-width="100" sortable prop="id">
         <template slot-scope="scope">
           <span>{{ scope.row.uid }}</span>
         </template>
       </el-table-column>
 
-      <el-table-column width="180" align="center" :label="$t('people.name')" sortable prop="name">
+      <el-table-column min-width="180" align="center" :label="$t('people.name')" sortable prop="name">
         <template slot-scope="scope">
           <span>{{ scope.row.name }}</span>
         </template>
       </el-table-column>
 
-      <el-table-column width="180" align="center" :label="$t('people.phone')">
+      <el-table-column min-width="180" align="center" :label="$t('people.phone')">
         <template slot-scope="scope">
           <span>{{ scope.row.phone }}</span>
         </template>
       </el-table-column>
 
-      <el-table-column width="200" :label="$t('people.email')">
+      <el-table-column min-width="200" :label="$t('people.email')">
         <template slot-scope="scope">
           <span>{{ scope.row.email }}</span>
         </template>
       </el-table-column>
 
-      <el-table-column class-name="status-col" :label="$t('people.status')" width="180" sortable prop="status">
+      <el-table-column class-name="status-col" :label="$t('people.status')" min-width="180" sortable prop="status">
         <template slot-scope="{row}">
           <el-tag :type="row.status | statusFilter">
             {{ row.status }}

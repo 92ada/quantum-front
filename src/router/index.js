@@ -104,8 +104,6 @@ export const asyncRoutes = [
   {
     path: '/people',
     component: Layout,
-    redirect: '/people/list',
-    name: 'peopleList',
     meta: {
       title: 'people',
       icon: 'peoples'
@@ -115,14 +113,14 @@ export const asyncRoutes = [
         path: ':id(\\d+)',
         component: () => import('@/views/people/detail'),
         name: 'personalInfo',
-        meta: { title: 'personalInfo', noCache: true, activeMenu: '/people/list' },
+        meta: { title: 'detail', noCache: true, activeMenu: '/people/list' },
         hidden: true
       },
       {
         path: ':id(\\d+)/:action_type(edit)',
         component: () => import('@/views/people/detail'),
         name: 'peopleEdit',
-        meta: { title: 'peopleEdit', noCache: true, activeMenu: '/people/list' },
+        meta: { title: 'edit', noCache: true, activeMenu: '/people/list' },
         hidden: true
       },
       {
@@ -175,7 +173,6 @@ export const asyncRoutes = [
     path: '/research',
     component: Layout,
     redirect: '/research/list',
-    name: 'researchList',
     meta: {
       title: 'research',
       icon: 'example'
@@ -185,14 +182,14 @@ export const asyncRoutes = [
         path: ':type(\\w+)/:id(\\w+)',
         component: () => import('@/views/research/detail'),
         name: 'researchInfo',
-        meta: { title: 'researchInfo', noCache: true, activeMenu: '/research' },
+        meta: { title: 'detail', noCache: true, activeMenu: '/research' },
         hidden: true
       },
       {
         path: ':type(\\w+)/:id(\\d+)/:action_type(edit)',
         component: () => import('@/views/research/detail'),
         name: 'researchEdit',
-        meta: { title: 'researchEdit', noCache: true, activeMenu: '/research' },
+        meta: { title: 'edit', noCache: true, activeMenu: '/research' },
         hidden: true
       },
       {
@@ -239,7 +236,6 @@ export const asyncRoutes = [
     path: '/finance',
     component: Layout,
     redirect: '/finance/list',
-    name: 'financeList',
     meta: {
       title: 'finance',
       icon: 'money'
@@ -249,7 +245,7 @@ export const asyncRoutes = [
         path: ':action_type(\\w+)/:id(\\d+)',
         component: () => import('@/views/people/detail'),
         name: 'financeInfo',
-        meta: { title: 'financeInfo', noCache: true, activeMenu: '/people/view' },
+        meta: { title: 'detail', noCache: true, activeMenu: '/people/view' },
         hidden: true
       },
       {
@@ -284,7 +280,6 @@ export const asyncRoutes = [
     path: '/daily',
     component: Layout,
     redirect: '/daily/list',
-    name: 'dailyList',
     meta: {
       title: 'daily',
       icon: 'documentation'
@@ -294,14 +289,14 @@ export const asyncRoutes = [
         path: ':type(\\w+)/:id(\\w+)',
         component: () => import('@/views/daily/detail'),
         name: 'dailyInfo',
-        meta: { title: 'researchInfo', noCache: true, activeMenu: '/daily' },
+        meta: { title: 'detail', noCache: true, activeMenu: '/daily' },
         hidden: true
       },
       {
         path: ':type(\\w+)/:id(\\d+)/:action_type(edit)',
         component: () => import('@/views/daily/detail'),
         name: 'dailyEdit',
-        meta: { title: 'researchEdit', noCache: true, activeMenu: '/daily' },
+        meta: { title: 'edit', noCache: true, activeMenu: '/daily' },
         hidden: true
       },
       {
@@ -348,41 +343,47 @@ export const asyncRoutes = [
     path: '/equipment',
     component: Layout,
     redirect: '/equipment/list',
-    name: 'equipmentList',
     meta: {
       title: 'equipment',
       icon: 'lock'
     },
     children: [
       {
-        path: ':action_type(\\w+)/:id(\\d+)',
-        component: () => import('@/views/people/detail'),
+        path: ':type(\\w+)/:id(\\w+)',
+        component: () => import('@/views/equipment/detail'),
         name: 'equipmentInfo',
-        meta: { title: 'equipmentInfo', noCache: true, activeMenu: '/people/view' },
+        meta: { title: 'detail', noCache: true, activeMenu: '/equipment' },
         hidden: true
       },
       {
-        path: ':action_type(create)/:type(\\w+)',
-        component: () => import('@/views/people/detail'),
+        path: ':type(\\w+)/:id(\\d+)/:action_type(edit)',
+        component: () => import('@/views/equipment/detail'),
+        name: 'equipmentEdit',
+        meta: { title: 'edit', noCache: true, activeMenu: '/equipment' },
+        hidden: true
+      },
+      {
+        path: ':type(\\w+)/:action_type(create)',
+        component: () => import('@/views/equipment/detail'),
         name: 'equipmentCreate',
-        meta: { title: 'create', noCache: true, activeMenu: '/people/list' },
+        meta: { title: 'create', noCache: true, activeMenu: '/equipment' },
         hidden: true
       },
       {
-        path: 'list/purchasing',
-        component: () => import('@/views/people/list'),
+        path: 'purchasing',
+        component: () => import('@/views/equipment/list/purchasing'),
         name: 'purchasing',
         meta: { title: 'purchasing', icon: 'table' }
       },
       {
-        path: 'list/stock',
-        component: () => import('@/views/people/list'),
+        path: 'stock',
+        component: () => import('@/views/equipment/list/stock'),
         name: 'stock',
         meta: { title: 'stock', icon: 'table' }
       },
       {
-        path: 'list/all',
-        component: () => import('@/views/people/list'),
+        path: '',
+        component: () => import('@/views/equipment/list'),
         name: 'allEquipment',
         meta: { title: 'allEquipment' },
         hidden: true

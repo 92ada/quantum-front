@@ -2,24 +2,21 @@
   <div class="app-container">
     <el-link v-if="type === 'edit'" icon="el-icon-edit" @click="closeThisView">{{ $t('common.cancel_edit') }}</el-link>
     <el-link v-if="type === 'show'" icon="el-icon-edit" @click="goToEdit">{{ $t('common.edit') }}</el-link>
-    <qt-form :type="type" :data-source-url="requestUrl + dailyType + '/' + dailyId" />
-
-    <flight-info-table v-if="dailyType === 'project'" :project-id="dailyId" />
+    <qt-form :type="type" :data-source-url="requestUrl + equipmentType + '/' + equipmentId" />
   </div>
 </template>
 <script>
 import QtForm from '../../components/Form/QtForm'
-import FlightInfoTable from './components/FlightInfoTable'
 export default {
-  name: 'DailyDetail',
-  components: { FlightInfoTable, QtForm },
+  name: 'EquipmentDetail',
+  components: { QtForm },
   data() {
     return {
       tempRoute: {},
       type: '',
-      requestUrl: '/api/daily/',
-      dailyType: '',
-      dailyId: -1
+      requestUrl: '/api/equipment/',
+      equipmentType: '',
+      equipmentId: -1
     }
   },
   created() {
@@ -29,14 +26,14 @@ export default {
     this.tempRoute = Object.assign({}, this.$route)
 
     const lang = this.$store.getters.language
-    const dailyId = this.$route.params.id
-    const dailyType = this.$route.params.type
+    const equipmentId = this.$route.params.id
+    const equipmentType = this.$route.params.type
     const type = this.$route.params.action_type || 'show'
-    const idOrType = type === 'create' ? this.$route.params.type : dailyId
+    const idOrType = type === 'create' ? this.$route.params.type : equipmentId
 
     this.type = type
-    this.dailyId = dailyId
-    this.dailyType = dailyType
+    this.equipmentId = equipmentId
+    this.equipmentType = equipmentType
     this.setTagsViewTitle(lang, idOrType)
     this.setPageTitle(lang, idOrType)
   },
@@ -46,10 +43,10 @@ export default {
       if (this.type === 'show') {
         switch (lang) {
           case 'zh':
-            title = this.$t('route.' + this.dailyType) + '详情'
+            title = this.$t('route.' + this.equipmentType) + '详情'
             break
           case 'en':
-            title = this.$t('route.' + this.dailyType) + ' Info'
+            title = this.$t('route.' + this.equipmentType) + ' Info'
             break
         }
       }
@@ -66,7 +63,7 @@ export default {
     },
     goToEdit() {
       const id = this.$route.params.id
-      const url = `/daily/${this.dailyType}/${id}/edit`
+      const url = `/equipment/${this.equipmentType}/${id}/edit`
       this.$router.push(url)
     },
     closeThisView() {

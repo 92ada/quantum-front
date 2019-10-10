@@ -26,24 +26,8 @@ export function fetchReports(query) {
 
 export function fetchHostings(query) {
   return request({
-    url: '/api/daily/reward',
+    url: '/api/daily/hosting',
     method: 'get',
     params: query
   })
 }
-
-export function fetchAllResearchList(query) {
-  return request({
-    url: '/api/research',
-    method: 'get',
-    params: query
-  })
-}
-
-export function fetchProjectFundsByProject(projectId) {
-  return request({
-    url: `/api/research/project/${projectId}/funds`,
-    method: 'get'
-  })
-}
-

@@ -3,32 +3,9 @@
     <div v-for="(form, index) in dataSource" :key="index" class="form-container">
       <h3>{{ form.title.name }}</h3>
       <el-form label-position="right" label-width="120px" size="small">
-        <el-row>
-          <el-col v-for="(col) in form.columns" :key="col.index" :span="12">
-            <form-item v-if="col.type === 'string'" :label="col.name+':'" :editable="col.editable" class="form-item">
-              <el-input v-model="postForm[col.index]" class="form-input" />
-            </form-item>
-
-            <form-item v-if="col.type === 'enum'" :label="col.name+':'" :editable="col.editable" class="form-item">
-              <el-select v-model="postForm[col.index]" :placeholder="$t('common.pleaseChoose')">
-                <el-option v-for="option in col.options" :key="option" :value="option" />
-              </el-select>
-            </form-item>
-
-            <form-item v-if="col.type === 'date'" :label="col.name+':'" :editable="col.editable" class="form-item">
-              <el-date-picker
-                v-model="postForm[col.index]"
-                class="form-date"
-                type="date"
-                :placeholder="$t('common.pleaseChoose')"
-              />
-            </form-item>
-
-            <form-item v-if="col.type === 'text'" :label="col.name+':'" :editable="col.editable" class="form-item">
-              <el-input v-model="postForm[col.index]" type="textarea" :rows="5" />
-            </form-item>
-
-          </el-col>
+        <el-row v-for="row_index in parseInt(form.columns.length/2)" :key="row_index" class="form-row">
+          <qt-form-col :col="form.columns[(row_index-1) *2]" :post-form="postForm" />
+          <qt-form-col v-if="(row_index-1) * 2 + 1 < form.columns.length" :col="form.columns[(row_index-1) * 2 + 1]" :post-form="postForm" />
         </el-row>
       </el-form>
     </div>
@@ -39,8 +16,8 @@
 </template>
 
 <script>
-import FormItem from './QtFormItem'
 import request from '../../utils/request'
+import QtFormCol from './QtFormCol'
 
 const defaultDataSource = {
   postUrl: '',
@@ -55,7 +32,7 @@ const defaultDataSource = {
 
 export default {
   name: 'QtForm',
-  components: { FormItem },
+  components: { QtFormCol },
   props: {
     type: {
       type: String,
@@ -167,18 +144,9 @@ export default {
   .form-container {
     margin-bottom: 20px;
 
-    .form-input {
-      max-width: 195px;
-    }
-
-    .form-date {
-      max-width: 195px;
-    }
-
-    .form-item {
+    .form-row {
       border: 1px solid #f0f0f0;
-      margin: 0px -1px -1px 0px;
-      padding: 2px 2px 2px 2px;
+      margin: 0px 0px -1px 0px;
     }
   }
 </style>

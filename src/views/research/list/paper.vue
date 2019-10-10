@@ -10,25 +10,25 @@
       style="width: 100%"
       @row-click="goToDetail"
     >
-      <el-table-column align="center" :label="$t('research.id')" width="80" sortable prop="id">
+      <el-table-column align="center" :label="$t('research.id')" min-width="80" sortable prop="id">
         <template slot-scope="scope">
           <span>{{ scope.row.id }}</span>
         </template>
       </el-table-column>
 
-      <el-table-column width="400" align="center" :label="$t('research.title')" sortable prop="name">
+      <el-table-column min-width="400" align="center" :label="$t('research.title')" sortable prop="name">
         <template slot-scope="scope">
           <span>{{ scope.row.title }}</span>
         </template>
       </el-table-column>
 
-      <el-table-column width="180" align="center" :label="$t('research.paper_info.author')">
+      <el-table-column min-width="180" align="center" :label="$t('research.paper_info.author')">
         <template slot-scope="scope">
           <span>{{ scope.row.author }}</span>
         </template>
       </el-table-column>
 
-      <el-table-column class-name="status-col" :label="$t('research.paper_info.journal_conference_title')" width="400" sortable prop="status">
+      <el-table-column class-name="status-col" :label="$t('research.paper_info.journal_conference_title')" min-width="400" sortable prop="status">
         <template slot-scope="scope">
           <span>{{ scope.row.journal_conference_title }}</span>
         </template>

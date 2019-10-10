@@ -3,6 +3,7 @@ export default {
   profile: '个人中心',
   edit: '编辑',
   create: '创建',
+  detail: '详情',
 
   /**
    *  path: /people
@@ -14,7 +15,6 @@ export default {
   visitor: '访问人员',
   postdoctoral: '博士后',
   student: '学生',
-  personalInfo: '人员详情',
   allPeople: '所有人员',
 
   /**
@@ -25,7 +25,6 @@ export default {
   paper: '论文',
   reward: '获奖',
   project: '项目',
-  researchInfo: '科研详情',
   allResearch: '所有科研情况',
 
   /**
@@ -47,7 +46,7 @@ export default {
   /**
    *  path: /equipment
    */
-  equipment: '设备',
-  purchasing: '设备采购',
+  equipment: '固定资产',
+  purchasing: '采购',
   stock: '库存'
 }

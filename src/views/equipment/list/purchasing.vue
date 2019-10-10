@@ -10,33 +10,27 @@
       style="width: 100%"
       @row-click="goToDetail"
     >
-      <el-table-column align="center" :label="$t('daily.report.id')" min-width="80" sortable prop="id">
+      <el-table-column align="center" :label="$t('equipment.purchasing.purchasing_id')" min-width="80" sortable prop="id">
         <template slot-scope="scope">
-          <span>{{ scope.row.id }}</span>
+          <span>{{ scope.row.purchasing_id }}</span>
         </template>
       </el-table-column>
 
-      <el-table-column min-width="420" align="center" :label="$t('daily.report.title')">
+      <el-table-column min-width="420" align="center" :label="$t('equipment.purchasing.title')" sortable prop="name">
         <template slot-scope="scope">
           <span>{{ scope.row.title }}</span>
         </template>
       </el-table-column>
 
-      <el-table-column min-width="180" align="center" :label="$t('daily.report.invitee_name')" sortable prop="name">
+      <el-table-column min-width="180" align="center" :label="$t('equipment.purchasing.pi')">
         <template slot-scope="scope">
-          <span>{{ scope.row.invitee_name }}</span>
+          <span>{{ scope.row.pi }}</span>
         </template>
       </el-table-column>
 
-      <el-table-column min-width="180" align="center" :label="$t('daily.report.time')">
+      <el-table-column min-width="180" align="center" :label="$t('equipment.purchasing.handler')">
         <template slot-scope="scope">
-          <span>{{ scope.row.time }}</span>
-        </template>
-      </el-table-column>
-
-      <el-table-column min-width="180" align="center" :label="$t('daily.report.people_count')">
-        <template slot-scope="scope">
-          <span>{{ scope.row.people_count }}</span>
+          <span>{{ scope.row.handler }}</span>
         </template>
       </el-table-column>
     </el-table>
@@ -52,18 +46,17 @@
 </template>
 
 <script>
-import { fetchReports } from '../../../api/daily'
+import { fetchPurchasings } from '../../../api/equipment'
 import Pagination from '../../../components/Pagination/index' // Secondary package based on el-pagination
 
 export default {
-  name: 'ReportList',
+  name: 'PurchasingList',
   components: { Pagination },
   filters: {
     statusFilter(status) {
       const statusMap = {
-        '已批准': 'success',
-        '审批中': 'info',
-        '未提交': 'danger'
+        '授权': 'success',
+        '申请': 'info'
       }
       return statusMap[status]
     }
@@ -85,7 +78,7 @@ export default {
   methods: {
     getList() {
       this.listLoading = true
-      fetchReports(this.listQuery).then(response => {
+      fetchPurchasings(this.listQuery).then(response => {
         console.log(response)
         this.list = response.data.items
         this.total = response.data.total
@@ -93,11 +86,11 @@ export default {
       })
     },
     goToDetail(row, event, column) {
-      const url = `/daily/report/${row.id}`
+      const url = `/equipment/purchasing/${row.purchasing_id}`
       this.$router.push(url)
     },
     goToCreate() {
-      this.$router.push('/daily/report/create')
+      this.$router.push('/equipment/purchasing/create')
     }
   }
 }

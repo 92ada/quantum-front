@@ -10,25 +10,25 @@
       style="width: 100%"
       @row-click="goToDetail"
     >
-      <el-table-column align="center" :label="$t('research.id')" width="80" sortable prop="id">
+      <el-table-column align="center" :label="$t('research.id')" min-width="80" sortable prop="id">
         <template slot-scope="scope">
           <span>{{ scope.row.id }}</span>
         </template>
       </el-table-column>
 
-      <el-table-column width="420" align="center" :label="$t('research.title')" sortable prop="name">
+      <el-table-column min-width="420" align="center" :label="$t('research.title')" sortable prop="name">
         <template slot-scope="scope">
           <span>{{ scope.row.title }}</span>
         </template>
       </el-table-column>
 
-      <el-table-column width="180" align="center" :label="$t('research.applicant')">
+      <el-table-column min-width="180" align="center" :label="$t('research.applicant')">
         <template slot-scope="scope">
           <span>{{ scope.row.applicant }}</span>
         </template>
       </el-table-column>
 
-      <el-table-column class-name="status-col" :label="$t('research.status')" width="180" sortable prop="status">
+      <el-table-column class-name="status-col" :label="$t('research.status')" min-width="180" sortable prop="status">
         <template slot-scope="{row}">
           <el-tag :type="row.status | statusFilter">
             {{ row.status }}

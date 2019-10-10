@@ -1,5 +1,7 @@
 export default {
-  flight: {
+  flight_info: {
+    TITLE: '航班信息',
+    id: '序号',
     departure_time: '乘机时间',
     arrival_time: '到达时间',
     departure_site: '出发地',
@@ -8,7 +10,8 @@ export default {
     name: '姓名',
     identity_type: '证件类型',
     identity_no: '证件号码',
-    price: '价格'
+    price: '价格',
+    remark: '备注'
   },
   travel: {
     TITLE: '出行信息',

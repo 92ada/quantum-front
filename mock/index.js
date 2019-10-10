@@ -7,6 +7,7 @@ import people from './people'
 import search from './remote-search'
 import research from './research'
 import daily from './daily'
+import equipment from './equipment'
 
 const mocks = [
   ...user,
@@ -14,7 +15,8 @@ const mocks = [
   ...people,
   ...search,
   ...research,
-  ...daily
+  ...daily,
+  ...equipment
 ]
 
 // for front mock

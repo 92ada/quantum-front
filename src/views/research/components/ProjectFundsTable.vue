@@ -52,7 +52,7 @@ import Pagination from '../../../components/Pagination/index' // Secondary packa
 import { fetchProjectFundsByProject } from '../../../api/research'
 
 export default {
-  name: 'PatentList',
+  name: 'ProjectFundsTable',
   components: { Pagination },
   filters: {
     statusFilter(status) {

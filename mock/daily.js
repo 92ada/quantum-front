@@ -24,6 +24,7 @@ export default [
       const id = config.url.split('/').reverse()[0]
 
       const filteredList = TravelList.filter(item => String(item.id) === String(id))
+
       const result = {
         postUrl: `/api/daily/travel/${id}`,
         data: [
@@ -35,8 +36,9 @@ export default [
           },
           {
             title: {
-              'index': `daily.flight`
+              'index': `daily.flight_info`
             },
+            type: 'multi-table',
             columns: toObjectList(FlightList)
           }
         ]
@@ -55,7 +57,6 @@ export default [
       const id = config.url.split('/').reverse()[0]
 
       const filteredList = VisitList.filter(item => String(item.id) === String(id))
-      const filteredFlightList = FlightList[0]
       const result = {
         postUrl: `/api/daily/visit/${id}`,
         data: [
@@ -67,9 +68,34 @@ export default [
           },
           {
             title: {
-              'index': `daily.flight`
+              'index': `daily.flight_info`
             },
-            columns: toObjectList(filteredFlightList)
+            columns: toObjectList(FlightList)
+          }
+        ]
+      }
+
+      return {
+        code: 20000,
+        data: result
+      }
+    }
+  },
+  {
+    url: /\/api\/daily\/report\/\w+/,
+    type: 'get',
+    response: config => {
+      const id = config.url.split('/').reverse()[0]
+
+      const filteredList = ReportList.filter(item => String(item.id) === String(id))
+      const result = {
+        postUrl: `/api/daily/report/${id}`,
+        data: [
+          {
+            title: {
+              'index': `daily.report`
+            },
+            columns: toObjectList(filteredList)
           }
         ]
       }

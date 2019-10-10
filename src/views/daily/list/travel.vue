@@ -10,25 +10,25 @@
       style="width: 100%"
       @row-click="goToDetail"
     >
-      <el-table-column align="center" :label="$t('daily.travel.id')" width="80" sortable prop="id">
+      <el-table-column align="center" :label="$t('daily.travel.id')" min-width="80" sortable prop="id">
         <template slot-scope="scope">
           <span>{{ scope.row.id }}</span>
         </template>
       </el-table-column>
 
-      <el-table-column width="420" align="center" :label="$t('daily.travel.people')" sortable prop="name">
+      <el-table-column min-width="420" align="center" :label="$t('daily.travel.people')" sortable prop="name">
         <template slot-scope="scope">
           <span>{{ scope.row.people }}</span>
         </template>
       </el-table-column>
 
-      <el-table-column width="180" align="center" :label="$t('daily.travel.type')">
+      <el-table-column min-width="180" align="center" :label="$t('daily.travel.type')">
         <template slot-scope="scope">
           <span>{{ scope.row.type }}</span>
         </template>
       </el-table-column>
 
-      <el-table-column width="180" align="center" :label="$t('daily.travel.start_date')">
+      <el-table-column min-width="180" align="center" :label="$t('daily.travel.start_date')">
         <template slot-scope="scope">
           <span>{{ scope.row.start_date }}</span>
         </template>
@@ -50,7 +50,7 @@ import { fetchTravels } from '../../../api/daily'
 import Pagination from '../../../components/Pagination/index' // Secondary package based on el-pagination
 
 export default {
-  name: 'PatentList',
+  name: 'TravelList',
   components: { Pagination },
   filters: {
     statusFilter(status) {
