@@ -22,9 +22,21 @@
         </template>
       </el-table-column>
 
-      <el-table-column min-width="180" align="center" :label="$t('people.phone')">
+      <el-table-column min-width="120" align="center" :label="$t('people.office_phone')">
         <template slot-scope="scope">
-          <span>{{ scope.row.phone }}</span>
+          <span>{{ scope.row.office_phone }}</span>
+        </template>
+      </el-table-column>
+
+      <el-table-column min-width="120" align="center" :label="$t('people.mobile_phone')">
+        <template slot-scope="scope">
+          <span>{{ scope.row.mobile_phone }}</span>
+        </template>
+      </el-table-column>
+
+      <el-table-column min-width="180" align="center" :label="$t('people.office_address')">
+        <template slot-scope="scope">
+          <span>{{ scope.row.office_address }}</span>
         </template>
       </el-table-column>
 
@@ -34,7 +46,7 @@
         </template>
       </el-table-column>
 
-      <el-table-column class-name="status-col" :label="$t('people.status')" min-width="180" sortable prop="status">
+      <el-table-column class-name="status-col" :label="$t('people.status')" min-width="120" sortable prop="status">
         <template slot-scope="{row}">
           <el-tag :type="row.status | statusFilter">
             {{ row.status }}

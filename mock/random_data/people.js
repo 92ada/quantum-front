@@ -10,16 +10,28 @@ const count = 100
 * */
 for (let i = 0; i < count; i++) {
   BasicInfoList.push(Mock.mock({
+    name: '@first @last',
+    'photo': '@image(100)',
     'uid|30001111-30009999': 1,
     'type|1': ['Researcher', 'Teacher', 'Administration', 'Visitor', 'Postdoctoral', 'Student'],
     'status|1': ['Normal', 'On vacation', 'Dismissed', 'Abnormal'],
-    name: '@first @last',
     'identity_type|1': ['ID Card', 'Passport'],
     'identity_no|100000000-999999999': 1,
     'birth_date': '@date',
-    'phone|15602900000-18909909999': 1,
+    'mobile_phone|15602900000-18909909999': 1,
+    'office_phone|5200279-9999999': 1,
+    'office_address': '@word @word',
     email: '@email()',
-    'political_status|1': ['群众', '党员', '团员']
+    'political_status|1': ['群众', '党员', '团员'],
+    'position_title|1': '@word',
+    'research_direction': '@title',
+    'highest_education': '@word',
+    'graduation_date': '@date',
+    'degree': '@word',
+    'granting_institution': '@word @word',
+    'granting_date': '@date',
+    'work_experience': '@sentence',
+    'education_experience': '@sentence',
   }))
 }
 
@@ -43,13 +55,13 @@ for (let i = 0; i < count; i++) {
     case 'Researcher':
     case 'Teacher':
       OtherInfoList.push(Mock.mock({
-        'position_title|1': ['教授', '副教授', '助理教授', '研究员'],
         'job': '@word',
         'social_job': '@title',
         'achievements': '@sentence',
         'is_phd_mentor|1-2': true,
         'is_master_mentor|1-2': true,
         'is_union_member|1-2': true,
+        'office_card_no|100000000-999999999': 1,
         'salary_card_no|100000000-999999999': 1,
         'bank': '@title ',
         'contract_no|100000000-999999999': 1,
@@ -63,7 +75,6 @@ for (let i = 0; i < count; i++) {
       break
     case 'Administration':
       OtherInfoList.push(Mock.mock({
-        'position_title|1': '@word',
         'is_union_member|1-2': true,
         'salary_card_no|100000000-999999999': 1,
         'bank': '@title',
@@ -78,14 +89,13 @@ for (let i = 0; i < count; i++) {
       break
     case 'Visitor':
       OtherInfoList.push(Mock.mock({
-        'position_title|1': '@word',
         'salary_card_no|100000000-999999999': 1,
         'bank': '@title',
         'entry_date': '@date',
         'salary|100000-999999.2': 1,
         'citizenship|1': ['China, Mainland', 'China, HK', 'Japan', 'USA', 'UK'],
         'institution': '@title',
-        'research_direction': '@title',
+        'original_institution': '@title',
         'remark': '@title'
       }))
       break
@@ -102,7 +112,6 @@ for (let i = 0; i < count; i++) {
       }))
       break
   }
-
 }
 
 export {

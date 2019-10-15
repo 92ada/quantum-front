@@ -11,7 +11,7 @@
       style="width: 100%"
       @row-click="goToDetail"
     >
-      <el-table-column align="center" :label="$t('research.project_funds_info.id')" width="80" sortable prop="id">
+      <el-table-column align="center" :label="$t('research.project_funds_info.id')" width="100" sortable prop="id">
         <template slot-scope="scope">
           <span>{{ scope.row.id }}</span>
         </template>
@@ -29,7 +29,7 @@
         </template>
       </el-table-column>
 
-      <el-table-column width="400" align="center" :label="$t('research.project_funds_info.remark')">
+      <el-table-column min-width="400" align="center" :label="$t('research.project_funds_info.remark')">
         <template slot-scope="scope">
           <span>{{ scope.row.remark }}</span>
         </template>
@@ -38,7 +38,8 @@
     </el-table>
 
     <pagination
-      v-show="total>0"
+      v-show="total>1"
+      class="project-funds-pagination"
       :total="total"
       :page.sync="listQuery.page"
       :limit.sync="listQuery.limit"
@@ -54,15 +55,6 @@ import { fetchProjectFundsByProject } from '../../../api/research'
 export default {
   name: 'ProjectFundsTable',
   components: { Pagination },
-  filters: {
-    statusFilter(status) {
-      const statusMap = {
-        '授权': 'success',
-        '申请': 'info'
-      }
-      return statusMap[status]
-    }
-  },
   props: ['projectId'],
   data() {
     return {
@@ -81,7 +73,7 @@ export default {
   methods: {
     getList() {
       this.listLoading = true
-      fetchProjectFundsByProject(this.peopleId).then(response => {
+      fetchProjectFundsByProject(this.projectId).then(response => {
         console.log(response)
         this.list = response.data.items
         this.total = response.data.total
@@ -107,5 +99,9 @@ export default {
   .create-btn {
     margin: 13px 10px 10px 10px;
     float: right;
+  }
+
+  .project-funds-pagination {
+    margin-top: -10px;
   }
 </style>

@@ -105,14 +105,14 @@ export const asyncRoutes = [
     path: '/people',
     component: Layout,
     meta: {
-      title: 'people',
-      icon: 'peoples'
+      icon: 'peoples',
+      title: 'people'
     },
     children: [
       {
         path: ':id(\\d+)',
         component: () => import('@/views/people/detail'),
-        name: 'personalInfo',
+        name: 'peopleInfo',
         meta: { title: 'detail', noCache: true, activeMenu: '/people/list' },
         hidden: true
       },
@@ -162,9 +162,8 @@ export const asyncRoutes = [
       },
       {
         path: '',
+        name: 'people',
         component: () => import('@/views/people/list'),
-        name: 'allPeople',
-        meta: { title: 'allPeople' },
         hidden: true
       }
     ]
@@ -172,7 +171,6 @@ export const asyncRoutes = [
   {
     path: '/research',
     component: Layout,
-    redirect: '/research/list',
     meta: {
       title: 'research',
       icon: 'example'
@@ -225,9 +223,8 @@ export const asyncRoutes = [
       },
       {
         path: '',
-        component: () => import('@/views/research/list'),
-        name: 'allResearch',
-        meta: { title: 'allResearch' },
+        name: 'research',
+        component: () => import('@/views/research/index'),
         hidden: true
       }
     ]
@@ -235,7 +232,6 @@ export const asyncRoutes = [
   {
     path: '/finance',
     component: Layout,
-    redirect: '/finance/list',
     meta: {
       title: 'finance',
       icon: 'money'
@@ -268,10 +264,9 @@ export const asyncRoutes = [
         meta: { title: 'expenditure', icon: 'chart' }
       },
       {
-        path: 'list/all',
+        path: '',
         component: () => import('@/views/people/list'),
-        name: 'allFinance',
-        meta: { title: 'allFinance' },
+        name: 'finance',
         hidden: true
       }
     ]
@@ -279,7 +274,6 @@ export const asyncRoutes = [
   {
     path: '/daily',
     component: Layout,
-    redirect: '/daily/list',
     meta: {
       title: 'daily',
       icon: 'documentation'
@@ -332,9 +326,8 @@ export const asyncRoutes = [
       },
       {
         path: '',
-        component: () => import('@/views/daily/list'),
-        name: 'allDaily',
-        meta: { title: 'allDaily' },
+        component: () => import('@/views/daily/index'),
+        name: 'daily',
         hidden: true
       }
     ]
@@ -342,7 +335,6 @@ export const asyncRoutes = [
   {
     path: '/equipment',
     component: Layout,
-    redirect: '/equipment/list',
     meta: {
       title: 'equipment',
       icon: 'lock'
@@ -383,9 +375,8 @@ export const asyncRoutes = [
       },
       {
         path: '',
-        component: () => import('@/views/equipment/list'),
-        name: 'allEquipment',
-        meta: { title: 'allEquipment' },
+        name: 'equipment',
+        component: () => import('@/views/equipment/index'),
         hidden: true
       }
     ]

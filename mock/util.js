@@ -10,6 +10,9 @@ export function toObjectList(source) {
         editable: true,
         require: false
       })
+      if (key === 'photo') {
+        result[result.length - 1].type = 'photo'
+      }
     }
   }
   return result

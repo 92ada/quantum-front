@@ -1,4 +1,4 @@
-import { PatentList, PaperList, ProjectList, RewardList, ProjectFundsList } from './random_data/research'
+import { PatentList, PaperList, ProjectList, RewardList, ProjectFundsList, ProjectMemberList } from './random_data/research'
 import { toObjectList } from './util'
 
 function getListByType(researchType) {
@@ -11,6 +11,19 @@ function getListByType(researchType) {
 }
 
 export default [
+  {
+    url: /\/api\/research\/project\/\w+\/members/,
+    type: 'get',
+    response: config => {
+      return {
+        code: 20000,
+        data: {
+          items: ProjectMemberList,
+          total: ProjectMemberList.length
+        }
+      }
+    }
+  },
   {
     url: /\/api\/research\/project\/\w+\/funds/,
     type: 'get',

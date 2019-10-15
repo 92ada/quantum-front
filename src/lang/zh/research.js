@@ -14,7 +14,8 @@ export default {
     status: '专利状态',
     apply_date: '申请日期',
     approve_date: '授权日期',
-    patent_no: '申请号/专利号',
+    application_no: '申请号',
+    patent_no: '专利号',
     is_pct: '是否PCT',
     inventor_rank: '发明人排序'
   },
@@ -54,6 +55,15 @@ export default {
     member: '项目成员'
   },
 
+  project_member_info: {
+    uid: '工号',
+    name: '姓名',
+    institution: '工作单位',
+    position_title: '职位',
+    degree: '学位',
+    research_direction: '研究领域'
+  },
+
   project_funds_info: {
     id: '序号',
     arrival_date: '到账日期',
@@ -70,6 +80,7 @@ export default {
     level: '获奖级别',
     date: '获奖日期',
     grade: '获奖等级',
+    rank: '获奖人排名',
     remark: '备注'
   }
 }

@@ -4,6 +4,7 @@ const PatentList = []
 const PaperList = []
 const ProjectList = []
 const ProjectFundsList = []
+const ProjectMemberList = []
 const RewardList = []
 const count = 100
 
@@ -19,6 +20,7 @@ for (let i = 0; i < count; i++) {
     'status|1': ['申请', '授权'],
     'apply_date': '@date',
     'approve_date': '@date',
+    'application_no': '@guid',
     'patent_no': '@guid',
     'is_pct|1': true,
     'inventor_rank|1-4': 1
@@ -69,6 +71,17 @@ for (let i = 0; i < count; i++) {
 }
 
 for (let i = 0; i < 3; i++) {
+  ProjectMemberList.push(Mock.mock({
+    'uid|30001111-30009999': 1,
+    'name': '@first @last',
+    'institution': '@word @word',
+    'position_title': '@word',
+    'degree': '@word',
+    'research_direction': '@sentence'
+  }))
+}
+
+for (let i = 0; i < 3; i++) {
   ProjectFundsList.push(Mock.mock({
     'id': '@increment',
     'arrival_date': '@date',
@@ -89,6 +102,7 @@ for (let i = 0; i < count; i++) {
     'issue_institution': '@title',
     'date': '@date',
     'grade|1': ['特等奖', '一等奖', '二等奖'],
+    'rank|1-10': 1,
     'remark': '@sentence'
   }))
 }
@@ -98,5 +112,6 @@ export {
   PaperList,
   ProjectList,
   RewardList,
-  ProjectFundsList
+  ProjectFundsList,
+  ProjectMemberList
 }

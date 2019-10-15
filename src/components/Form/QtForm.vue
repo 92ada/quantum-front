@@ -3,7 +3,7 @@
     <div v-for="(form, index) in dataSource" :key="index" class="form-container">
       <h3>{{ form.title.name }}</h3>
       <el-form label-position="right" label-width="120px" size="small">
-        <el-row v-for="row_index in parseInt(form.columns.length/2)" :key="row_index" class="form-row">
+        <el-row v-for="row_index in parseInt(form.columns.length/2 + 1)" :key="row_index" class="form-row">
           <qt-form-col :col="form.columns[(row_index-1) *2]" :post-form="postForm" />
           <qt-form-col v-if="(row_index-1) * 2 + 1 < form.columns.length" :col="form.columns[(row_index-1) * 2 + 1]" :post-form="postForm" />
         </el-row>

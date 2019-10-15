@@ -23,6 +23,9 @@
       <el-input v-model="postForm[col.index]" type="textarea" :rows="5" />
     </form-item>
 
+    <el-form-item v-if="col.type === 'photo'" :label="col.name+':'" class="form-item">
+      <img :src="col.value">
+    </el-form-item>
   </el-col>
 </template>
 <script>

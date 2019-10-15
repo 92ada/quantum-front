@@ -4,15 +4,17 @@
     <el-link v-if="type === 'show'" icon="el-icon-edit" @click="goToEdit">{{ $t('common.edit') }}</el-link>
     <qt-form :type="type" :data-source-url="requestUrl + researchType + '/' + researchId" />
 
+    <project-member-table v-if="researchType === 'project'" :project-id="researchId" />
     <project-funds-table v-if="researchType === 'project'" :project-id="researchId" />
   </div>
 </template>
 <script>
 import QtForm from '../../components/Form/QtForm'
 import ProjectFundsTable from './components/ProjectFundsTable'
+import ProjectMemberTable from './components/ProjectMemberTable'
 export default {
   name: 'ResearchDetail',
-  components: { QtForm, ProjectFundsTable },
+  components: { QtForm, ProjectFundsTable, ProjectMemberTable },
   data() {
     return {
       tempRoute: {},

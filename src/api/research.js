@@ -47,3 +47,10 @@ export function fetchProjectFundsByProject(projectId) {
   })
 }
 
+export function fetchProjectMemberByProject(projectId) {
+  return request({
+    url: `/api/research/project/${projectId}/members`,
+    method: 'get'
+  })
+}
+

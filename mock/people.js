@@ -28,6 +28,7 @@ export default [
               'index': 'people.basic_info'
             },
             columns: toObjectList(filteredBasicInfoList)
+
           },
           {
             title: {
