@@ -6,6 +6,11 @@ export default {
   detail: '详情',
 
   /**
+   * path: /downloads
+   */
+  downloads: '资料下载',
+
+  /**
    *  path: /people
    */
   people: '人员',
