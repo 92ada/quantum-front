@@ -2,24 +2,26 @@
   <div class="app-container">
     <el-link v-if="type === 'edit'" icon="el-icon-edit" @click="closeThisView">{{ $t('common.cancel_edit') }}</el-link>
     <el-link v-if="type === 'show'" icon="el-icon-edit" @click="goToEdit">{{ $t('common.edit') }}</el-link>
-    <qt-form :type="type" :data-source-url="requestUrl + researchType + '/' + researchId" />
+    <qt-form :type="type" :data-source-url="requestUrl + '/' + researchType + '/' + researchId" />
 
     <project-member-table v-if="researchType === 'project'" :project-id="researchId" />
     <project-funds-table v-if="researchType === 'project'" :project-id="researchId" />
+    <attachments :data-source-url="requestUrl + '/' + researchType + '/' + researchId + '/attachments'" />
   </div>
 </template>
 <script>
 import QtForm from '../../components/Form/QtForm'
 import ProjectFundsTable from './components/ProjectFundsTable'
 import ProjectMemberTable from './components/ProjectMemberTable'
+import Attachments from '../../components/Attachment/Attachments'
 export default {
   name: 'ResearchDetail',
-  components: { QtForm, ProjectFundsTable, ProjectMemberTable },
+  components: { QtForm, ProjectFundsTable, ProjectMemberTable, Attachments },
   data() {
     return {
       tempRoute: {},
       type: '',
-      requestUrl: '/api/research/',
+      requestUrl: '/api/research',
       researchType: '',
       researchId: -1
     }
