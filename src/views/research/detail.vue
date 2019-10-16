@@ -6,7 +6,7 @@
 
     <project-member-table v-if="researchType === 'project'" :project-id="researchId" />
     <project-funds-table v-if="researchType === 'project'" :project-id="researchId" />
-    <attachments :data-source-url="requestUrl + '/' + researchType + '/' + researchId + '/attachments'"/>
+    <attachments :data-source-url="requestUrl + '/' + researchType + '/' + researchId + '/attachments'" />
   </div>
 </template>
 <script>

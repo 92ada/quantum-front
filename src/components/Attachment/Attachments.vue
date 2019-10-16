@@ -13,44 +13,47 @@
             :limit="1"
             :on-success="handleUploadSuccess"
             :on-error="handleUploadError"
-            :file-list="fileList">
+            :file-list="fileList"
+          >
             <el-button size="small" type="primary">上传附件</el-button>
           </el-upload>
         </el-row>
       </el-col>
     </el-row>
-    
+
     <el-table
-    :data="dataSource"
-    border>
-    <el-table-column
-      prop="fileType"
-      label="文件类型"
-      width="100">
-    </el-table-column>
-    <el-table-column
-      prop="fileName"
-      label="文件名">
-    </el-table-column>
-    <el-table-column
-      prop="fileUrl"
-      label="下载链接">
-    </el-table-column>
-    <el-table-column
-      prop="createdAt"
-      label="日期"
-      width="200">
-    </el-table-column>
-    <el-table-column
-      fixed="right"
-      label="操作"
-      width="100">
-      <template slot-scope="scope">
-        <a :href="scope.row.fileUrl" target="_blank" class="el-button el-button--text el-button--small">下载</a>
-        <el-button @click="handleClickDelete(scope.row)" type="text" size="small">删除</el-button>
-      </template>
-    </el-table-column>
-  </el-table>
+      :data="dataSource"
+      border
+    >
+      <el-table-column
+        prop="fileType"
+        label="文件类型"
+        width="100"
+      />
+      <el-table-column
+        prop="fileName"
+        label="文件名"
+      />
+      <el-table-column
+        prop="fileUrl"
+        label="下载链接"
+      />
+      <el-table-column
+        prop="createdAt"
+        label="日期"
+        width="200"
+      />
+      <el-table-column
+        fixed="right"
+        label="操作"
+        width="100"
+      >
+        <template slot-scope="scope">
+          <a :href="scope.row.fileUrl" target="_blank" class="el-button el-button--text el-button--small">下载</a>
+          <el-button type="text" size="small" @click="handleClickDelete(scope.row)">删除</el-button>
+        </template>
+      </el-table-column>
+    </el-table>
   </div>
 </template>
 
@@ -81,7 +84,7 @@ export default {
     return {
       dataSource: defaultDataSource.data,
       postUrl: defaultDataSource.postUrl,
-      removeUrl: defaultDataSource.removeUrl,
+      removeUrl: defaultDataSource.removeUrl
     }
   },
   created() {
@@ -100,7 +103,7 @@ export default {
       request({
         url: this.postUrl,
         method: 'post',
-        data: {fileName, fileUrl}
+        data: { fileName, fileUrl }
       }).then(res => {
         alert('success') // 记得自己改成更友好的提示哦1😯
       })
@@ -116,12 +119,12 @@ export default {
     // uploader
     handleUploadSuccess(response, file, fileList) {
       console.log(response)
-      const {fileName, fileUrl} = response.data
+      const { fileName, fileUrl } = response.data
       this.handleAttachmentCreate(fileName, fileUrl)
     },
     handleUploadError(err, file, fileList) {
       console.error(err)
-    },
+    }
   }
 }
 </script>
