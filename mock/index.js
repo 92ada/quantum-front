@@ -8,6 +8,7 @@ import search from './remote-search'
 import research from './research'
 import daily from './daily'
 import equipment from './equipment'
+import finance from './finance'
 
 const mocks = [
   ...user,
@@ -16,7 +17,8 @@ const mocks = [
   ...search,
   ...research,
   ...daily,
-  ...equipment
+  ...equipment,
+  ...finance
 ]
 
 // for front mock

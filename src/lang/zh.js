@@ -3,6 +3,7 @@ import RouteTranslation from './zh/route'
 import ResearchTranslation from './zh/research'
 import DailyTranslation from './zh/daily'
 import EquipmentTranslation from './zh/equipment'
+import FinanceTranslation from './zh/finance'
 
 export default {
   common: {
@@ -22,6 +23,7 @@ export default {
   research: ResearchTranslation,
   daily: DailyTranslation,
   equipment: EquipmentTranslation,
+  finance: FinanceTranslation,
 
   navbar: {
     dashboard: '首页',

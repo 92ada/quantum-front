@@ -31,7 +31,8 @@ export default {
    *  path: /finance
    */
   finance: '财务',
-  insurance: '社保公积金',
+  social_insurance: '社保',
+  social_funds: '公积金',
   expenditure: '经费支出',
 
   /**
