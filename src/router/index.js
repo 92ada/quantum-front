@@ -88,9 +88,9 @@ export const constantRoutes = [
         components: () => import('@/views/downloads/index'),
         name: 'downloads',
         meta: {
-          icon: 'downloads',
           title: 'downloads'
-        }
+        },
+        hidden: true
       }
     ]
   },

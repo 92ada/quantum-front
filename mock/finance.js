@@ -71,7 +71,7 @@ export default [
     response: config => {
       const id = config.url.split('/').reverse()[0]
 
-      const filteredList = ExpenditureList.filter(item => String(item.id) === String(id))
+      const filteredList = ExpenditureList.filter(item => String(item.expenditure_id) === String(id))
       const result = {
         postUrl: `/api/finance/expenditure/${id}`,
         data: [

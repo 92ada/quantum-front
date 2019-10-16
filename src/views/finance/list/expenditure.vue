@@ -18,21 +18,21 @@
         </template>
       </el-table-column>
 
-      <el-table-column min-width="180" align="center" :label="$t('finance.expenditure.title')">
+      <el-table-column min-width="180" align="center" :label="$t('finance.expenditure.abstract')">
         <template slot-scope="scope">
-          <span>{{ scope.row.title }}</span>
-        </template>
-      </el-table-column>
-
-      <el-table-column width="180" align="center" :label="$t('finance.expenditure.amount')">
-        <template slot-scope="scope">
-          <span>{{ scope.row.amount }}</span>
+          <span>{{ scope.row.title || scope.row.matter || scope.row.subject }}</span>
         </template>
       </el-table-column>
 
       <el-table-column width="180" align="center" :label="$t('finance.expenditure.type')">
         <template slot-scope="scope">
           <span>{{ scope.row.type }}</span>
+        </template>
+      </el-table-column>
+
+      <el-table-column width="180" align="center" :label="$t('finance.expenditure.amount')">
+        <template slot-scope="scope">
+          <span>{{ scope.row.amount }}</span>
         </template>
       </el-table-column>
 
@@ -86,6 +86,8 @@ export default {
       })
     },
     goToDetail(row, event, column) {
+      const url = `/finance/expenditure/${row.expenditure_id}`
+      this.$router.push(url)
     },
     goToCreate() {
       this.$router.push('/finance/expenditure/create')
