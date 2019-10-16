@@ -79,7 +79,21 @@ export const constantRoutes = [
       }
     ]
   },
-
+  {
+    path: '/downloads',
+    component: Layout,
+    children: [
+      {
+        path: '',
+        components: () => import('@/views/downloads/index'),
+        name: 'downloads',
+        meta: {
+          icon: 'downloads',
+          title: 'downloads'
+        }
+      }
+    ]
+  },
   {
     path: '/user-center',
     component: Layout,
