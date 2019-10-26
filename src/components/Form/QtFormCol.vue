@@ -10,11 +10,11 @@
       </el-select>
     </form-item>
 
-    <form-item v-if="col.type === 'date'" :label="col.name+':'" :editable="col.editable" class="form-item">
+    <form-item v-if="col.type === 'date' || col.type === 'datetime'" :label="col.name+':'" :editable="col.editable" class="form-item">
       <el-date-picker
         v-model="postForm[col.index]"
         class="form-date"
-        type="date"
+        :type="col.type"
         :placeholder="$t('common.pleaseChoose')"
       />
     </form-item>

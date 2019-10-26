@@ -1,5 +1,11 @@
 <template>
   <div class="app-container">
+    <qt-search
+      :params-source="{}"
+      i18n-index="research"
+      search-url="/research/paper"
+    />
+
     <el-link class="create-btn" icon="el-icon-edit" @click="goToCreate">新建</el-link>
     <el-table
       v-loading="listLoading"
@@ -8,6 +14,7 @@
       fit
       highlight-current-row
       style="width: 100%"
+      @row-click="goToDetail"
     >
       <el-table-column align="center" :label="$t('daily.hosting.id')" min-width="80" sortable prop="id">
         <template slot-scope="scope">
@@ -33,6 +40,14 @@
         </template>
       </el-table-column>
 
+      <el-table-column min-width="180" align="center" :label="$t('daily.hosting.is_reimbursement')">
+        <template slot-scope="{row}">
+          <el-tag :type="row.is_reimbursement | statusFilter">
+            {{ row.is_reimbursement.toString().toUpperCase() }}
+          </el-tag>
+        </template>
+      </el-table-column>
+
     </el-table>
 
     <pagination
@@ -47,11 +62,21 @@
 
 <script>
 import { fetchHostings } from '../../../api/daily'
-import Pagination from '../../../components/Pagination/index' // Secondary package based on el-pagination
+import Pagination from '../../../components/Pagination/index'
+import QtSearch from '../../../components/Search/QtSearch' // Secondary package based on el-pagination
 
 export default {
   name: 'HostingList',
-  components: { Pagination },
+  components: { QtSearch, Pagination },
+  filters: {
+    statusFilter(status) {
+      const statusMap = {
+        'true': 'success',
+        'false': 'info'
+      }
+      return statusMap[status]
+    }
+  },
   data() {
     return {
       list: null,
@@ -75,6 +100,10 @@ export default {
         this.total = response.data.total
         this.listLoading = false
       })
+    },
+    goToDetail(row, event, column) {
+      const url = `/daily/hosting/${row.id}`
+      this.$router.push(url)
     },
     goToCreate() {
       this.$router.push('/daily/hosting/create')

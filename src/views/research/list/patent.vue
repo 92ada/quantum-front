@@ -1,5 +1,11 @@
 <template>
   <div class="app-container">
+    <qt-search
+      :params-source="{status: ['授权', '申请']}"
+      i18n-index="research"
+      search-url="/research/patent"
+    />
+
     <el-link class="create-btn" icon="el-icon-edit" @click="goToCreate">新建</el-link>
     <el-table
       v-loading="listLoading"
@@ -49,11 +55,12 @@
 
 <script>
 import { fetchPatentList } from '../../../api/research'
-import Pagination from '../../../components/Pagination/index' // Secondary package based on el-pagination
+import Pagination from '../../../components/Pagination/index'
+import QtSearch from '../../../components/Search/QtSearch' // Secondary package based on el-pagination
 
 export default {
   name: 'PatentList',
-  components: { Pagination },
+  components: { QtSearch, Pagination },
   filters: {
     statusFilter(status) {
       const statusMap = {
@@ -71,7 +78,8 @@ export default {
       listQuery: {
         page: 1,
         limit: 20
-      }
+      },
+      searchObj: {}
     }
   },
   created() {
@@ -99,6 +107,11 @@ export default {
 </script>
 
 <style scoped>
+  .search-container {
+    span {
+      font-size: 12px;
+    }
+  }
   .create-btn {
     margin: 10px 10px 10px 10px;
     float: right;

@@ -1,5 +1,11 @@
 <template>
   <div class="app-container">
+    <qt-search
+      :params-source="{level: ['国家级', '省部级', '地市级', '其他']}"
+      i18n-index="research.reward_info"
+      search-url="/research/reward"
+    />
+
     <el-link class="create-btn" icon="el-icon-edit" @click="goToCreate">新建</el-link>
     <el-table
       v-loading="listLoading"
@@ -53,11 +59,12 @@
 
 <script>
 import { fetchRewardList } from '../../../api/research'
-import Pagination from '../../../components/Pagination/index' // Secondary package based on el-pagination
+import Pagination from '../../../components/Pagination/index'
+import QtSearch from '../../../components/Search/QtSearch' // Secondary package based on el-pagination
 
 export default {
   name: 'RewardList',
-  components: { Pagination },
+  components: { QtSearch, Pagination },
   data() {
     return {
       list: null,

@@ -11,7 +11,9 @@ export default {
     edit: '编辑',
     cancel_edit: '取消编辑',
     create: '创建',
-    pleaseChoose: '请选择'
+    pleaseChoose: '请选择',
+    delete: '删除',
+    keyword: '关键词'
   },
   // titles: {
   //   basic_info: '基本信息',

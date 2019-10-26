@@ -1,5 +1,11 @@
 <template>
   <div class="app-container">
+    <qt-search
+      :params-source="{}"
+      i18n-index="research"
+      search-url="/research/paper"
+    />
+
     <el-link class="create-btn" icon="el-icon-edit" @click="goToCreate">新建</el-link>
     <el-table
       v-loading="listLoading"
@@ -53,11 +59,12 @@
 
 <script>
 import { fetchReports } from '../../../api/daily'
-import Pagination from '../../../components/Pagination/index' // Secondary package based on el-pagination
+import Pagination from '../../../components/Pagination/index'
+import QtSearch from '../../../components/Search/QtSearch' // Secondary package based on el-pagination
 
 export default {
   name: 'ReportList',
-  components: { Pagination },
+  components: { QtSearch, Pagination },
   filters: {
     statusFilter(status) {
       const statusMap = {

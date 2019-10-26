@@ -7,11 +7,10 @@ export default {
     departure_site: '出发地',
     arrival_site: '到达地',
     flight_no: '航班号',
-    name: '姓名',
-    identity_type: '证件类型',
-    identity_no: '证件号码',
     price: '价格',
-    remark: '备注'
+    remark: '备注',
+    more: '更多',
+    operation: '操作'
   },
   travel: {
     TITLE: '出行信息',
@@ -20,7 +19,9 @@ export default {
     type: '类型',
     budget: '预算（元）',
     start_date: '起始日期',
-    end_date: '结束日期'
+    end_date: '结束日期',
+    identity_type: '证件类型',
+    identity_no: '证件号'
   },
 
   visit: {
@@ -39,7 +40,8 @@ export default {
     accommodation: '住宿地点',
     needs_pick_up: '是否已安排接送机',
     expenditure: '使用经费',
-    budget: '预算'
+    budget: '预算',
+    has_report: '是否有报告'
   },
 
   report: {
@@ -49,7 +51,8 @@ export default {
     time: '时间',
     title: '标题',
     invitee_name: '嘉宾姓名',
-    people_count: '人数'
+    people_count: '人数',
+    location: '地点'
   },
 
   hosting: {
@@ -57,6 +60,7 @@ export default {
     id: '序号',
     title: '会议名称',
     time: '时间',
-    site: '地点'
+    site: '地点',
+    is_reimbursement: '是否报销'
   }
 }

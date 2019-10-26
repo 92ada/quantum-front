@@ -18,6 +18,32 @@ function getListByType(dailyType) {
 
 export default [
   {
+    url: /\/api\/daily\/travel\/\w+\/flights/,
+    type: 'get',
+    response: config => {
+      return {
+        code: 20000,
+        data: {
+          items: FlightList,
+          total: FlightList.length
+        }
+      }
+    }
+  },
+  {
+    url: /\/api\/daily\/visit\/\w+\/flights/,
+    type: 'get',
+    response: config => {
+      return {
+        code: 20000,
+        data: {
+          items: FlightList,
+          total: FlightList.length
+        }
+      }
+    }
+  },
+  {
     url: /\/api\/daily\/travel\/\w+/,
     type: 'get',
     response: config => {
@@ -33,17 +59,9 @@ export default [
               'index': `daily.travel`
             },
             columns: toObjectList(filteredList)
-          },
-          {
-            title: {
-              'index': `daily.flight_info`
-            },
-            type: 'multi-table',
-            columns: toObjectList(FlightList)
           }
         ]
       }
-
       return {
         code: 20000,
         data: result
@@ -65,16 +83,9 @@ export default [
               'index': `daily.visit`
             },
             columns: toObjectList(filteredList)
-          },
-          {
-            title: {
-              'index': `daily.flight_info`
-            },
-            columns: toObjectList(FlightList)
           }
         ]
       }
-
       return {
         code: 20000,
         data: result
@@ -94,6 +105,31 @@ export default [
           {
             title: {
               'index': `daily.report`
+            },
+            columns: toObjectList(filteredList)
+          }
+        ]
+      }
+
+      return {
+        code: 20000,
+        data: result
+      }
+    }
+  },
+  {
+    url: /\/api\/daily\/hosting\/\w+/,
+    type: 'get',
+    response: config => {
+      const id = config.url.split('/').reverse()[0]
+
+      const filteredList = HostingList.filter(item => String(item.id) === String(id))
+      const result = {
+        postUrl: `/api/daily/hosting/${id}`,
+        data: [
+          {
+            title: {
+              'index': `daily.hosting`
             },
             columns: toObjectList(filteredList)
           }

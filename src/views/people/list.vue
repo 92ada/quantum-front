@@ -1,5 +1,11 @@
 <template>
   <div class="app-container">
+    <qt-search
+      :params-source="{}"
+      i18n-index="people"
+      search-url="/people"
+    />
+
     <el-link v-if="peopleType" class="create-btn" icon="el-icon-edit" @click="goToCreate">新建</el-link>
     <el-table
       v-loading="listLoading"
@@ -67,11 +73,12 @@
 
 <script>
 import { fetchList } from '../../api/people'
-import Pagination from '../../components/Pagination' // Secondary package based on el-pagination
+import Pagination from '../../components/Pagination'
+import QtSearch from '../../components/Search/QtSearch' // Secondary package based on el-pagination
 
 export default {
   name: 'PeopleList',
-  components: { Pagination },
+  components: { QtSearch, Pagination },
   filters: {
     statusFilter(status) {
       const statusMap = {

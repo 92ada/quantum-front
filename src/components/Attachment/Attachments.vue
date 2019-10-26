@@ -1,6 +1,6 @@
 <template>
-  <div>
-    <el-row gutter="24">
+  <div class="attachments-container">
+    <el-row :gutter="24">
       <el-col :span="10">
         <h3>附件列表</h3>
       </el-col>
@@ -15,7 +15,7 @@
             :on-error="handleUploadError"
             :file-list="fileList"
           >
-            <el-button size="small" type="primary">上传附件</el-button>
+            <el-button v-if="type === 'edit'" size="small" type="primary">上传附件</el-button>
           </el-upload>
         </el-row>
       </el-col>
@@ -28,7 +28,7 @@
       <el-table-column
         prop="fileType"
         label="文件类型"
-        width="100"
+        width="80"
       />
       <el-table-column
         prop="fileName"
@@ -50,7 +50,7 @@
       >
         <template slot-scope="scope">
           <a :href="scope.row.fileUrl" target="_blank" class="el-button el-button--text el-button--small">下载</a>
-          <el-button type="text" size="small" @click="handleClickDelete(scope.row)">删除</el-button>
+          <el-button v-if="type === 'edit'" type="text" size="small" @click="handleClickDelete(scope.row)">删除</el-button>
         </template>
       </el-table-column>
     </el-table>
@@ -77,14 +77,19 @@ export default {
   props: {
     dataSourceUrl: {
       type: String,
-      default: () => {}
+      default: ''
+    },
+    type: {
+      type: String,
+      default: ''
     }
   },
   data() {
     return {
       dataSource: defaultDataSource.data,
       postUrl: defaultDataSource.postUrl,
-      removeUrl: defaultDataSource.removeUrl
+      removeUrl: defaultDataSource.removeUrl,
+      fileList: []
     }
   },
   created() {
@@ -93,6 +98,8 @@ export default {
       method: 'get'
     }).then(res => {
       this.dataSource = Object.assign([], this.dataSource, res.data.data)
+      console.log(this.dataSource)
+
       this.postUrl = res.data.postUrl
       this.removeUrl = res.data.removeUrl
     })
@@ -130,6 +137,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+    .attachments-container {
+      margin-top: 20px;
+    }
   .uploader{
     margin: 12px 0;
   }

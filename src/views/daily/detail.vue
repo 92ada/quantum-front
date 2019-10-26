@@ -2,22 +2,24 @@
   <div class="app-container">
     <el-link v-if="type === 'edit'" icon="el-icon-edit" @click="closeThisView">{{ $t('common.cancel_edit') }}</el-link>
     <el-link v-if="type === 'show'" icon="el-icon-edit" @click="goToEdit">{{ $t('common.edit') }}</el-link>
-    <qt-form :type="type" :data-source-url="requestUrl + dailyType + '/' + dailyId" />
+    <qt-form :type="type" :data-source-url="requestUrl + '/' + dailyType + '/' + dailyId" />
 
-    <flight-info-table v-if="dailyType === 'project'" :project-id="dailyId" />
+    <flight-info-table v-if="dailyType === 'visit' || dailyType === 'travel'" :type="type" :daily-type="dailyType" :daily-id="dailyId" />
+    <attachments :type="type" :data-source-url="requestUrl + '/' + dailyType + '/' + dailyId + '/attachments'" />
   </div>
 </template>
 <script>
 import QtForm from '../../components/Form/QtForm'
 import FlightInfoTable from './components/FlightInfoTable'
+import Attachments from '../../components/Attachment/Attachments'
 export default {
   name: 'DailyDetail',
-  components: { FlightInfoTable, QtForm },
+  components: { FlightInfoTable, QtForm, Attachments },
   data() {
     return {
       tempRoute: {},
       type: '',
-      requestUrl: '/api/daily/',
+      requestUrl: '/api/daily',
       dailyType: '',
       dailyId: -1
     }

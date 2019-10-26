@@ -31,3 +31,10 @@ export function fetchHostings(query) {
     params: query
   })
 }
+
+export function fetchFlightInfoByTypeAndId(dailyType, dailyId) {
+  return request({
+    url: `/api/daily/${dailyType}/${dailyId}/flights`,
+    method: 'get'
+  })
+}

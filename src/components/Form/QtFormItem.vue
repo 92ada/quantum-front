@@ -1,7 +1,12 @@
 <template>
   <el-form-item :label="label" class="form-item">
     <slot v-if="editable" />
-    <span v-else>{{ content }}</span>
+    <div v-else class="not-editable">
+      <el-tag v-if="content === true || content === false" :type="content | statusFilter">
+        {{ content.toString().toUpperCase() }}
+      </el-tag>
+      <span v-else>{{ content }}</span>
+    </div>
   </el-form-item>
 </template>
 
@@ -9,6 +14,15 @@
 export default {
   name: 'QtFormItem',
   components: {},
+  filters: {
+    statusFilter(status) {
+      const statusMap = {
+        'true': 'success',
+        'false': 'info'
+      }
+      return statusMap[status]
+    }
+  },
   props: {
     editable: {
       type: Boolean,
@@ -33,7 +47,7 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
- span {
+ .not-editable {
    padding-left: 10px;
  }
 </style>
