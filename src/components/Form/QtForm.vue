@@ -4,8 +4,8 @@
       <h3>{{ form.title.name }}</h3>
       <el-form label-position="right" label-width="120px" size="small">
         <el-row v-for="row_index in Math.ceil(form.columns.length/2)" :key="row_index" class="form-row">
-          <qt-form-col :col="form.columns[(row_index-1) *2]" :post-form="postForm" />
-          <qt-form-col v-if="(row_index-1) * 2 + 1 < form.columns.length" :col="form.columns[(row_index-1) * 2 + 1]" :post-form="postForm" />
+          <qt-form-col :col="form.columns[(row_index-1) *2]" :post-form="postForms[index].data" />
+          <qt-form-col v-if="(row_index-1) * 2 + 1 < form.columns.length" :col="form.columns[(row_index-1) * 2 + 1]" :post-form="postForms[index].data" />
         </el-row>
       </el-form>
     </div>
@@ -18,9 +18,11 @@
 <script>
 import request from '../../utils/request'
 import QtFormCol from './QtFormCol'
+import { hideId } from '../../utils/form-data-helper'
 
 const defaultDataSource = {
   postUrl: '',
+  updateUrl: '',
   data: [{
     title: {
       name: '',
@@ -39,31 +41,35 @@ export default {
       default: 'show'
     },
     dataSourceUrl: {
-      type: String,
-      default: () => {}
+      type: Array,
+      default: () => []
     }
   },
   data() {
     return {
-      dataSource: defaultDataSource.data,
-      postUrl: defaultDataSource.postUrl,
-      postForm: {},
+      dataSource: [],
+      postForms: [],
       loading: false
     }
   },
   created() {
-    request({
-      url: this.dataSourceUrl,
-      method: 'get'
-    }).then(res => {
-      this.dataSource = Object.assign([], this.dataSource, res.data.data)
-      this.postUrl = res.data.postUrl
+    for (const url of this.dataSourceUrl) {
+      request({
+        url: url,
+        method: 'get'
+      }).then(res => {
+        console.log("!!!!!!!", res)
+        this.dataSource = Object.assign([], this.dataSource, this.dataSource.push({
+          title: { index: res.index },
+          columns: hideId(res.data)
+        }))
 
-      this.setTitleName()
-      this.setLabelName()
-      this.setOptions()
-      this.setPostForm()
-    })
+        this.setTitleName()
+        this.setLabelName()
+        this.setOptions()
+        this.setPostForm(res)
+      })
+    }
   },
   methods: {
     setTitleName() {
@@ -77,7 +83,8 @@ export default {
         const i18nIndex = this.dataSource[i].title.index
         const columns = this.dataSource[i].columns
         for (let i = 0; i < columns.length; i++) {
-          columns[i].name = this.$t(i18nIndex + '.' + columns[i].index) || columns[i].name
+          const index_ = columns[i].index
+          columns[i].name = this.$t(i18nIndex + '.' + index_) || columns[i].name
           columns[i].editable = this.type === 'create' || (columns[i].editable && this.type === 'edit')
         }
         this.dataSource[i].columns = columns
@@ -87,7 +94,7 @@ export default {
       for (let i = 0; i < this.dataSource.length; i++) {
         const columns = this.dataSource[i].columns
         for (let i = 0; i < columns.length; i++) {
-          if (columns[i].type === 'reference') {
+          if (columns[i].type === 'object') {
             request({
               url: columns[i].option_url,
               method: 'get'
@@ -100,40 +107,56 @@ export default {
         }
       }
     },
-    setPostForm() {
+    setPostForm(res) {
+      const columns = res.data
       const data = {}
-      for (let i = 0; i < this.dataSource.length; i++) {
-        const columns = this.dataSource[i].columns
-        for (let i = 0; i < columns.length; i++) {
-          const key = columns[i].index
-          const value = columns[i].value
-          data[key] = value
-        }
-        this.postForm = Object.assign({}, this.postForm, data)
+      for (let i = 0; i < columns.length; i++) {
+        const key = columns[i].index
+        const value = columns[i].value
+        data[key] = value
       }
+      this.postForms = Object.assign([], this.postForms, this.postForms.push({
+        data: data,
+        postUrl: res.post_url,
+        updateUrl: res.update_url,
+        deleteUrl: res.delete_url
+      }))
     },
     handleSubmit() {
-      switch (this.type) {
-        case 'show': return
-        case 'edit': this.updateData(this.dataSource); return
-        case 'create': this.postData(this.dataSource); return
+      for (const postForm in this.postForms) {
+        switch (this.type) {
+          case 'show': return
+          case 'edit': this.updateData(postForm); return
+          case 'create': this.postData(postForm); return
+        }
       }
     },
     // api
-    postData(attrs) {
+    postData(postForm) {
       if (!this.loading) {
         this.loading = true
-        // ...
-        this.loading = false
+        request({
+          url: postForm.postUrl,
+          method: 'post',
+          data: JSON.stringify(postForm.data)
+        }).then(res => {
+          // ...
+          this.loading = false
+        })
       }
-      return
     },
-    updateData(attrs) {
+    updateData(postForm) {
       if (!this.loading) {
         this.loading = true
-        // ...
-        console.log(this.postForm)
-        this.loading = false
+        request({
+          url: postForm.updateUrl,
+          method: 'put',
+          data: JSON.stringify(postForm.data)
+        }).then(res => {
+          // ...
+          console.log(res)
+          this.loading = false
+        })
       }
       return
     }

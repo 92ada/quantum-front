@@ -1,5 +1,5 @@
 export default {
-  uid: '工号',
+  sid: '工号',
   status: '状态',
   name: '姓名',
   mobile_phone: '移动电话',
@@ -10,7 +10,7 @@ export default {
   basic_info: {
     TITLE: '基本信息',
     research_direction: '研究领域',
-    uid: '工号',
+    sid: '工号',
     photo: '照片',
     type: '人员类型',
     status: '状态',
@@ -31,8 +31,8 @@ export default {
     education_experience: '教育经历',
     email: '邮箱',
     political_status: '政治面貌',
-    describe: '个人简介',
-    emergency_contact: '紧急联系人信息',
+    description: '个人简介',
+    emergency_contact: '紧急联系人电话',
     entry_date: '入职时间',
     departure_date: '离职时间',
     gender: '性别',

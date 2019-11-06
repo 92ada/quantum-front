@@ -4,9 +4,28 @@
       <el-input v-model="postForm[col.index]" class="form-input" />
     </form-item>
 
-    <form-item v-if="col.type === 'enum'" :label="col.name+':'" :editable="col.editable" class="form-item">
+    <form-item v-if="col.type === 'number'" :label="col.name+':'" :editable="col.editable" class="form-item">
+      <el-input v-model="postForm[col.index]" type="number" class="form-input" />
+    </form-item>
+
+    <form-item v-if="col.type === 'phone'" :label="col.name+':'" :editable="col.editable" class="form-item">
+      <el-input v-model="postForm[col.index]" type="tel" class="form-input" />
+    </form-item>
+
+    <form-item v-if="col.type === 'email'" :label="col.name+':'" :editable="col.editable" class="form-item">
+      <el-input v-model="postForm[col.index]" type="email" class="form-input" />
+    </form-item>
+
+    <form-item v-if="col.type === 'enumerated'" :label="col.name+':'" type="enumerated" :editable="col.editable" class="form-item">
       <el-select v-model="postForm[col.index]" :placeholder="$t('common.pleaseChoose')">
-        <el-option v-for="option in col.options" :key="option" :value="option" />
+        <el-option v-for="option in col.options" :key="option" :value="option" :label="toLabel(option)" />
+      </el-select>
+    </form-item>
+
+    <form-item v-if="col.type === 'bool'" :label="col.name+':'" type="enumerated" :editable="col.editable" class="form-item">
+      <el-select v-model="postForm[col.index]" :placeholder="$t('common.pleaseChoose')">
+        <el-option :value="true" label="True" />
+        <el-option :value="false" label="False" />
       </el-select>
     </form-item>
 
@@ -42,6 +61,12 @@ export default {
     col: {
       default: () => {},
       type: Object
+    }
+  },
+  methods: {
+    toLabel(option) {
+      const name = option.replace(/_./g, ch => ch.toUpperCase()).replace(/^./, ch => ch.toUpperCase()).replace(/_/g, ' ')
+      return name
     }
   }
 }

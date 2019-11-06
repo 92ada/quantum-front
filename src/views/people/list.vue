@@ -16,9 +16,9 @@
       style="width: 100%"
       @row-click="goToDetail"
     >
-      <el-table-column align="center" :label="$t('people.uid')" min-width="100" sortable prop="id">
+      <el-table-column align="center" :label="$t('people.sid')" min-width="100" sortable prop="id">
         <template slot-scope="scope">
-          <span>{{ scope.row.uid }}</span>
+          <span>{{ scope.row.sid }}</span>
         </template>
       </el-table-column>
 
@@ -96,7 +96,7 @@ export default {
       total: 0,
       listLoading: true,
       listQuery: {
-        page: 1,
+        page: 0,
         limit: 20
       },
       peopleType: undefined
@@ -116,13 +116,13 @@ export default {
       this.listLoading = true
       fetchList({ ...this.listQuery, type: type }).then(response => {
         console.log(response)
-        this.list = response.data.items
-        this.total = response.data.total
+        this.list = response.content
+        this.total = response.totalPages
         this.listLoading = false
       })
     },
     goToDetail(row, event, column) {
-      const url = `/people/${row.uid}`
+      const url = `/people/${row.id}`
       this.$router.push(url)
     },
     goToCreate() {

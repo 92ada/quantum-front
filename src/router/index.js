@@ -85,7 +85,7 @@ export const constantRoutes = [
     children: [
       {
         path: '',
-        components: () => import('@/views/downloads/index'),
+        component: () => import('@/views/downloads/index'),
         name: 'downloads',
         meta: {
           title: 'downloads'
@@ -107,14 +107,7 @@ export const constantRoutes = [
         meta: { title: 'profile', icon: 'user', noCache: true }
       }
     ]
-  }
-]
-
-/**
- * asyncRoutes
- * the routes that need to be dynamically loaded based on user roles
- */
-export const asyncRoutes = [
+  },
   {
     path: '/people',
     component: Layout,
@@ -182,6 +175,13 @@ export const asyncRoutes = [
       }
     ]
   },
+]
+
+/**
+ * asyncRoutes
+ * the routes that need to be dynamically loaded based on user roles
+ */
+export const asyncRoutes = [
   {
     path: '/research',
     component: Layout,

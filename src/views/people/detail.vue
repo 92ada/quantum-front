@@ -3,7 +3,7 @@
     <el-link v-if="type === 'edit'" icon="el-icon-edit" @click="closeThisView">{{ $t('common.cancel_edit') }}</el-link>
     <el-link v-if="type === 'show'" icon="el-icon-edit" @click="goToEdit">{{ $t('common.edit') }}</el-link>
 
-    <qt-form :type="type" :data-source-url="requestUrl + peopleId" />
+    <qt-form :type="type" :data-source-url="[requestUrl + '/' + peopleId + '/base/structure', requestUrl + '/' + peopleId + '/extra/structure']" />
   </div>
 </template>
 <script>
@@ -16,7 +16,7 @@ export default {
     return {
       tempRoute: {},
       type: '',
-      requestUrl: '/api/people/',
+      requestUrl: '/api/people',
       peopleId: -1
     }
   },

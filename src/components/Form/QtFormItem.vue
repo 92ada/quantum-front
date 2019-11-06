@@ -2,8 +2,8 @@
   <el-form-item :label="label" class="form-item">
     <slot v-if="editable" />
     <div v-else class="not-editable">
-      <el-tag v-if="content === true || content === false" :type="content | statusFilter">
-        {{ content.toString().toUpperCase() }}
+      <el-tag v-if="type === 'enumerated'" :type="content | statusFilter">
+        {{ format(content.toString()) }}
       </el-tag>
       <span v-else>{{ content }}</span>
     </div>
@@ -11,6 +11,7 @@
 </template>
 
 <script>
+import { underlineToSentenceFormat } from '../../utils/form-data-helper'
 export default {
   name: 'QtFormItem',
   components: {},
@@ -31,6 +32,10 @@ export default {
     label: {
       type: String,
       default: ''
+    },
+    type: {
+      type: String,
+      default: ''
     }
   },
   data() {
@@ -43,6 +48,11 @@ export default {
   },
   updated() {
     this.content = this.$slots.default[0].data.model.value
+  },
+  methods: {
+    format(str) {
+      return underlineToSentenceFormat(str)
+    }
   }
 }
 </script>

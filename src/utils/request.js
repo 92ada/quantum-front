@@ -16,6 +16,8 @@ console.log(process.env.VUE_APP_BASE_API)
 service.interceptors.request.use(
   config => {
     // do something before request is sent
+    config.headers['X-Token'] = getToken()
+    config.headers['Content-Type'] = 'application/json'
 
     if (store.getters.token) {
       // let each request carry token
@@ -44,20 +46,22 @@ service.interceptors.response.use(
    * Here is just an example
    * You can also judge the status by HTTP Status Code
    */
+
   response => {
+    console.log(response)
+    const status = response.status // TODO
     const res = response.data
 
-    // if the custom code is not 20000, it is judged as an error.
-    if (res.code !== 20000) {
+    if (status !== 200) {
       Message({
         message: res.message || 'Error',
         type: 'error',
         duration: 5 * 1000
       })
 
-      // 50008: Illegal token; 50012: Other clients logged in; 50014: Token expired;
-      if (res.code === 50008 || res.code === 50012 || res.code === 50014) {
-        // to re-login
+      // 508: Illegal token; 512: Other clients logged in; 514: Token expired;
+      if (status === 508 || status === 512 || status === 514) {
+        // to re-logins
         MessageBox.confirm('You have been logged out, you can cancel to stay on this page, or log in again', 'Confirm logout', {
           confirmButtonText: 'Re-Login',
           cancelButtonText: 'Cancel',
