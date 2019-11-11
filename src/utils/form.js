@@ -3,11 +3,11 @@
  * @param structuredData
  * [
  *  {
- *   index": "id",
+ *   "index": "id",
  *   "value": "1",
  *   "type": "number",
  *   "options": null,
- *   "option_url": null,c
+ *   "option_url": null,
  *   "require": null,
  *   "editable": null
  *  },

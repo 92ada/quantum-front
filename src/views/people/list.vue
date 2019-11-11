@@ -108,8 +108,7 @@ export default {
   },
   methods: {
     getType() {
-      let type = this.$route.path.split('/')[2]
-      if (type === 'all') type = undefined
+      const type = this.$route.path.split('/')[2]
       return type
     },
     getList(type) {

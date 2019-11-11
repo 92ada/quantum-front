@@ -11,7 +11,7 @@
 </template>
 
 <script>
-import { underlineToSentenceFormat } from '../../utils/form-data-helper'
+import { underlineToSentenceFormat } from '../../utils/form'
 export default {
   name: 'QtFormItem',
   components: {},

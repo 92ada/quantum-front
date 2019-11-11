@@ -2,7 +2,7 @@
   <div class="app-container">
     <el-link v-if="type === 'edit'" icon="el-icon-edit" @click="closeThisView">{{ $t('common.cancel_edit') }}</el-link>
     <el-link v-if="type === 'show'" icon="el-icon-edit" @click="goToEdit">{{ $t('common.edit') }}</el-link>
-    <qt-form :type="type" :data-source-url="requestUrl + financeType + '/' + financeId" />
+    <qt-form :type="type" :data-source-url="[requestUrl + '/' + financeType + '/' + financeId + '/structure']" />
   </div>
 </template>
 <script>
@@ -14,7 +14,7 @@ export default {
     return {
       tempRoute: {},
       type: '',
-      requestUrl: '/api/finance/',
+      requestUrl: '/api/finance',
       financeType: '',
       financeId: -1
     }

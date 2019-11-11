@@ -90,8 +90,8 @@ export default {
       this.listLoading = true
       fetchPatentList(this.listQuery).then(response => {
         console.log(response)
-        this.list = response.data.items
-        this.total = response.data.total
+        this.list = response.content
+        this.total = response.totalPages
         this.listLoading = false
       })
     },

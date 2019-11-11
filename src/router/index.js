@@ -175,6 +175,61 @@ export const constantRoutes = [
       }
     ]
   },
+  {
+    path: '/finance',
+    component: Layout,
+    meta: {
+      title: 'finance',
+      icon: 'money'
+    },
+    children: [
+      {
+        path: ':type(\\w+)/:id(\\w+)',
+        component: () => import('@/views/finance/detail'),
+        name: 'financeInfo',
+        meta: { title: 'detail', noCache: true, activeMenu: '/finance' },
+        hidden: true
+      },
+      {
+        path: ':type(\\w+)/:id(\\d+)/:action_type(edit)',
+        component: () => import('@/views/finance/detail'),
+        name: 'financeEdit',
+        meta: { title: 'edit', noCache: true, activeMenu: '/finance' },
+        hidden: true
+      },
+      {
+        path: ':type(\\w+)/:action_type(create)',
+        component: () => import('@/views/finance/detail'),
+        name: 'financeCreate',
+        meta: { title: 'create', noCache: true, activeMenu: '/finance' },
+        hidden: true
+      },
+      {
+        path: 'social_insurance',
+        component: () => import('@/views/finance/list/social_insurance'),
+        name: 'social_insurance',
+        meta: { title: 'social_insurance', icon: 'chart' }
+      },
+      {
+        path: 'social_funds',
+        component: () => import('@/views/finance/list/social_funds'),
+        name: 'social_funds',
+        meta: { title: 'social_funds', icon: 'chart' }
+      },
+      {
+        path: 'expenditure',
+        component: () => import('@/views/finance/list/expenditure'),
+        name: 'expenditure',
+        meta: { title: 'expenditure', icon: 'chart' }
+      },
+      {
+        path: '',
+        component: () => import('@/views/finance/index'),
+        name: 'finance',
+        hidden: true
+      }
+    ]
+  }
 ]
 
 /**
@@ -243,61 +298,7 @@ export const asyncRoutes = [
       }
     ]
   },
-  {
-    path: '/finance',
-    component: Layout,
-    meta: {
-      title: 'finance',
-      icon: 'money'
-    },
-    children: [
-      {
-        path: ':type(\\w+)/:id(\\w+)',
-        component: () => import('@/views/finance/detail'),
-        name: 'financeInfo',
-        meta: { title: 'detail', noCache: true, activeMenu: '/finance' },
-        hidden: true
-      },
-      {
-        path: ':type(\\w+)/:id(\\d+)/:action_type(edit)',
-        component: () => import('@/views/finance/detail'),
-        name: 'financeEdit',
-        meta: { title: 'edit', noCache: true, activeMenu: '/finance' },
-        hidden: true
-      },
-      {
-        path: ':type(\\w+)/:action_type(create)',
-        component: () => import('@/views/finance/detail'),
-        name: 'financeCreate',
-        meta: { title: 'create', noCache: true, activeMenu: '/finance' },
-        hidden: true
-      },
-      {
-        path: 'social_insurance',
-        component: () => import('@/views/finance/list/social_insurance'),
-        name: 'social_insurance',
-        meta: { title: 'social_insurance', icon: 'chart' }
-      },
-      {
-        path: 'social_funds',
-        component: () => import('@/views/finance/list/social_funds'),
-        name: 'social_funds',
-        meta: { title: 'social_funds', icon: 'chart' }
-      },
-      {
-        path: 'expenditure',
-        component: () => import('@/views/finance/list/expenditure'),
-        name: 'expenditure',
-        meta: { title: 'expenditure', icon: 'chart' }
-      },
-      {
-        path: '',
-        component: () => import('@/views/finance/index'),
-        name: 'finance',
-        hidden: true
-      }
-    ]
-  },
+
   {
     path: '/daily',
     component: Layout,

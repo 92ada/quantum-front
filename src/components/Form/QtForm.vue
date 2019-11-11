@@ -18,7 +18,7 @@
 <script>
 import request from '../../utils/request'
 import QtFormCol from './QtFormCol'
-import { hideId } from '../../utils/form-data-helper'
+import { hideId } from '../../utils/form'
 
 const defaultDataSource = {
   postUrl: '',
@@ -52,13 +52,12 @@ export default {
       loading: false
     }
   },
-  created() {
+  async created() {
     for (const url of this.dataSourceUrl) {
-      request({
+      await request({
         url: url,
         method: 'get'
       }).then(res => {
-        console.log("!!!!!!!", res)
         this.dataSource = Object.assign([], this.dataSource, this.dataSource.push({
           title: { index: res.index },
           columns: hideId(res.data)
@@ -154,7 +153,6 @@ export default {
           data: JSON.stringify(postForm.data)
         }).then(res => {
           // ...
-          console.log(res)
           this.loading = false
         })
       }

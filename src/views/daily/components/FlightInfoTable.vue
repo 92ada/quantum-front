@@ -98,8 +98,8 @@ export default {
       this.listLoading = true
       fetchFlightInfoByTypeAndId(this.dailyType, this.dailyId).then(response => {
         console.log(response)
-        this.list = response.data.items
-        this.total = response.data.total
+        this.list = response.content
+        this.total = response.totalPages
         this.listLoading = false
       })
     },

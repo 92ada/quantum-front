@@ -20,7 +20,7 @@ router.beforeEach(async(to, from, next) => {
   // determine whether the user has logged in
   const hasToken = getToken()
 
-  if (process.env.NODE_ENV === 'dev2') {
+  if (process.env.NODE_ENV === 'dev2') { //TODO
     next()
   } else {
     if (hasToken) {
