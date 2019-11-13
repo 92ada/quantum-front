@@ -76,7 +76,7 @@ export default {
   methods: {
     getList() {
       this.listLoading = true
-      console.log("in paper getList", this.listQuery)
+      console.log('in paper getList', this.listQuery)
       fetchPaperList(this.listQuery).then(response => {
         console.log(response)
         this.list = response.content

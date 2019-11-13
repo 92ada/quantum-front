@@ -3,21 +3,29 @@
     <div v-for="(group, index) in roles" :key="index">
       <h3>{{ group.name }}</h3>
       <el-checkbox v-model="checkAlls[index]" :indeterminate="isIndeterminates[index]" @change="handleCheckAllChange(index, $event)">全选</el-checkbox>
-      <div style="margin: 15px 0;"></div>
+      <div style="margin: 15px 0;" />
       <el-checkbox-group v-model="postDataSource[index]">
-        <el-checkbox v-for="role in group.auths" :label="role.key" :key="role.id">{{ role.name }}</el-checkbox>
+        <el-checkbox v-for="role in group.auths" :key="role.id" :label="role.key">{{ role.name }}</el-checkbox>
       </el-checkbox-group>
     </div>
 
   </div>
 </template>
 <script>
-  import { getRoles } from '../../api/role'
+import { getRoles } from '../../api/role'
 export default {
   data() {
     return {
       roles: [],
       postDataSource: []
+    }
+  },
+  computed: {
+    checkAlls() {
+      return this.postDataSource.map((x, index) => x.length === this.roles[index].auths.length)
+    },
+    isIndeterminates() {
+      return this.postDataSource.map((x, index) => x.length < this.roles[index].auths.length && x.length > 0)
     }
   },
   created() {
@@ -48,15 +56,7 @@ export default {
     }
   },
   updated() {
-    console.log("in checked", this.postDataSource)
-  },
-  computed: {
-    checkAlls() {
-      return this.postDataSource.map((x, index) => x.length === this.roles[index].auths.length)
-    },
-    isIndeterminates() {
-      return this.postDataSource.map((x, index) => x.length < this.roles[index].auths.length && x.length > 0)
-    }
+    console.log('in checked', this.postDataSource)
   },
   methods: {
     handleCheckAllChange(index, checked) {

@@ -33,7 +33,11 @@ import { searchOptionsByWord } from '../../api/options'
 
 // TODO: 等后段把Json改成Json
 export default {
-  name: 'index',
+  name: 'Index',
+  model: {
+    prop: 'selected',
+    event: 'change'
+  },
   props: {
     editable: {
       type: Boolean,
@@ -51,10 +55,6 @@ export default {
       type: Array,
       default: () => []
     }
-  },
-  model: {
-    prop: 'selected',
-    event: 'change'
   },
   data() {
     return {

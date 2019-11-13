@@ -47,11 +47,11 @@
     </el-form-item>
 
     <el-form-item v-if="col.type === 'people'" :label="col.name+':'" class="form-item">
-    <people-selector :editable="col.editable" v-model="postForm[col.index]" :option-url="col.option_url"></people-selector>
-  </el-form-item>
+      <people-selector v-model="postForm[col.index]" :editable="col.editable" :option-url="col.option_url" />
+    </el-form-item>
 
     <el-form-item v-if="col.type === 'lab'" :label="col.name+':'" class="form-item">
-      <lab-selector :editable="col.editable" v-model="postForm[col.index]" :option-url="col.option_url"></lab-selector>
+      <lab-selector v-model="postForm[col.index]" :editable="col.editable" :option-url="col.option_url" />
     </el-form-item>
 
   </el-col>

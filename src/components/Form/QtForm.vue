@@ -89,6 +89,12 @@ export default {
           }
           columns[i].name = this.$t(i18nIndex + '.' + index_) || columns[i].name
           columns[i].editable = this.type === 'create' || (columns[i].editable && this.type === 'edit')
+
+          // hack: 人员创建的时候已经选好people type了，不能改了
+          if (this.type === 'create' && i18nIndex === 'people.basic_info' && index_ === 'type') {
+            columns[i].editable = false
+            columns[i].value = this.$route.params.type
+          }
         }
         this.dataSource[i].columns = columns
       }
@@ -120,18 +126,30 @@ export default {
       }
       this.postForms = Object.assign([], this.postForms, this.postForms.push({
         data: data,
+        key: res.key,
+        priority: res.priority,
         postUrl: res.post_url,
         updateUrl: res.update_url,
         deleteUrl: res.delete_url
       }))
     },
     handleSubmit() {
+      let tmp_priority = 0
+      const finalPostForm = { data: {}}
       for (const postForm of this.postForms) {
-        switch (this.type) {
-          case 'show': return
-          case 'edit': this.updateData(postForm); return
-          case 'create': this.postData(postForm); return
+        finalPostForm.data[postForm.key] = postForm.data
+        // 按优先级找到要用的url
+        if (postForm.priority > tmp_priority) {
+          tmp_priority = postForm.priority
+          finalPostForm.postUrl = postForm.postUrl
+          finalPostForm.updateUrl = postForm.updateUrl
+          finalPostForm.deleteUrl = postForm.deleteUrl
         }
+      }
+      switch (this.type) {
+        case 'show': return
+        case 'edit': this.updateData(finalPostForm); return
+        case 'create': this.postData(finalPostForm); return
       }
     },
     // api

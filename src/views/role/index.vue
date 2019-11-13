@@ -61,15 +61,17 @@
       <el-table-column min-width="200" :label="$t('common.operation')" fixed="right">
         <template slot-scope="scope">
           <el-button
-            @click.stop="goToRoleManage(scope.row.id)"
             type="text"
-            size="small">
+            size="small"
+            @click.stop="goToRoleManage(scope.row.id)"
+          >
             {{ $t('common.manageRole') }}
           </el-button>
           <el-button
-            @click.stop="deletePerson(scope.row.id)"
             type="text"
-            size="small">
+            size="small"
+            @click.stop="deletePerson(scope.row.id)"
+          >
             {{ $t('common.delete') }}
           </el-button>
         </template>

@@ -109,7 +109,7 @@ export default {
   methods: {
     getType() {
       const type = this.$route.meta.title
-      console.log("type", type, this.$route)
+      console.log('type', type, this.$route)
       return type
     },
     getList(type) {

@@ -52,7 +52,7 @@ service.interceptors.response.use(
     const status = response.status // TODO
     const res = response.data
 
-    if (status !== 200) {
+    if (status >= 300) {
       Message({
         message: res.message || 'Error',
         type: 'error',

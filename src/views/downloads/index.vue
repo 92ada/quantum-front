@@ -1,7 +1,7 @@
 <template>
   <div class="downloads-container">
-    <lab-selector :editable="true" v-model="selected" option-url="/api/lab/options"></lab-selector>
-<!--    <el-button @click="log">Log selected</el-button>-->
+    <lab-selector v-model="selected" :editable="true" option-url="/api/lab/options" />
+    <!--    <el-button @click="log">Log selected</el-button>-->
   </div>
 </template>
 
@@ -17,7 +17,7 @@ export default {
   },
   methods: {
     log() {
-      console.log("in downloads,", this.selected)
+      console.log('in downloads,', this.selected)
     }
   }
 }

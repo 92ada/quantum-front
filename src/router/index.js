@@ -175,7 +175,7 @@ export const asyncRoutes = [
         component: () => import('@/views/lab/index'),
         hidden: true
       }
-      ]
+    ]
   },
   {
     path: '/people',
