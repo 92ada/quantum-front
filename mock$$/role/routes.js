@@ -50,7 +50,7 @@ export const constantRoutes = [
     component: 'layout/Layout',
     children: [
       {
-        path: 'index',
+        path: 'index.vue',
         component: 'views/documentation/index',
         name: 'Documentation',
         meta: { title: 'documentation', icon: 'documentation', affix: true }
@@ -63,7 +63,7 @@ export const constantRoutes = [
     redirect: '/guide/index',
     children: [
       {
-        path: 'index',
+        path: 'index.vue',
         component: 'views/guide/index',
         name: 'Guide',
         meta: { title: 'guide', icon: 'guide', noCache: true }
@@ -118,7 +118,7 @@ export const asyncRoutes = [
     component: 'layout/Layout',
     children: [
       {
-        path: 'index',
+        path: 'index.vue',
         component: 'views/icons/index',
         name: 'Icons',
         meta: { title: 'icons', icon: 'icon', noCache: true }
@@ -344,7 +344,7 @@ export const asyncRoutes = [
     component: 'layout/Layout',
     children: [
       {
-        path: 'index',
+        path: 'index.vue',
         component: 'views/tab/index',
         name: 'Tab',
         meta: { title: 'tab', icon: 'tab' }
@@ -450,7 +450,7 @@ export const asyncRoutes = [
     redirect: '/pdf/index',
     children: [
       {
-        path: 'index',
+        path: 'index.vue',
         component: 'views/pdf/index',
         name: 'PDF',
         meta: { title: 'pdf', icon: 'pdf' }
@@ -469,7 +469,7 @@ export const asyncRoutes = [
     redirect: 'noRedirect',
     children: [
       {
-        path: 'index',
+        path: 'index.vue',
         component: 'views/theme/index',
         name: 'Theme',
         meta: { title: 'theme', icon: 'theme' }
@@ -483,7 +483,7 @@ export const asyncRoutes = [
     redirect: 'noRedirect',
     children: [
       {
-        path: 'index',
+        path: 'index.vue',
         component: 'views/clipboard/index',
         name: 'ClipboardDemo',
         meta: { title: 'clipboardDemo', icon: 'clipboard' }
@@ -496,7 +496,7 @@ export const asyncRoutes = [
     component: 'layout/Layout',
     children: [
       {
-        path: 'index',
+        path: 'index.vue',
         component: 'views/i18n-demo/index',
         name: 'I18n',
         meta: { title: 'i18n', icon: 'international' }

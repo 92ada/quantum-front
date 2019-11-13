@@ -1,6 +1,12 @@
 <template>
   <div class="app-container">
-    <el-link class="create-btn" icon="el-icon-edit" @click="goToCreate">新建</el-link>
+    <qt-search
+      :params-source="{}"
+      i18n-index="lab"
+      search-url="/lab"
+    />
+
+    <el-link v-if="labType" class="create-btn" icon="el-icon-edit" @click="goToCreate">新建</el-link>
     <el-table
       v-loading="listLoading"
       :data="list"
@@ -10,29 +16,22 @@
       style="width: 100%"
       @row-click="goToDetail"
     >
-      <el-table-column align="center" :label="$t('daily.visit.id')" min-width="80" sortable prop="id">
-        <template slot-scope="scope">
-          <span>{{ scope.row.id }}</span>
-        </template>
-      </el-table-column>
 
-      <el-table-column min-width="420" align="center" :label="$t('daily.visit.name')" sortable prop="name">
+      <el-table-column min-width="180" align="center" :label="$t('lab.name')" sortable prop="name">
         <template slot-scope="scope">
           <span>{{ scope.row.name }}</span>
         </template>
       </el-table-column>
 
-      <el-table-column min-width="180" align="center" :label="$t('daily.visit.receptionist')">
+      <el-table-column min-width="300" align="center" :label="$t('lab.description')">
         <template slot-scope="scope">
-          <span>{{ scope.row.receptionist }}</span>
+          <span>{{ scope.row.description }}</span>
         </template>
       </el-table-column>
 
-      <el-table-column min-width="180" align="center" :label="$t('daily.visit.approval_status')">
-        <template slot-scope="{row}">
-          <el-tag :type="row.approval_status | statusFilter">
-            {{ row.approval_status }}
-          </el-tag>
+      <el-table-column min-width="180" align="center" :label="$t('lab.pi')">
+        <template slot-scope="scope">
+          <span>{{ scope.row.pi }}</span>
         </template>
       </el-table-column>
     </el-table>
@@ -48,18 +47,20 @@
 </template>
 
 <script>
-import { fetchVisits } from '../../../api/daily'
-import Pagination from '../../../components/Pagination/index' // Secondary package based on el-pagination
+import { fetchList } from '../../api/lab'
+import Pagination from '../../components/Pagination'
+import QtSearch from '../../components/Search/QtSearch' // Secondary package based on el-pagination
 
 export default {
-  name: 'VisitList',
-  components: { Pagination },
+  name: 'LabIndex',
+  components: { QtSearch, Pagination },
   filters: {
     statusFilter(status) {
       const statusMap = {
-        '已批准': 'success',
-        '审批中': 'info',
-        '未提交': 'danger'
+        'Normal': 'success',
+        'On vacation': 'info',
+        'Dismissed': 'info',
+        'Abnormal': 'danger'
       }
       return statusMap[status]
     }
@@ -72,7 +73,7 @@ export default {
       listQuery: {
         page: 1,
         limit: 20
-      }
+      },
     }
   },
   created() {
@@ -81,7 +82,7 @@ export default {
   methods: {
     getList() {
       this.listLoading = true
-      fetchVisits(this.listQuery).then(response => {
+      fetchList({ ...this.listQuery }).then(response => {
         console.log(response)
         this.list = response.content
         this.total = response.totalPages
@@ -89,11 +90,11 @@ export default {
       })
     },
     goToDetail(row, event, column) {
-      const url = `/daily/visit/${row.id}`
+      const url = `/lab/${row.id}`
       this.$router.push(url)
     },
     goToCreate() {
-      this.$router.push('/daily/visit/create')
+      this.$router.push(`/lab/${this.labType}/create`)
     }
   }
 }

@@ -35,7 +35,7 @@ export default {
     is_international: '是否国际合作论文',
     is_nature_index: '是否自然指数期刊',
     is_conference_paper: '是否会议论文',
-    journal_acceptacce_type: '期刊收录类别',
+    journal_acceptance_type: '期刊收录类别',
     jcr_partition: 'JCR分区',
     impact_factor: '影响因子',
     article_thanks: '文章致谢'

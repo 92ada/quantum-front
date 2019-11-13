@@ -3,23 +3,21 @@
     <el-link v-if="type === 'edit'" icon="el-icon-edit" @click="closeThisView">{{ $t('common.cancel_edit') }}</el-link>
     <el-link v-if="type === 'show'" icon="el-icon-edit" @click="goToEdit">{{ $t('common.edit') }}</el-link>
 
-    <qt-form v-if="type !== 'create'" :type="type" :data-source-url="[requestUrl + '/' + peopleId + '/base/structure', requestUrl + '/' + peopleId + '/extra/structure']" />
-    <qt-form v-else type="create" :data-source-url="[requestUrl + '/base/structure', requestUrl + '/' + idOrType + '/structure']" />
+    <qt-form :type="type" :data-source-url="[requestUrl + '/' + labId + '/base/structure', requestUrl + '/' + labId + '/extra/structure']" />
   </div>
 </template>
 <script>
 import QtForm from '../../components/Form/QtForm'
 
 export default {
-  name: 'PeopleDetail',
+  name: 'LabDetail',
   components: { QtForm },
   data() {
     return {
       tempRoute: {},
       type: '',
-      requestUrl: '/api/people',
-      peopleId: -1,
-      idOrType: ''
+      requestUrl: '/api/lab',
+      labId: -1
     }
   },
   created() {
@@ -28,25 +26,24 @@ export default {
     // https://github.com/PanJiaChen/vue-element-admin/issues/1221
     this.tempRoute = Object.assign({}, this.$route)
 
-    console.log('in people view page')
+    console.log('in lab view page')
     const lang = this.$store.getters.language
-    const peopleId = this.$route.params.id
+    const labId = this.$route.params.id
     const type = this.$route.params.action_type || 'show'
-    const idOrType = type === 'create' ? this.$route.params.type : peopleId
+    const idOrType = type === 'create' ? 'Lab' : labId
 
-    console.log(peopleId, type, idOrType)
+    console.log(labId, type, idOrType)
     console.log(this.$route)
 
     this.type = type
-    this.peopleId = peopleId
-    this.idOrType = idOrType
+    this.labId = labId
     this.setTagsViewTitle(lang, idOrType)
     this.setPageTitle(lang, idOrType)
   },
   methods: {
     getTitle(lang, idOrType) {
       let title
-      if (this.type === 'show') title = lang === 'zh' ? '人员详情' : 'Personal Info'
+      if (this.type === 'show') title = lang === 'zh' ? '实验室详情' : 'Lab Info'
       if (this.type === 'edit') title = lang === 'zh' ? '编辑' : 'Edit'
       if (this.type === 'create') title = lang === 'zh' ? '创建' : 'Create'
       return `${title}-${idOrType}`
@@ -60,7 +57,7 @@ export default {
     },
     goToEdit() {
       const id = this.$route.params.id
-      const url = `/people/${id}/edit`
+      const url = `/lab/${id}/edit`
       this.$router.push(url)
     },
     closeThisView() {

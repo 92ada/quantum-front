@@ -11,6 +11,18 @@ export default {
   downloads: '资料下载',
 
   /**
+   *  path: /role
+   */
+  role: '权限',
+  roleIndex: '权限管理',
+  roleManage: '编辑权限',
+
+  /**
+   *  path: /lab
+   */
+  lab: '实验室',
+
+  /**
    *  path: /people
    */
   people: '人员',

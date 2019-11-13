@@ -45,14 +45,25 @@
     <el-form-item v-if="col.type === 'photo'" :label="col.name+':'" class="form-item">
       <img :src="col.value">
     </el-form-item>
+
+    <el-form-item v-if="col.type === 'people'" :label="col.name+':'" class="form-item">
+    <people-selector :editable="col.editable" v-model="postForm[col.index]" :option-url="col.option_url"></people-selector>
+  </el-form-item>
+
+    <el-form-item v-if="col.type === 'lab'" :label="col.name+':'" class="form-item">
+      <lab-selector :editable="col.editable" v-model="postForm[col.index]" :option-url="col.option_url"></lab-selector>
+    </el-form-item>
+
   </el-col>
 </template>
 <script>
 import FormItem from './QtFormItem'
+import PeopleSelector from '../Selector/PeopleSelector'
+import LabSelector from '../Selector/LabSelector'
 
 export default {
   name: 'QtFormCol',
-  components: { FormItem },
+  components: { PeopleSelector, LabSelector, FormItem },
   props: {
     postForm: {
       default: () => {},

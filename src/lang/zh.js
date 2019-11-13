@@ -1,4 +1,5 @@
 import PeopleTranslation from './zh/people'
+import LabTranslation from './zh/lab'
 import RouteTranslation from './zh/route'
 import ResearchTranslation from './zh/research'
 import DailyTranslation from './zh/daily'
@@ -12,16 +13,16 @@ export default {
     cancel_edit: '取消编辑',
     create: '创建',
     pleaseChoose: '请选择',
+    pleaseSearch: '请搜索',
     delete: '删除',
-    keyword: '关键词'
+    keyword: '关键词',
+    operation: '操作',
+    manageRole: '编辑权限'
   },
-  // titles: {
-  //   basic_info: '基本信息',
-  //   emergency_contact: '紧急联系人信息'
-  // },
 
   route: RouteTranslation,
   people: PeopleTranslation,
+  lab: LabTranslation,
   research: ResearchTranslation,
   daily: DailyTranslation,
   equipment: EquipmentTranslation,
@@ -36,13 +37,11 @@ export default {
     size: '布局大小'
   },
   login: {
-    title: '系统登录',
+    title: '量子研究院数据管理系统',
     logIn: '登录',
     username: '账号',
     password: '密码',
-    any: '随便填',
-    thirdparty: '第三方登录',
-    thirdpartyTips: '本地不能模拟，请结合自己业务进行模拟！！！'
+    tips: '请使用CAS账号密码进行登录'
   },
   tagsView: {
     refresh: '刷新',

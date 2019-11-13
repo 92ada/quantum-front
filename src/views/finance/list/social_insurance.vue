@@ -161,7 +161,7 @@ export default {
       total: 0,
       listLoading: true,
       listQuery: {
-        page: 0,
+        page: 1,
         limit: 20
       }
     }

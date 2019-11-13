@@ -6,6 +6,7 @@ export default {
   office_phone: '办公电话',
   office_address: '办公地址',
   email: '邮箱',
+  type: '人员类型',
 
   basic_info: {
     TITLE: '基本信息',

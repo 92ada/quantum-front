@@ -65,7 +65,7 @@ export default {
 
         this.setTitleName()
         this.setLabelName()
-        this.setOptions()
+        // this.setOptions()
         this.setPostForm(res)
       })
     }
@@ -82,7 +82,11 @@ export default {
         const i18nIndex = this.dataSource[i].title.index
         const columns = this.dataSource[i].columns
         for (let i = 0; i < columns.length; i++) {
-          const index_ = columns[i].index
+          let index_ = columns[i].index
+          if (index_.endsWith('Json')) {
+            // 处理Json字段的Field name：(1)去掉Json, (2)驼峰转下划线
+            index_ = index_.split('Json')[0].replace(/([A-Z])/g, '_$1').toLowerCase()
+          }
           columns[i].name = this.$t(i18nIndex + '.' + index_) || columns[i].name
           columns[i].editable = this.type === 'create' || (columns[i].editable && this.type === 'edit')
         }
@@ -122,7 +126,7 @@ export default {
       }))
     },
     handleSubmit() {
-      for (const postForm in this.postForms) {
+      for (const postForm of this.postForms) {
         switch (this.type) {
           case 'show': return
           case 'edit': this.updateData(postForm); return

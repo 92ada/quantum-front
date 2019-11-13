@@ -101,40 +101,110 @@ export const constantRoutes = [
     hidden: true,
     children: [
       {
-        path: 'index',
+        path: 'index.vue',
         component: () => import('@/views/user-center/index'),
         name: 'Profile',
         meta: { title: 'profile', icon: 'user', noCache: true }
       }
     ]
+  }
+]
+
+/**
+ * asyncRoutes
+ * the routes that need to be dynamically loaded based on user roles
+ */
+export const asyncRoutes = [
+  {
+    path: '/role',
+    component: Layout,
+    meta: {
+      roles: ['root'],
+      icon: 'password',
+      title: 'role'
+    },
+    children: [
+      {
+        path: ':id(\\d+)',
+        component: () => import('@/views/role/manage'),
+        name: 'roleManage',
+        meta: { title: 'roleManage', noCache: true, activeMenu: '/role' },
+        hidden: true
+      },
+      {
+        path: '',
+        name: 'roleIndex',
+        component: () => import('@/views/role/index'),
+        hidden: true
+      }
+    ]
+  },
+  {
+    path: '/lab',
+    component: Layout,
+    meta: {
+      icon: 'tree',
+      title: 'lab',
+      roles: ['lab']
+    },
+    children: [
+      {
+        path: ':id(\\d+)',
+        component: () => import('@/views/lab/detail'),
+        name: 'labInfo',
+        meta: { title: 'detail', noCache: true, activeMenu: '/lab' },
+        hidden: true
+      },
+      {
+        path: ':id(\\d+)/:action_type(edit)',
+        component: () => import('@/views/lab/detail'),
+        name: 'labEdit',
+        meta: { title: 'edit', noCache: true, activeMenu: '/lab' },
+        hidden: true
+      },
+      {
+        path: ':type(\\w+)/:action_type(create)',
+        component: () => import('@/views/lab/detail'),
+        name: 'labCreate',
+        meta: { title: 'create', noCache: true, activeMenu: '/lab' },
+        hidden: true
+      },
+      {
+        path: '',
+        name: 'lab',
+        component: () => import('@/views/lab/index'),
+        hidden: true
+      }
+      ]
   },
   {
     path: '/people',
     component: Layout,
     meta: {
       icon: 'peoples',
-      title: 'people'
+      title: 'people',
+      roles: ['people']
     },
     children: [
       {
         path: ':id(\\d+)',
         component: () => import('@/views/people/detail'),
         name: 'peopleInfo',
-        meta: { title: 'detail', noCache: true, activeMenu: '/people/list' },
+        meta: { title: 'detail', noCache: true, activeMenu: '/people' },
         hidden: true
       },
       {
         path: ':id(\\d+)/:action_type(edit)',
         component: () => import('@/views/people/detail'),
         name: 'peopleEdit',
-        meta: { title: 'edit', noCache: true, activeMenu: '/people/list' },
+        meta: { title: 'edit', noCache: true, activeMenu: '/people' },
         hidden: true
       },
       {
         path: ':type(\\w+)/:action_type(create)',
         component: () => import('@/views/people/detail'),
         name: 'peopleCreate',
-        meta: { title: 'create', noCache: true, activeMenu: '/people/list' },
+        meta: { title: 'create', noCache: true, activeMenu: '/people' },
         hidden: true
       },
       {
@@ -147,30 +217,31 @@ export const constantRoutes = [
         path: 'administration',
         component: () => import('@/views/people/list'),
         name: 'administration',
-        meta: { title: 'administration', icon: 'list' }
+        meta: { title: 'administration', icon: 'list', roles: ['people_admin'] }
       },
       {
         path: 'visitor',
         component: () => import('@/views/people/list'),
         name: 'visitor',
-        meta: { title: 'visitor', icon: 'list' }
+        meta: { title: 'visitor', icon: 'list', roles: ['people_visitor'] }
       },
       {
         path: 'postdoctoral',
         component: () => import('@/views/people/list'),
         name: 'postdoctoral',
-        meta: { title: 'postdoctoral', icon: 'list' }
+        meta: { title: 'postdoctoral', icon: 'list', roles: ['people_postdoctoral'] }
       },
       {
         path: 'student',
         component: () => import('@/views/people/list'),
         name: 'student',
-        meta: { title: 'student', icon: 'list' }
+        meta: { title: 'student', icon: 'list', roles: ['people_student'] }
       },
       {
         path: '',
         name: 'people',
         component: () => import('@/views/people/list'),
+        meta: { roles: ['people'] },
         hidden: true
       }
     ]
@@ -229,14 +300,7 @@ export const constantRoutes = [
         hidden: true
       }
     ]
-  }
-]
-
-/**
- * asyncRoutes
- * the routes that need to be dynamically loaded based on user roles
- */
-export const asyncRoutes = [
+  },
   {
     path: '/research',
     component: Layout,
@@ -298,7 +362,6 @@ export const asyncRoutes = [
       }
     ]
   },
-
   {
     path: '/daily',
     component: Layout,

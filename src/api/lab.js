@@ -2,15 +2,8 @@ import request from '../utils/request'
 
 export function fetchList(query) {
   return request({
-    url: '/api/people',
+    url: '/api/lab',
     method: 'get',
     params: query
-  })
-}
-
-export function apiDelete(id) {
-  return request({
-    url: `/api/people/${id}`,
-    method: 'DELETE'
   })
 }

@@ -5,8 +5,6 @@
       i18n-index="people"
       search-url="/people"
     />
-
-    <el-link v-if="peopleType" class="create-btn" icon="el-icon-edit" @click="goToCreate">新建</el-link>
     <el-table
       v-loading="listLoading"
       :data="list"
@@ -52,11 +50,28 @@
         </template>
       </el-table-column>
 
-      <el-table-column class-name="status-col" :label="$t('people.status')" min-width="120" sortable prop="status">
+      <el-table-column class-name="status-col" :label="$t('people.type')" min-width="120" sortable prop="type">
         <template slot-scope="{row}">
-          <el-tag :type="row.status | statusFilter">
-            {{ row.status }}
+          <el-tag :type="row.type | statusFilter">
+            {{ row.type.replace(/^\S/, s => s.toUpperCase()) }}
           </el-tag>
+        </template>
+      </el-table-column>
+
+      <el-table-column min-width="200" :label="$t('common.operation')" fixed="right">
+        <template slot-scope="scope">
+          <el-button
+            @click.stop="goToRoleManage(scope.row.id)"
+            type="text"
+            size="small">
+            {{ $t('common.manageRole') }}
+          </el-button>
+          <el-button
+            @click.stop="deletePerson(scope.row.id)"
+            type="text"
+            size="small">
+            {{ $t('common.delete') }}
+          </el-button>
         </template>
       </el-table-column>
     </el-table>
@@ -72,20 +87,16 @@
 </template>
 
 <script>
-import { fetchList } from '../../api/people'
+import { fetchList, apiDelete } from '../../api/people'
 import Pagination from '../../components/Pagination'
 import QtSearch from '../../components/Search/QtSearch' // Secondary package based on el-pagination
 
 export default {
-  name: 'PeopleList',
+  name: 'RoleIndex',
   components: { QtSearch, Pagination },
   filters: {
     statusFilter(status) {
       const statusMap = {
-        'Normal': 'success',
-        'On vacation': 'info',
-        'Dismissed': 'info',
-        'Abnormal': 'danger'
       }
       return statusMap[status]
     }
@@ -103,18 +114,12 @@ export default {
     }
   },
   created() {
-    this.peopleType = this.getType()
-    this.getList(this.peopleType)
+    this.getList()
   },
   methods: {
-    getType() {
-      const type = this.$route.meta.title
-      console.log("type", type, this.$route)
-      return type
-    },
     getList(type) {
       this.listLoading = true
-      fetchList({ ...this.listQuery, type: type }).then(response => {
+      fetchList({ ...this.listQuery }).then(response => {
         console.log(response)
         this.list = response.content
         this.total = response.totalPages
@@ -125,8 +130,34 @@ export default {
       const url = `/people/${row.id}`
       this.$router.push(url)
     },
-    goToCreate() {
-      this.$router.push(`/people/${this.peopleType}/create`)
+    deletePerson(id) {
+      // TODO: 换行无效
+      this.$confirm('此操作将永久删除该人员, 是否继续?\nThis action will permanently delete the person. Do you want to continue?', '提示 Mention', {
+        confirmButtonText: '确定 Confirm',
+        cancelButtonText: '取消 Cancel',
+        type: 'warning'
+      }).then(() => {
+        apiDelete(id).then(() => {
+          this.$message({
+            type: 'success',
+            message: '删除成功! Success!'
+          })
+        }).catch(() => {
+          this.$message({
+            type: 'warning',
+            message: '删除失败! Failed!'
+          })
+        })
+      }).catch(() => {
+        this.$message({
+          type: 'info',
+          message: '已取消删除. Canceled.'
+        })
+      })
+    },
+    goToRoleManage(id) {
+      const url = `/role/${id}`
+      this.$router.push(url)
     }
   }
 }

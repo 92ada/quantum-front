@@ -65,7 +65,7 @@ export default {
       total: 0,
       listLoading: true,
       listQuery: {
-        page: 0,
+        page: 1,
         limit: 20
       }
     }
@@ -76,6 +76,7 @@ export default {
   methods: {
     getList() {
       this.listLoading = true
+      console.log("in paper getList", this.listQuery)
       fetchPaperList(this.listQuery).then(response => {
         console.log(response)
         this.list = response.content
