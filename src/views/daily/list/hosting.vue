@@ -94,7 +94,7 @@ export default {
   methods: {
     getList() {
       this.listLoading = true
-      fetchHostings(this.listQuery).then(response => {
+      fetchHostings({ ...this.listQuery, ...this.$route.query }).then(response => {
         console.log(response)
         this.list = response.content
         this.total = response.totalPages

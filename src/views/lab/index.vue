@@ -6,7 +6,7 @@
       search-url="/lab"
     />
 
-    <el-link v-if="labType" class="create-btn" icon="el-icon-edit" @click="goToCreate">新建</el-link>
+    <el-link class="create-btn" icon="el-icon-edit" @click="goToCreate">新建</el-link>
     <el-table
       v-loading="listLoading"
       :data="list"
@@ -31,7 +31,7 @@
 
       <el-table-column min-width="180" align="center" :label="$t('lab.pi')">
         <template slot-scope="scope">
-          <span>{{ scope.row.pi }}</span>
+          <span>{{ scope.row.pi && scope.row.pi.name }}</span>
         </template>
       </el-table-column>
     </el-table>
@@ -82,7 +82,7 @@ export default {
   methods: {
     getList() {
       this.listLoading = true
-      fetchList({ ...this.listQuery }).then(response => {
+      fetchList({ ...this.listQuery, ...this.$route.query }).then(response => {
         console.log(response)
         this.list = response.content
         this.total = response.totalPages
@@ -94,7 +94,7 @@ export default {
       this.$router.push(url)
     },
     goToCreate() {
-      this.$router.push(`/lab/${this.labType}/create`)
+      this.$router.push(`/lab/create`)
     }
   }
 }

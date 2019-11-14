@@ -10,61 +10,61 @@
       style="width: 100%"
       @row-click="goToDetail"
     >
-      <el-table-column align="center" :label="$t('finance.social_funds.uid')" min-width="100" sortable prop="id">
+      <el-table-column align="center" :label="$t('finance.social_fund.uid')" min-width="100" sortable prop="id">
         <template slot-scope="scope">
-          <span>{{ scope.row.uid }}</span>
+          <span>{{ scope.row.people.sid }}</span>
         </template>
       </el-table-column>
 
-      <el-table-column min-width="100" align="center" :label="$t('finance.social_funds.name')" sortable prop="name">
+      <el-table-column min-width="100" align="center" :label="$t('finance.social_fund.name')" sortable prop="name">
         <template slot-scope="scope">
-          <span>{{ scope.row.name }}</span>
+          <span>{{ scope.row.people.name }}</span>
         </template>
       </el-table-column>
 
-      <el-table-column min-width="100" align="center" :label="$t('finance.social_funds.fund_account_no')">
+      <el-table-column min-width="100" align="center" :label="$t('finance.social_fund.fund_account_no')">
         <template slot-scope="scope">
           <span>{{ scope.row.fund_account_no }}</span>
         </template>
       </el-table-column>
 
-      <el-table-column min-width="100" align="center" :label="$t('finance.social_funds.fund_source')">
+      <el-table-column min-width="100" align="center" :label="$t('finance.social_fund.fund_source')">
         <template slot-scope="scope">
           <span>{{ scope.row.fund_source }}</span>
         </template>
       </el-table-column>
 
-      <el-table-column min-width="100" align="center" :label="$t('finance.social_funds.month')">
+      <el-table-column min-width="100" align="center" :label="$t('finance.social_fund.month')">
         <template slot-scope="scope">
           <span>{{ scope.row.month }}</span>
         </template>
       </el-table-column>
 
-      <el-table-column min-width="100" align="center" :label="$t('finance.social_funds.personal_payment')">
+      <el-table-column min-width="100" align="center" :label="$t('finance.social_fund.personal_payment')">
         <template slot-scope="scope">
           <span>{{ scope.row.personal_payment }}</span>
         </template>
       </el-table-column>
 
-      <el-table-column min-width="100" align="center" :label="$t('finance.social_funds.institutional_payment')">
+      <el-table-column min-width="100" align="center" :label="$t('finance.social_fund.institutional_payment')">
         <template slot-scope="scope">
           <span>{{ scope.row.institutional_payment }}</span>
         </template>
       </el-table-column>
 
-      <el-table-column min-width="100" align="center" :label="$t('finance.social_funds.base_amount')">
+      <el-table-column min-width="100" align="center" :label="$t('finance.social_fund.base_amount')">
         <template slot-scope="scope">
           <span>{{ scope.row.base_amount }}</span>
         </template>
       </el-table-column>
 
-      <el-table-column min-width="100" align="center" :label="$t('finance.social_funds.ratio_of_institutional_payment')">
+      <el-table-column min-width="100" align="center" :label="$t('finance.social_fund.ratio_of_institutional_payment')">
         <template slot-scope="scope">
           <span>{{ scope.row.ratio_of_institutional_payment }}</span>
         </template>
       </el-table-column>
 
-      <el-table-column min-width="100" align="center" :label="$t('finance.social_funds.amount')">
+      <el-table-column min-width="100" align="center" :label="$t('finance.social_fund.amount')">
         <template slot-scope="scope">
           <span>{{ scope.row.amount }}</span>
         </template>
@@ -106,7 +106,7 @@ export default {
   methods: {
     getList() {
       this.listLoading = true
-      fetchSocialFunds(this.listQuery).then(response => {
+      fetchSocialFunds({ ...this.listQuery, ...this.$route.query }).then(response => {
         console.log(response)
         this.list = response.content
         this.total = response.totalPages

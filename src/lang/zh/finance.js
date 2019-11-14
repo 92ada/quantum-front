@@ -14,9 +14,11 @@ export default {
     unemployment: '失业保险',
     fertility: '生育医疗'
   },
-  social_funds: {
+  social_fund: {
+    TITLE: '',
     uid: '工号',
     name: '姓名',
+    people: '人员',
     fund_account_no: '个人公积金账号',
     fund_source: '经费来源',
     remark: '备注',
@@ -25,7 +27,7 @@ export default {
     base_amount: '缴存基数',
     ratio_of_institutional_payment: '单位缴存比例',
     amount: '缴存额',
-    month: '缴存月份'
+    date: '缴存月份'
   },
   expenditure: {
     TITLE: '',
@@ -68,7 +70,19 @@ export default {
     payee: '收款人',
     category: '类别',
     standard: '标准',
-    days: '天数'
+    days: '天数',
+
+    conference: '会议费',
+    consultation: '专家咨询费',
+    equipment: '设备费',
+    indirective: '间接经费-水电费',
+    international: '国际交流合作费',
+    labor: '劳务费',
+    material: '专用材料费',
+    other: '其他支出',
+    publication: '出版文献知识产权费',
+    travel: '差旅费',
+    processing: '测试加工费'
   }
 
 }

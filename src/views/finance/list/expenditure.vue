@@ -78,7 +78,7 @@ export default {
   methods: {
     getList() {
       this.listLoading = true
-      fetchExpenditure(this.listQuery).then(response => {
+      fetchExpenditure({ ...this.listQuery, ...this.$route.query }).then(response => {
         console.log(response)
         this.list = response.content
         this.total = response.totalPages
@@ -86,11 +86,11 @@ export default {
       })
     },
     goToDetail(row, event, column) {
-      const url = `/finance/expenditure/${row.expenditure_id}`
+      const url = `/finance/expenditure/${row.id}`
       this.$router.push(url)
     },
     goToCreate() {
-      this.$router.push('/finance/expenditure/create')
+      this.$router.push('/finance/expenditure/create_index')
     }
   }
 }

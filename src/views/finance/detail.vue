@@ -2,7 +2,8 @@
   <div class="app-container">
     <el-link v-if="type === 'edit'" icon="el-icon-edit" @click="closeThisView">{{ $t('common.cancel_edit') }}</el-link>
     <el-link v-if="type === 'show'" icon="el-icon-edit" @click="goToEdit">{{ $t('common.edit') }}</el-link>
-    <qt-form :type="type" :data-source-url="[requestUrl + '/' + financeType + '/' + financeId + '/structure']" />
+
+    <qt-form :type="type" :data-source-url="getFormUrls()" />
   </div>
 </template>
 <script>
@@ -14,7 +15,6 @@ export default {
     return {
       tempRoute: {},
       type: '',
-      requestUrl: '/api/finance',
       financeType: '',
       financeId: -1
     }
@@ -29,6 +29,7 @@ export default {
     const financeId = this.$route.params.id
     const financeType = this.$route.params.type
     const type = this.$route.params.action_type || 'show'
+    console.log("action type", type, financeId, financeType, type)
     const idOrType = type === 'create' ? this.$route.params.type : financeId
 
     this.type = type
@@ -38,6 +39,24 @@ export default {
     this.setPageTitle(lang, idOrType)
   },
   methods: {
+    getFormUrls() {
+      const exp_type = this.$route.params.exp_type
+      const id = this.financeId
+
+      if (this.type === 'create') {
+        switch (this.financeType) {
+          case 'expenditure': return ['/api/finance/exps/base/structure', `/api/finance/exps/${exp_type}/structure`]
+          case 'social_insurance': return ['/api/finance/social_insurances/structure']
+          case 'social_funds': return ['/api/finance/social_funds/structure']
+        }
+      } else {
+        switch (this.financeType) {
+          case 'expenditure': return [`/api/finance/exps/${id}/base/structure`, `/api/finance/exps/${id}/extra/structure`]
+          case 'social_insurance': return [`/api/finance/social_insurances/${id}/structure`]
+          case 'social_funds': return [`/api/finance/social_funds/${id}/structure`]
+        }
+      }
+    },
     getTitle(lang, idOrType) {
       let title
       if (this.type === 'show') {

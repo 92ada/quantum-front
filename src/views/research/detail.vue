@@ -2,7 +2,9 @@
   <div class="app-container">
     <el-link v-if="type === 'edit'" icon="el-icon-edit" @click="closeThisView">{{ $t('common.cancel_edit') }}</el-link>
     <el-link v-if="type === 'show'" icon="el-icon-edit" @click="goToEdit">{{ $t('common.edit') }}</el-link>
-    <qt-form :type="type" :data-source-url="[requestUrl + '/' + researchType + '/' + researchId + '/structure']" />
+
+    <qt-form v-if="type !== 'create'" :type="type" :data-source-url="[requestUrl + '/' + researchType + '/' + researchId + '/structure']" />
+    <qt-form v-else type="create" :data-source-url="[requestUrl + '/' + researchType]" />
 
     <project-member-table v-if="researchType === 'project'" :project-id="researchId" />
     <project-funds-table v-if="researchType === 'project'" :project-id="researchId" />

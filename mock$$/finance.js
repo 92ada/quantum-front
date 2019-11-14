@@ -23,7 +23,7 @@ export default [
       const filteredList = SocialInsuranceList.filter(item => String(item.uid) === String(id))
 
       const result = {
-        postUrl: `/api/finance/social_insurance/${id}`,
+        postUrl: `/api/finance/social_insurances/${id}`,
         data: [
           {
             title: {
@@ -73,7 +73,7 @@ export default [
 
       const filteredList = ExpenditureList.filter(item => String(item.expenditure_id) === String(id))
       const result = {
-        postUrl: `/api/finance/expenditure/${id}`,
+        postUrl: `/api/finance/exps/${id}`,
         data: [
           {
             title: {

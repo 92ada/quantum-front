@@ -77,7 +77,7 @@ export default {
     getList() {
       this.listLoading = true
       console.log('in paper getList', this.listQuery)
-      fetchPaperList(this.listQuery).then(response => {
+      fetchPaperList({ ...this.listQuery, ...this.$route.query }).then(response => {
         console.log(response)
         this.list = response.content
         this.total = response.totalPages

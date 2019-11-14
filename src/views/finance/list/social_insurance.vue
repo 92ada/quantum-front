@@ -12,13 +12,13 @@
     >
       <el-table-column align="center" :label="$t('finance.social_insurance.uid')" min-width="100" sortable prop="id">
         <template slot-scope="scope">
-          <span>{{ scope.row.uid }}</span>
+          <span>{{ scope.row.people.scriptId }}</span>
         </template>
       </el-table-column>
 
       <el-table-column min-width="100" align="center" :label="$t('finance.social_insurance.name')" sortable prop="name">
         <template slot-scope="scope">
-          <span>{{ scope.row.name }}</span>
+          <span>{{ scope.row.people.name }}</span>
         </template>
       </el-table-column>
 
@@ -172,7 +172,7 @@ export default {
   methods: {
     getList() {
       this.listLoading = true
-      fetchSocialInsurances(this.listQuery).then(response => {
+      fetchSocialInsurances({ ...this.listQuery, ...this.$route.query }).then(response => {
         console.log(response)
         this.list = response.content
         this.total = response.totalPages

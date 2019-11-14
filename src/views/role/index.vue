@@ -50,7 +50,7 @@
         </template>
       </el-table-column>
 
-      <el-table-column class-name="status-col" :label="$t('people.type')" min-width="120" sortable prop="type">
+      <el-table-column class-name="status-col" :label="$t('people.type')" min-width="130" sortable prop="type">
         <template slot-scope="{row}">
           <el-tag :type="row.type | statusFilter">
             {{ row.type.replace(/^\S/, s => s.toUpperCase()) }}
@@ -121,7 +121,7 @@ export default {
   methods: {
     getList(type) {
       this.listLoading = true
-      fetchList({ ...this.listQuery }).then(response => {
+      fetchList({ ...this.listQuery, ...this.$route.query }).then(response => {
         console.log(response)
         this.list = response.content
         this.total = response.totalPages
@@ -144,6 +144,7 @@ export default {
             type: 'success',
             message: '删除成功! Success!'
           })
+          this.$router.go(0)
         }).catch(() => {
           this.$message({
             type: 'warning',

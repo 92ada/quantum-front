@@ -76,7 +76,7 @@ export default {
   methods: {
     getList() {
       this.listLoading = true
-      fetchProjectList(this.listQuery).then(response => {
+      fetchProjectList({ ...this.listQuery, ...this.$route.query }).then(response => {
         console.log(response)
         this.list = response.content
         this.total = response.totalPages

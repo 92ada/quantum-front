@@ -173,6 +173,7 @@ export const asyncRoutes = [
         path: '',
         name: 'lab',
         component: () => import('@/views/lab/index'),
+        meta: { noCache: true },
         hidden: true
       }
     ]
@@ -255,10 +256,17 @@ export const asyncRoutes = [
     },
     children: [
       {
-        path: ':type(\\w+)/:id(\\w+)',
+        path: 'expenditure/create_index',
+        component: () => import('@/views/finance/expCreateIndex'),
+        name: 'expCreateIndex',
+        meta: { title: 'create', noCache: true, activeMenu: '/finance' },
+        hidden: true
+      },
+      {
+        path: ':type(expenditure)/:exp_type(\\w+)/:action_type(create)',
         component: () => import('@/views/finance/detail'),
-        name: 'financeInfo',
-        meta: { title: 'detail', noCache: true, activeMenu: '/finance' },
+        name: 'expCreate',
+        meta: { title: 'create', noCache: true, activeMenu: '/finance' },
         hidden: true
       },
       {
@@ -273,6 +281,13 @@ export const asyncRoutes = [
         component: () => import('@/views/finance/detail'),
         name: 'financeCreate',
         meta: { title: 'create', noCache: true, activeMenu: '/finance' },
+        hidden: true
+      },
+      {
+        path: ':type(\\w+)/:id(\\d+)',
+        component: () => import('@/views/finance/detail'),
+        name: 'financeInfo',
+        meta: { title: 'detail', noCache: true, activeMenu: '/finance' },
         hidden: true
       },
       {
@@ -310,7 +325,7 @@ export const asyncRoutes = [
     },
     children: [
       {
-        path: ':type(\\w+)/:id(\\w+)',
+        path: ':type(\\w+)/:id(\\d+)',
         component: () => import('@/views/research/detail'),
         name: 'researchInfo',
         meta: { title: 'detail', noCache: true, activeMenu: '/research' },
@@ -371,7 +386,7 @@ export const asyncRoutes = [
     },
     children: [
       {
-        path: ':type(\\w+)/:id(\\w+)',
+        path: ':type(\\w+)/:id(\\d+)',
         component: () => import('@/views/daily/detail'),
         name: 'dailyInfo',
         meta: { title: 'detail', noCache: true, activeMenu: '/daily' },
@@ -432,7 +447,7 @@ export const asyncRoutes = [
     },
     children: [
       {
-        path: ':type(\\w+)/:id(\\w+)',
+        path: ':type(\\w+)/:id(\\d+)',
         component: () => import('@/views/equipment/detail'),
         name: 'equipmentInfo',
         meta: { title: 'detail', noCache: true, activeMenu: '/equipment' },

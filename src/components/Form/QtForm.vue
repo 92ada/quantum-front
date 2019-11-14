@@ -90,10 +90,13 @@ export default {
           columns[i].name = this.$t(i18nIndex + '.' + index_) || columns[i].name
           columns[i].editable = this.type === 'create' || (columns[i].editable && this.type === 'edit')
 
-          // hack: 人员创建的时候已经选好people type了，不能改了
-          if (this.type === 'create' && i18nIndex === 'people.basic_info' && index_ === 'type') {
+          // hack: 人员创建的时候已经选好people type了，不能改了; exp 同理
+          if (
+            (this.type === 'create') &&
+            (i18nIndex === 'people.basic_info' || i18nIndex === 'finance.expenditure') &&
+            index_ === 'type') {
             columns[i].editable = false
-            columns[i].value = this.$route.params.type
+            columns[i].value = this.$route.params.exp_type || this.$route.params.type
           }
         }
         this.dataSource[i].columns = columns
@@ -137,9 +140,14 @@ export default {
       let tmp_priority = 0
       const finalPostForm = { data: {}}
       for (const postForm of this.postForms) {
-        finalPostForm.data[postForm.key] = postForm.data
+        // 要是有key就合并postForm们，没有的话说明就一个
+        if (postForm.key) {
+          finalPostForm.data[postForm.key] = postForm.data
+        } else {
+          finalPostForm.data = postForm.data
+        }
         // 按优先级找到要用的url
-        if (postForm.priority > tmp_priority) {
+        if (!postForm.priority || postForm.priority > tmp_priority) {
           tmp_priority = postForm.priority
           finalPostForm.postUrl = postForm.postUrl
           finalPostForm.updateUrl = postForm.updateUrl
@@ -162,7 +170,8 @@ export default {
           data: JSON.stringify(postForm.data)
         }).then(res => {
           // ...
-          this.loading = false
+
+          // this.$router.push()
         })
       }
     },

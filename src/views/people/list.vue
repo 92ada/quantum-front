@@ -114,7 +114,7 @@ export default {
     },
     getList(type) {
       this.listLoading = true
-      fetchList({ ...this.listQuery, type: type }).then(response => {
+      fetchList({ ...this.listQuery, ...this.$route.query, type: type }).then(response => {
         console.log(response)
         this.list = response.content
         this.total = response.totalPages

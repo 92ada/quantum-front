@@ -37,15 +37,25 @@ export default {
     }
   },
   created() {
-    this.searchObj = Object.assign({}, this.$route.query, this.searchObj)
+    this.searchObj = Object.assign({}, this.searchObj, this.$route.query)
+  },
+  updated() {
+    console.log(this.searchObj)
   },
   methods: {
     onSubmit() {
-      const params = []
-      for (const key in this.searchObj) {
-        params.push(key + '=' + this.searchObj[key])
-      }
-      this.$router.push(this.searchUrl + '?' + params.join('&'))
+      this.$router.push({ path: this.searchUrl, query: this.searchObj })
+      this.refreshSelectedTag(this.$route)
+    },
+    refreshSelectedTag(view) {
+      this.$store.dispatch('tagsView/delCachedView', view).then(() => {
+        const { fullPath } = view
+        this.$nextTick(() => {
+          this.$router.replace({
+            path: '/redirect' + fullPath
+          })
+        })
+      })
     }
   }
 }

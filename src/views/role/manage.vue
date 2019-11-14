@@ -22,6 +22,7 @@ export default {
   },
   computed: {
     checkAlls() {
+      console.log('in computed', this.postDataSource)
       return this.postDataSource.map((x, index) => x.length === this.roles[index].auths.length)
     },
     isIndeterminates() {
@@ -29,31 +30,35 @@ export default {
     }
   },
   created() {
-    // getRoles().then(res => {
-    //   this.roles = res
-    // })
-    this.roles = [{
-      id: 1,
-      name: '人员',
-      auths: [
-        {
-          id: 1,
-          name: '可获取用户资料',
-          key: 'USER_DATA',
-          hasAuth: true
-        },
-        {
-          id: 2,
-          name: '可获取用户身份信息',
-          key: 'USER_Identity',
-          hasAuth: false
-        }
-      ]
-    }]
-    for (let i = 0; i < this.roles.length; i++) {
-      const checked = this.roles[i].auths.filter(x => x.hasAuth).map(x => x.key)
-      this.postDataSource.push(checked)
-    }
+    const id = this.$route.params.id
+    getRoles(id).then(res => {
+      this.roles = Object.assign([], this.roles, res)
+      // this.roles = [{
+      //   id: 1,
+      //   name: '人员',
+      //   auths: [
+      //     {
+      //       id: 1,
+      //       name: '可获取用户资料',
+      //       key: 'USER_DATA',
+      //       hasAuth: true
+      //     },
+      //     {
+      //       id: 2,
+      //       name: '可获取用户身份信息',
+      //       key: 'USER_Identity',
+      //       hasAuth: false
+      //     }
+      //   ]
+      // }]
+      console.log('in created', this.roles)
+
+      for (let i = 0; i < this.roles.length; i++) {
+        const checked = this.roles[i].auths.filter(x => x.hasAuth).map(x => x.key)
+        console.log('in created', checked)
+        this.postDataSource.push(checked)
+      }
+    })
   },
   updated() {
     console.log('in checked', this.postDataSource)

@@ -50,20 +50,24 @@
       <people-selector v-model="postForm[col.index]" :editable="col.editable" :option-url="col.option_url" />
     </el-form-item>
 
+    <el-form-item v-if="col.type === 'person'" :label="col.name+':'" class="form-item">
+      <person-selector v-model="postForm[col.index]" :editable="col.editable" :option-url="col.option_url" />
+    </el-form-item>
+
     <el-form-item v-if="col.type === 'lab'" :label="col.name+':'" class="form-item">
       <lab-selector v-model="postForm[col.index]" :editable="col.editable" :option-url="col.option_url" />
     </el-form-item>
-
   </el-col>
 </template>
 <script>
 import FormItem from './QtFormItem'
 import PeopleSelector from '../Selector/PeopleSelector'
 import LabSelector from '../Selector/LabSelector'
+import PersonSelector from '../Selector/PersonSelector'
 
 export default {
   name: 'QtFormCol',
-  components: { PeopleSelector, LabSelector, FormItem },
+  components: { PeopleSelector, LabSelector, PersonSelector, FormItem },
   props: {
     postForm: {
       default: () => {},

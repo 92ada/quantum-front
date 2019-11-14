@@ -84,7 +84,7 @@ export default {
   methods: {
     getList() {
       this.listLoading = true
-      fetchStocks(this.listQuery).then(response => {
+      fetchStocks({ ...this.listQuery, ...this.$route.query }).then(response => {
         console.log(response)
         this.list = response.content
         this.total = response.totalPages
