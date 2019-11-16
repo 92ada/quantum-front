@@ -42,8 +42,12 @@
       <el-input v-model="postForm[col.index]" type="textarea" :rows="5" />
     </form-item>
 
-    <el-form-item v-if="col.type === 'photo'" :label="col.name+':'" class="form-item">
-      <img :src="col.value">
+    <el-form-item v-if="col.type === 'photo' && !col.editable" :label="col.name+':'" class="form-item">
+      <img :src="toFullUrl(col.value)" height="100px">
+    </el-form-item>
+
+    <el-form-item v-if="col.type === 'photo' && col.editable" :label="col.name+':'" class="form-item">
+      <single-image v-model="postForm[col.index]" style="width: 100px; height: 100px;"></single-image>
     </el-form-item>
 
     <el-form-item v-if="col.type === 'people'" :label="col.name+':'" class="form-item">
@@ -64,10 +68,11 @@ import FormItem from './QtFormItem'
 import PeopleSelector from '../Selector/PeopleSelector'
 import LabSelector from '../Selector/LabSelector'
 import PersonSelector from '../Selector/PersonSelector'
+import SingleImage from '../Upload/SingleImage2'
 
 export default {
   name: 'QtFormCol',
-  components: { PeopleSelector, LabSelector, PersonSelector, FormItem },
+  components: { PeopleSelector, LabSelector, PersonSelector, FormItem, SingleImage },
   props: {
     postForm: {
       default: () => {},
@@ -82,6 +87,11 @@ export default {
     toLabel(option) {
       const name = option.replace(/_./g, ch => ch.toUpperCase()).replace(/^./, ch => ch.toUpperCase()).replace(/_/g, ' ')
       return name
+    },
+    toFullUrl(url) {
+      if (url !== '') {
+        return process.env.VUE_APP_BASE_API + url
+      } else return ''
     }
   }
 }

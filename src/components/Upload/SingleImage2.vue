@@ -1,18 +1,16 @@
 <template>
   <div class="singleImageUpload2 upload-container">
     <el-upload
-      :data="dataObj"
       :multiple="false"
       :show-file-list="false"
       :on-success="handleImageSuccess"
       class="image-uploader"
-      drag
-      action="https://httpbin.org/post"
+      :action="postApi"
     >
-      <i class="el-icon-upload" />
-      <div class="el-upload__text">
-        Drag或<em>点击上传</em>
+      <div class="el-upload__text" style="font-size: 12px; line-height: 100px;">
+        点击上传
       </div>
+<!--      <div class="el-upload__tip" slot="tip">只能上传jpg/png文件，且不超过500kb</div>-->
     </el-upload>
     <div v-show="imageUrl.length>0" class="image-preview">
       <div v-show="imageUrl.length>1" class="image-preview-wrapper">
@@ -26,8 +24,6 @@
 </template>
 
 <script>
-import { getToken } from '@/api/qiniu'
-
 export default {
   name: 'SingleImageUpload2',
   props: {
@@ -38,13 +34,14 @@ export default {
   },
   data() {
     return {
-      tempUrl: '',
-      dataObj: { token: '', key: '' }
+      postApi: process.env.VUE_APP_BASE_API + '/api/upload'
     }
   },
   computed: {
     imageUrl() {
-      return this.value
+      if (this.value !== '') {
+        return process.env.VUE_APP_BASE_API + this.value
+      } else return ''
     }
   },
   methods: {
@@ -54,23 +51,8 @@ export default {
     emitInput(val) {
       this.$emit('input', val)
     },
-    handleImageSuccess() {
-      this.emitInput(this.tempUrl)
-    },
-    beforeUpload() {
-      const _self = this
-      return new Promise((resolve, reject) => {
-        getToken().then(response => {
-          const key = response.data.qiniu_key
-          const token = response.data.qiniu_token
-          _self._data.dataObj.token = token
-          _self._data.dataObj.key = key
-          this.tempUrl = response.data.qiniu_url
-          resolve(true)
-        }).catch(() => {
-          reject(false)
-        })
-      })
+    handleImageSuccess(res) {
+      this.emitInput(res.fileUrl)
     }
   }
 }
@@ -78,6 +60,7 @@ export default {
 
 <style lang="scss" scoped>
 .upload-container {
+  border: 1px dashed gray;
   width: 100%;
   height: 100%;
   position: relative;
@@ -90,7 +73,6 @@ export default {
     position: absolute;
     left: 0px;
     top: 0px;
-    border: 1px dashed #d9d9d9;
     .image-preview-wrapper {
       position: relative;
       width: 100%;
@@ -115,7 +97,7 @@ export default {
       transition: opacity .3s;
       cursor: pointer;
       text-align: center;
-      line-height: 200px;
+      line-height: 100px;
       .el-icon-delete {
         font-size: 36px;
       }
