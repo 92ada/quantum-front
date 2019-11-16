@@ -169,9 +169,15 @@ export default {
           method: 'post',
           data: JSON.stringify(postForm.data)
         }).then(res => {
-          // ...
-
-          // this.$router.push()
+          this.$message({
+            message: '创建成功! Created Successfully!',
+            type: 'success'
+          })
+          const btn = document.getElementById('close-' + this.$route.path)
+          btn.click()
+        }).catch(error => {
+          this.$message.error('创建失败! Creation Failed!')
+          this.loading = false
         })
       }
     },
@@ -183,7 +189,13 @@ export default {
           method: 'put',
           data: JSON.stringify(postForm.data)
         }).then(res => {
-          // ...
+          this.$message({
+            message: '更新成功! Updated Successfully!',
+            type: 'success'
+          })
+          this.loading = false
+        }).catch(error => {
+          this.$message.error('更新失败! Update Failed!')
           this.loading = false
         })
       }

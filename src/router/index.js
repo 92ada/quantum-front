@@ -163,7 +163,7 @@ export const asyncRoutes = [
         hidden: true
       },
       {
-        path: ':type(\\w+)/:action_type(create)',
+        path: ':action_type(create)',
         component: () => import('@/views/lab/detail'),
         name: 'labCreate',
         meta: { title: 'create', noCache: true, activeMenu: '/lab' },

@@ -14,25 +14,11 @@ export function getRoles(id) {
   })
 }
 
-export function addRole(data) {
-  return request({
-    url: '/api/auths/people',
-    method: 'post',
-    data
-  })
-}
 
 export function updateRole(id, data) {
   return request({
     url: `/api/auths/people/${id}`,
-    method: 'put',
+    method: 'post',
     data
-  })
-}
-
-export function deleteRole(id) {
-  return request({
-    url: `/api/auths/people/${id}`,
-    method: 'delete'
   })
 }

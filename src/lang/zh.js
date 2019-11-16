@@ -10,6 +10,7 @@ export default {
   common: {
     update: '更新',
     edit: '编辑',
+    cancel: '取消',
     cancel_edit: '取消编辑',
     create: '创建',
     pleaseChoose: '请选择',

@@ -1,15 +1,14 @@
 <template>
   <div class="downloads-container">
-    <lab-selector v-model="selected" :editable="true" option-url="/api/lab/options" />
-    <!--    <el-button @click="log">Log selected</el-button>-->
+    <single-image value=""></single-image>
   </div>
 </template>
 
 <script>
-import LabSelector from '../../components/Selector/LabSelector'
+import SingleImage from '../../components/Upload/SingleImage'
 export default {
   name: 'Downloads',
-  components: { LabSelector },
+  components: { SingleImage },
   data() {
     return {
       selected: { id: 1, name: 'XXX实验室' }
