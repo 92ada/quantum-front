@@ -5,6 +5,8 @@ export default {
     const { value } = binding
     const roles = store.getters && store.getters.roles
 
+    if (roles.includes('root')) return true
+
     if (value && value instanceof Array && value.length > 0) {
       const permissionRoles = value
 
