@@ -6,7 +6,7 @@ export default {
     arrival_time: 'Arrival Time',
     departure_site: 'Departure Site',
     arrival_site: 'Arrival Site',
-    flight_no: 'Flight No.',
+    flight_no: 'Flight No',
     price: 'Price',
     remark: 'Remark',
     more: 'More',

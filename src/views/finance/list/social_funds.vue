@@ -7,7 +7,7 @@
       by-date-range
     />
 
-    <el-link class="create-btn" icon="el-icon-edit" @click="goToCreate">{{  $t('common.new') }}</el-link>
+    <el-link v-permission="['edit_finance_social_funds', 'edit_finance']" class="create-btn" icon="el-icon-edit" @click="goToCreate">{{  $t('common.new') }}</el-link>
     <el-table
       v-loading="listLoading"
       :data="list"

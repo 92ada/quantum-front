@@ -20,11 +20,8 @@ import './utils/error-log' // error log
 
 import * as filters from './filters' // global filters
 
-// import { mockXHR } from '../mock'
-
-// if (process.env.NODE_ENV === 'development') {
-//   mockXHR()
-// }
+import permission from './directive/permission' // global directives
+Vue.use(permission)
 
 Vue.use(Element, {
   size: Cookies.get('size') || 'medium', // set element-ui default size

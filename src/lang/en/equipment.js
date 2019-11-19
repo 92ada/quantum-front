@@ -19,7 +19,7 @@ export default {
     contract_date: 'Contract Date',
     placement_site: 'Placement Location',
     funding_source: 'Funding Source',
-    contract_no: 'Contract No.',
+    contract_no: 'Contract No',
     payment_details: 'Payment Details',
     manufacturer: 'Manufacturer',
     supplier_contact_person: 'Supplier Contact Person',
@@ -31,7 +31,7 @@ export default {
     TITLE: '',
     stock_id: 'ID',
     type: 'Type',
-    no: 'Stock No.',
+    no: 'Stock No',
     title: 'Title',
     model: 'Model',
     value: 'Value',
@@ -39,13 +39,13 @@ export default {
     taker_institution: 'Taker\'s Institution',
     taker: 'Taker',
     placement_site: 'Placement Location',
-    factory_no: 'Factory No.',
+    factory_no: 'Factory No',
     status: 'Status',
     used_years: 'Used Years',
     min_usage_years: 'Minimum Usage Years',
     inbound_date: 'Inbound Date',
     admin: 'Admin',
-    document_no: 'Document No.',
+    document_no: 'Document No',
     remark: 'Remark'
   }
 }
