@@ -211,31 +211,31 @@ export const asyncRoutes = [
         path: 'researcher',
         component: () => import('@/views/people/list'),
         name: 'researcher',
-        meta: { title: 'researcher', icon: 'list', roles: ['people_researcher'] }
+        meta: { title: 'researcher', icon: 'list', roles: ['people_researcher', 'people'] }
       },
       {
         path: 'administration',
         component: () => import('@/views/people/list'),
         name: 'administration',
-        meta: { title: 'administration', icon: 'list', roles: ['people_admin'] }
+        meta: { title: 'administration', icon: 'list', roles: ['people_admin', 'people'] }
       },
       {
         path: 'visitor',
         component: () => import('@/views/people/list'),
         name: 'visitor',
-        meta: { title: 'visitor', icon: 'list', roles: ['people_visitor'] }
+        meta: { title: 'visitor', icon: 'list', roles: ['people_visitor', 'people'] }
       },
       {
         path: 'postdoctoral',
         component: () => import('@/views/people/list'),
         name: 'postdoctoral',
-        meta: { title: 'postdoctoral', icon: 'list', roles: ['people_postdoctoral'] }
+        meta: { title: 'postdoctoral', icon: 'list', roles: ['people_postdoctoral', 'people'] }
       },
       {
         path: 'student',
         component: () => import('@/views/people/list'),
         name: 'student',
-        meta: { title: 'student', icon: 'list', roles: ['people_student'] }
+        meta: { title: 'student', icon: 'list', roles: ['people_student', 'people'] }
       },
       {
         path: '',
@@ -314,19 +314,19 @@ export const asyncRoutes = [
         path: 'social_insurance',
         component: () => import('@/views/finance/list/social_insurance'),
         name: 'insuranceList',
-        meta: { title: 'social_insurance', icon: 'chart', roles: ['finance_social_insurance'] }
+        meta: { title: 'social_insurance', icon: 'chart', roles: ['finance_social_insurance', 'finance'] }
       },
       {
         path: 'social_funds',
         component: () => import('@/views/finance/list/social_funds'),
         name: 'fundsList',
-        meta: { title: 'social_funds', icon: 'chart', roles: ['finance_social_fund'] }
+        meta: { title: 'social_funds', icon: 'chart', roles: ['finance_social_fund', 'finance'] }
       },
       {
         path: 'expenditure',
         component: () => import('@/views/finance/list/expenditure'),
         name: 'expList',
-        meta: { title: 'expenditure', icon: 'chart', roles: ['finance_exp'] }
+        meta: { title: 'expenditure', icon: 'chart', roles: ['finance_exp', 'finance'] }
       },
       {
         path: '',
@@ -370,25 +370,25 @@ export const asyncRoutes = [
         path: 'patent',
         component: () => import('@/views/research/list/patent'),
         name: 'patent',
-        meta: { title: 'patent', icon: 'component', roles: ['research_patent'] }
+        meta: { title: 'patent', icon: 'component', roles: ['research_patent', 'research'] }
       },
       {
         path: 'paper',
         component: () => import('@/views/research/list/paper'),
         name: 'paper',
-        meta: { title: 'paper', icon: 'component', roles: ['research_paper'] }
+        meta: { title: 'paper', icon: 'component', roles: ['research_paper', 'research'] }
       },
       {
         path: 'project',
         component: () => import('@/views/research/list/project'),
         name: 'project',
-        meta: { title: 'project', icon: 'component', roles: ['research_project'] }
+        meta: { title: 'project', icon: 'component', roles: ['research_project', 'research'] }
       },
       {
         path: 'reward',
         component: () => import('@/views/research/list/reward'),
         name: 'reward',
-        meta: { title: 'reward', icon: 'component', roles: ['research_reward'] }
+        meta: { title: 'reward', icon: 'component', roles: ['research_reward', 'research'] }
       },
       {
         path: '',
@@ -432,25 +432,25 @@ export const asyncRoutes = [
         path: 'travel',
         component: () => import('@/views/daily/list/travel'),
         name: 'travel',
-        meta: { title: 'travel', icon: 'guide', roles: ['daily_travel'] }
+        meta: { title: 'travel', icon: 'guide', roles: ['daily_travel', 'daily'] }
       },
       {
         path: 'visit',
         component: () => import('@/views/daily/list/visit'),
         name: 'visit',
-        meta: { title: 'visit', icon: 'guide', roles: ['daily_visit'] }
+        meta: { title: 'visit', icon: 'guide', roles: ['daily_visit', 'daily'] }
       },
       {
         path: 'report',
         component: () => import('@/views/daily/list/report'),
         name: 'report',
-        meta: { title: 'report', icon: 'guide', roles: ['daily_report'] }
+        meta: { title: 'report', icon: 'guide', roles: ['daily_report', 'daily'] }
       },
       {
         path: 'hosting',
         component: () => import('@/views/daily/list/hosting'),
         name: 'hosting',
-        meta: { title: 'hosting', icon: 'guide', roles: ['daily_hosting'] }
+        meta: { title: 'hosting', icon: 'guide', roles: ['daily_hosting', 'daily'] }
       },
       {
         path: '',
@@ -494,13 +494,13 @@ export const asyncRoutes = [
         path: 'purchasing',
         component: () => import('@/views/equipment/list/purchasing'),
         name: 'purchasing',
-        meta: { title: 'purchasing', icon: 'table', roles: ['equipment_purchasing'] }
+        meta: { title: 'purchasing', icon: 'table', roles: ['equipment_purchasing', 'equipment'] }
       },
       {
         path: 'stock',
         component: () => import('@/views/equipment/list/stock'),
         name: 'stock',
-        meta: { title: 'stock', icon: 'table', roles: ['equipment_stock'] }
+        meta: { title: 'stock', icon: 'table', roles: ['equipment_stock', 'equipment'] }
       },
       {
         path: '',

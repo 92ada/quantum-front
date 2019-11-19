@@ -16,6 +16,7 @@ export function deleteRequest(context, request) {
     closeView(_this.$route.path)
     closeView(_this.$route.path.replace('/edit', ''))
   }).catch(error => {
+    console.log(error)
     _this.$message({
       type: 'info',
       message: '已取消删除'

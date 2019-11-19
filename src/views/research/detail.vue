@@ -10,7 +10,7 @@
     <project-member-table :type="type" v-if="researchType === 'project' && type !== 'create'" :project-id="researchId" />
     <project-funds-table :type="type" v-if="researchType === 'project' && type !== 'create'" :project-id="researchId" />
 
-    <attachments :type="type" :data-source-url="'/api/attachment/' + researchType + '/' + researchId" />
+    <attachments v-if="type !== 'create'" :type="type" :data-source-url="'/api/attachment/' + researchType + '/' + researchId" />
 
   </div>
 </template>

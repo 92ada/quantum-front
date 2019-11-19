@@ -116,7 +116,7 @@ export default {
     },
     handleClickDelete(row) {
       deleteRequest(this, request({
-        url: `${this.dataSourceUrl}/${row.id}`,
+        url: `${this.dataSourceUrl}/${row.recordId}`,
         method: 'delete'
       }))
     },

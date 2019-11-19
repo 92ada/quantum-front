@@ -1,7 +1,7 @@
 <template>
   <div class="app-container">
 
-    <upload-file url="/api/excel/people" style="float: right;"></upload-file>
+    <upload-file v-permission="['edit_people']" url="/api/excel/people" style="float: right;"></upload-file>
 
     <qt-search
       :params-source="{}"

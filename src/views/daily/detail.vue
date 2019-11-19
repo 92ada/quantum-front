@@ -8,7 +8,7 @@
     <qt-form v-else type="create" :data-source-url="[requestUrl + '/' + dailyType + '/structure']" />
 
     <flight-info-table v-if="(dailyType === 'visit' || dailyType === 'travel') && type !== 'create'" :type="type" :daily-type="dailyType" :daily-id="dailyId" />
-<!--    <attachments :type="type" :data-source-url="requestUrl + '/' + dailyType + '/' + dailyId + '/attachments'" />-->
+    <attachments v-if="dailyType !== 'travel' && type !== 'create'" :type="type" :data-source-url="'/api/attachment/' + dailyType + '/' + dailyId " />
   </div>
 </template>
 <script>
