@@ -1,17 +1,23 @@
 <template>
   <div class="app-container">
     <el-link v-if="type === 'edit'" icon="el-icon-edit" @click="closeThisView">{{ $t('common.cancel_edit') }}</el-link>
+    <el-link v-if="type === 'edit'" icon="el-icon-edit" @click="onDelete" style="margin-left:20px;">{{ $t('common.delete') }}</el-link>
     <el-link v-if="type === 'show'" icon="el-icon-edit" @click="goToEdit">{{ $t('common.edit') }}</el-link>
-    <qt-form :type="type" :data-source-url="requestUrl + '/' + dailyType + '/' + dailyId" />
 
-    <flight-info-table v-if="dailyType === 'visit' || dailyType === 'travel'" :type="type" :daily-type="dailyType" :daily-id="dailyId" />
-    <attachments :type="type" :data-source-url="requestUrl + '/' + dailyType + '/' + dailyId + '/attachments'" />
+    <qt-form v-if="type !== 'create'" :type="type" :data-source-url="[requestUrl + '/' + dailyType + '/' + dailyId + '/structure']" />
+    <qt-form v-else type="create" :data-source-url="[requestUrl + '/' + dailyType + '/structure']" />
+
+    <flight-info-table v-if="(dailyType === 'visit' || dailyType === 'travel') && type !== 'create'" :type="type" :daily-type="dailyType" :daily-id="dailyId" />
+<!--    <attachments :type="type" :data-source-url="requestUrl + '/' + dailyType + '/' + dailyId + '/attachments'" />-->
   </div>
 </template>
 <script>
 import QtForm from '../../components/Form/QtForm'
 import FlightInfoTable from './components/FlightInfoTable'
 import Attachments from '../../components/Attachment/Attachments'
+import { closeView } from '../../utils/tag-view'
+import { deleteDaily } from '../../api/daily'
+import { deleteRequest } from '../../utils/delete'
 export default {
   name: 'DailyDetail',
   components: { FlightInfoTable, QtForm, Attachments },
@@ -71,10 +77,13 @@ export default {
       const url = `/daily/${this.dailyType}/${id}/edit`
       this.$router.push(url)
     },
+    onDelete() {
+      deleteRequest(this, _ => {
+        deleteDaily(this.dailyType, this.dailyId)
+      })
+    },
     closeThisView() {
-      // TODO: 改成this.$store.dispatch
-      const btn = document.getElementById('close-' + this.$route.path)
-      btn.click()
+      closeView(this.$route.path)
     }
   }
 }

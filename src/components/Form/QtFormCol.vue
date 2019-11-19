@@ -68,8 +68,9 @@ import FormItem from './QtFormItem'
 import PeopleSelector from '../Selector/PeopleSelector'
 import LabSelector from '../Selector/LabSelector'
 import PersonSelector from '../Selector/PersonSelector'
-import SingleImage from '../Upload/SingleImage2'
+import SingleImage from '../Upload/SingleImage'
 
+// TODO: 时间、日期、月份选择不一样哦 e.g. Hosting里面要选时间
 export default {
   name: 'QtFormCol',
   components: { PeopleSelector, LabSelector, PersonSelector, FormItem, SingleImage },

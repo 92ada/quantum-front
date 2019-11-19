@@ -54,7 +54,7 @@
 <script>
 import { fetchProjectList } from '../../../api/research'
 import Pagination from '../../../components/Pagination/index'
-import QtSearch from '../../../components/Search/QtSearch' // Secondary package based on el-pagination
+import QtSearch from '../../../components/Search/QtSearch'
 
 export default {
   name: 'ProjectList',
@@ -98,5 +98,8 @@ export default {
   .create-btn {
     margin: 10px 10px 10px 10px;
     float: right;
+  }
+  span {
+    text-transform: capitalize;
   }
 </style>

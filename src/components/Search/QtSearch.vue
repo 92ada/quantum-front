@@ -1,5 +1,5 @@
 <template>
-  <el-form ref="form" :model="searchObj" label-width="80px" inline class="search-container">
+  <el-form ref="form" :model="searchObj" label-width="60px" inline class="search-container">
     <el-form-item :label="$t('common.keyword')">
       <el-input v-model="searchObj.word" />
     </el-form-item>
@@ -8,13 +8,38 @@
         <el-option v-for="option in options" :key="option" :label="option" :value="option" />
       </el-select>
     </el-form-item>
+
+    <el-form-item v-if="byDateRange" :label="$t('common.from') + ': '">
+      <el-date-picker
+        v-model="searchObj.start"
+        value-format="yyyy-MM-dd"
+        type="date"
+        :placeholder="$t('common.pleaseChoose')"
+      />
+    </el-form-item>
+    <el-form-item v-if="byDateRange" :label="$t('common.to') + ': '">
+      <el-date-picker
+        v-model="searchObj.end"
+        value-format="yyyy-MM-dd"
+        type="date"
+        :placeholder="$t('common.pleaseChoose')"
+      />
+    </el-form-item>
+
     <el-form-item>
-      <el-button type="primary" @click="onSubmit">搜索</el-button>
+      <el-button type="primary" @click="onSubmit">{{ $t('common.search') }}</el-button>
+    </el-form-item>
+
+    <el-form-item>
+      <el-button v-if="exportExcel" type="primary" plain @click="onExport">{{ $t('common.export') }}</el-button>
     </el-form-item>
   </el-form>
 </template>
 
 <script>
+import { refresh } from '../../utils/tag-view'
+import { downloadByUrlAndQuery } from '../../api/excel'
+
 export default {
   name: 'QtSearch',
   props: {
@@ -29,6 +54,14 @@ export default {
     searchUrl: {
       type: String,
       default: ''
+    },
+    byDateRange: {
+      type: Boolean,
+      default: false
+    },
+    exportExcel: {
+      type: Boolean,
+      default: false
     }
   },
   data() {
@@ -45,17 +78,14 @@ export default {
   methods: {
     onSubmit() {
       this.$router.push({ path: this.searchUrl, query: this.searchObj })
-      this.refreshSelectedTag(this.$route)
+      refresh(this)
     },
-    refreshSelectedTag(view) {
-      this.$store.dispatch('tagsView/delCachedView', view).then(() => {
-        const { fullPath } = view
-        this.$nextTick(() => {
-          this.$router.replace({
-            path: '/redirect' + fullPath
-          })
-        })
-      })
+    onExport() {
+      const name = this.searchUrl.split('/')[1].replace('/', '_')
+      const url = '/api/excel' + this.searchUrl + '/' + name + '.xls'
+      const query = this.searchObj
+
+      downloadByUrlAndQuery(url, query)
     }
   }
 }

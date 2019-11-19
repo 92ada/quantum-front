@@ -40,17 +40,68 @@ export function fetchAllResearchList(query) {
   })
 }
 
+/**
+ * Project Funds
+ */
+
 export function fetchProjectFundsByProject(projectId) {
   return request({
-    url: `/api/research/project/${projectId}/funds`,
+    url: `/api/research/project/${projectId}/fund`,
     method: 'get'
   })
 }
+
+export function createProjectFund(projectId, data) {
+  return request({
+    url: `/api/research/project/${projectId}/fund`,
+    method: 'post',
+    data
+  })
+}
+
+export function updateProjectFund(projectId, fundId, data) {
+  return request({
+    url: `/api/research/project/${projectId}/fund/${fundId}`,
+    method: 'put',
+    data
+  })
+}
+
+export function deleteProjectFund(projectId, fundId) {
+  return request({
+    url: `/api/research/project/${projectId}/fund/${fundId}`,
+    method: 'delete'
+  })
+}
+
+/**
+ * Project Members
+ */
 
 export function fetchProjectMemberByProject(projectId) {
   return request({
-    url: `/api/research/project/${projectId}/members`,
+    url: `/api/research/project/${projectId}/member`,
     method: 'get'
   })
 }
 
+export function createProjectMember(projectId, peopleId) {
+  return request({
+    url: `/api/research/project/${projectId}/member/${peopleId}`,
+    method: 'post'
+  })
+}
+
+export function deleteProjectMember(projectId, peopleId) {
+  return request({
+    url: `/api/research/project/${projectId}/member/${peopleId}`,
+    method: 'delete'
+  })
+}
+
+export function deleteResearch(researchType, researchId) {
+  return request({
+    url: `/api/research/${researchType}/${researchId}`,
+    method: 'delete'
+  })
+}

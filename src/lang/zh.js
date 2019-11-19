@@ -5,11 +5,16 @@ import ResearchTranslation from './zh/research'
 import DailyTranslation from './zh/daily'
 import EquipmentTranslation from './zh/equipment'
 import FinanceTranslation from './zh/finance'
+import AttachmentTranslation from './zh/attachment'
 
 export default {
   common: {
     update: '更新',
     edit: '编辑',
+    search: '搜索',
+    export: '导出Excel',
+    download_template: '下载模版',
+    upload: '导入',
     cancel: '取消',
     cancel_edit: '取消编辑',
     create: '创建',
@@ -18,7 +23,9 @@ export default {
     delete: '删除',
     keyword: '关键词',
     operation: '操作',
-    manageRole: '编辑权限'
+    manageRole: '编辑权限',
+    from: '从',
+    to: '至'
   },
 
   route: RouteTranslation,
@@ -28,6 +35,7 @@ export default {
   daily: DailyTranslation,
   equipment: EquipmentTranslation,
   finance: FinanceTranslation,
+  attachment: AttachmentTranslation,
 
   navbar: {
     dashboard: '首页',

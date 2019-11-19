@@ -1,5 +1,12 @@
 <template>
   <div class="app-container">
+    <qt-search
+      :params-source="{}"
+      i18n-index="equipment.purchasing"
+      search-url="/equipment/purchasing"
+      export-excel
+    />
+
     <el-link class="create-btn" icon="el-icon-edit" @click="goToCreate">新建</el-link>
     <el-table
       v-loading="listLoading"
@@ -12,7 +19,7 @@
     >
       <el-table-column align="center" :label="$t('equipment.purchasing.purchasing_id')" min-width="80" sortable prop="id">
         <template slot-scope="scope">
-          <span>{{ scope.row.purchasing_id }}</span>
+          <span>{{ scope.row.id }}</span>
         </template>
       </el-table-column>
 
@@ -48,10 +55,11 @@
 <script>
 import { fetchPurchasings } from '../../../api/equipment'
 import Pagination from '../../../components/Pagination/index' // Secondary package based on el-pagination
+import QtSearch from '../../../components/Search/QtSearch'
 
 export default {
   name: 'PurchasingList',
-  components: { Pagination },
+  components: { Pagination, QtSearch },
   filters: {
     statusFilter(status) {
       const statusMap = {
@@ -86,7 +94,7 @@ export default {
       })
     },
     goToDetail(row, event, column) {
-      const url = `/equipment/purchasing/${row.purchasing_id}`
+      const url = `/equipment/purchasing/${row.id}`
       this.$router.push(url)
     },
     goToCreate() {

@@ -49,7 +49,7 @@ service.interceptors.response.use(
 
   response => {
     console.log(response)
-    const status = response.status // TODO
+    const status = response.status
     const res = response.data
 
     if (status >= 300) {

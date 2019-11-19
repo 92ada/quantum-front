@@ -44,10 +44,10 @@ export default {
     }
   },
   created() {
-    this.content = this.$slots.default[0].data.model.value
+    this.content = this.$slots.default && this.$slots.default[0].data.model.value
   },
   updated() {
-    this.content = this.$slots.default[0].data.model.value
+    this.content = this.$slots.default && this.$slots.default[0].data.model.value
   },
   methods: {
     format(str) {

@@ -16,6 +16,7 @@ export default {
     approve_date: '授权日期',
     application_no: '申请号',
     patent_no: '专利号',
+    apply_no: '申请号',
     is_pct: '是否PCT',
     inventor_rank: '发明人排序'
   },
@@ -56,8 +57,10 @@ export default {
   },
 
   project_member_info: {
-    uid: '工号',
+    TITLE: '',
+    sid: '工号',
     name: '姓名',
+    person: '人员',
     institution: '工作单位',
     position_title: '职位',
     degree: '学位',
@@ -65,6 +68,7 @@ export default {
   },
 
   project_funds_info: {
+    TITLE: '',
     id: '序号',
     arrival_date: '到账日期',
     amount: '金额（万元）',

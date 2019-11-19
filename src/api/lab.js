@@ -7,3 +7,10 @@ export function fetchList(query) {
     params: query
   })
 }
+
+export function deleteLab(labId) {
+  return request({
+    url: `/api/labs/${labId}`,
+    method: 'delete'
+  })
+}

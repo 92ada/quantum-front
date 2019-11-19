@@ -1,9 +1,13 @@
 <template>
   <div class="app-container">
+
+    <upload-file url="/api/excel/people" style="float: right;"></upload-file>
+
     <qt-search
       :params-source="{}"
       i18n-index="people"
       search-url="/people"
+      export-excel
     />
 
     <el-link v-if="peopleType" class="create-btn" icon="el-icon-edit" @click="goToCreate">新建</el-link>
@@ -74,11 +78,12 @@
 <script>
 import { fetchList } from '../../api/people'
 import Pagination from '../../components/Pagination'
-import QtSearch from '../../components/Search/QtSearch' // Secondary package based on el-pagination
+import QtSearch from '../../components/Search/QtSearch'
+import UploadFile from '../../components/Upload/UploadFile' // Secondary package based on el-pagination
 
 export default {
   name: 'PeopleList',
-  components: { QtSearch, Pagination },
+  components: { UploadFile, QtSearch, Pagination },
   filters: {
     statusFilter(status) {
       const statusMap = {
@@ -136,5 +141,8 @@ export default {
   .create-btn {
     margin: 10px 10px 10px 10px;
     float: right;
+  }
+  .el-tag {
+    text-transform: capitalize;
   }
 </style>

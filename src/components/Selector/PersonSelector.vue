@@ -26,8 +26,6 @@
 <script>
 import { searchOptionsByWord } from '../../api/options'
 
-// TODO: 接口
-// TODO: 等后段把Json改成Json
 export default {
   name: 'ObjectSelector',
   model: {

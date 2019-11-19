@@ -1,6 +1,7 @@
 <template>
   <div class="app-container">
     <el-link v-if="type === 'edit'" icon="el-icon-edit" @click="closeThisView">{{ $t('common.cancel_edit') }}</el-link>
+    <el-link v-if="type === 'edit'" icon="el-icon-edit" @click="onDelete" style="margin-left:20px;">{{ $t('common.delete') }}</el-link>
     <el-link v-if="type === 'show'" icon="el-icon-edit" @click="goToEdit">{{ $t('common.edit') }}</el-link>
 
     <qt-form v-if="type !== 'create'" :type="type" :data-source-url="[requestUrl + '/' + peopleId + '/base/structure', requestUrl + '/' + peopleId + '/extra/structure']" />
@@ -9,6 +10,9 @@
 </template>
 <script>
 import QtForm from '../../components/Form/QtForm'
+import { deleteRequest } from '../../utils/delete'
+import { closeView } from '../../utils/tag-view'
+import { apiDelete } from '../../api/people'
 
 export default {
   name: 'PeopleDetail',
@@ -63,10 +67,13 @@ export default {
       const url = `/people/${id}/edit`
       this.$router.push(url)
     },
+    onDelete() {
+      deleteRequest(this, _ => {
+        apiDelete(this.peopleId)
+      })
+    },
     closeThisView() {
-      // TODO: 改成this.$store.dispatch
-      const btn = document.getElementById('close-' + this.$route.path)
-      btn.click()
+      closeView(this.$route.path)
     }
   }
 }

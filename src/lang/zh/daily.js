@@ -15,11 +15,11 @@ export default {
   travel: {
     TITLE: '出行信息',
     id: '序号',
-    people: '出行人',
+    traveler: '出行人',
     type: '类型',
     budget: '预算（元）',
-    start_date: '起始日期',
-    end_date: '结束日期',
+    startDate: '起始日期',
+    endDate: '结束日期',
     identity_type: '证件类型',
     identity_no: '证件号'
   },
@@ -28,6 +28,7 @@ export default {
     TITLE: '来访信息',
     id: '序号',
     name: '来访者姓名',
+    time: '来访时间',
     approval_status: '呈批是否已提交',
     remark: '备注',
     visitor_institution: '来访单位',

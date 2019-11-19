@@ -1,5 +1,12 @@
 <template>
   <div class="app-container">
+    <qt-search
+      :params-source="{}"
+      i18n-index="equipment.stock"
+      search-url="/equipment/stock"
+      export-excel
+    />
+
     <el-link class="create-btn" icon="el-icon-edit" @click="goToCreate">新建</el-link>
     <el-table
       v-loading="listLoading"
@@ -12,7 +19,7 @@
     >
       <el-table-column align="center" :label="$t('equipment.stock.stock_id')" min-width="80" sortable prop="id">
         <template slot-scope="scope">
-          <span>{{ scope.row.stock_id }}</span>
+          <span>{{ scope.row.id }}</span>
         </template>
       </el-table-column>
 
@@ -54,10 +61,11 @@
 <script>
 import { fetchStocks } from '../../../api/equipment'
 import Pagination from '../../../components/Pagination/index' // Secondary package based on el-pagination
+import QtSearch from '../../../components/Search/QtSearch'
 
 export default {
   name: 'StockList',
-  components: { Pagination },
+  components: { Pagination, QtSearch },
   filters: {
     statusFilter(status) {
       const statusMap = {
@@ -92,7 +100,7 @@ export default {
       })
     },
     goToDetail(row, event, column) {
-      const url = `/equipment/stock/${row.stock_id}`
+      const url = `/equipment/stock/${row.id}`
       this.$router.push(url)
     },
     goToCreate() {

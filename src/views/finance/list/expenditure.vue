@@ -1,5 +1,12 @@
 <template>
   <div class="app-container">
+    <qt-search
+      :params-source="{}"
+      i18n-index="finance.expenditure"
+      search-url="/finance/expenditure"
+      by-date-range
+    />
+
     <el-link class="create-btn" icon="el-icon-edit" @click="goToCreate">新建</el-link>
     <el-table
       v-loading="listLoading"
@@ -38,7 +45,7 @@
 
       <el-table-column width="180" align="center" :label="$t('finance.expenditure.lab')">
         <template slot-scope="scope">
-          <span>{{ scope.row.lab }}</span>
+          <span>{{ scope.row.lab.name }}</span>
         </template>
       </el-table-column>
 
@@ -57,10 +64,11 @@
 <script>
 import { fetchExpenditure } from '../../../api/finance'
 import Pagination from '../../../components/Pagination/index' // Secondary package based on el-pagination
+import QtSearch from '../../../components/Search/QtSearch'
 
 export default {
   name: 'ExpenditureList',
-  components: { Pagination },
+  components: { Pagination, QtSearch },
   data() {
     return {
       list: null,

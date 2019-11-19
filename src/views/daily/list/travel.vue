@@ -16,9 +16,9 @@
         </template>
       </el-table-column>
 
-      <el-table-column min-width="420" align="center" :label="$t('daily.travel.people')" sortable prop="name">
+      <el-table-column min-width="420" align="center" :label="$t('daily.travel.traveler')" sortable prop="name">
         <template slot-scope="scope">
-          <span>{{ scope.row.people }}</span>
+          <span>{{ scope.row.travelerJson }}</span>
         </template>
       </el-table-column>
 
@@ -28,9 +28,9 @@
         </template>
       </el-table-column>
 
-      <el-table-column min-width="180" align="center" :label="$t('daily.travel.start_date')">
+      <el-table-column min-width="180" align="center" :label="$t('daily.travel.startDate')">
         <template slot-scope="scope">
-          <span>{{ scope.row.start_date }}</span>
+          <span>{{ scope.row.startDate }}</span>
         </template>
       </el-table-column>
     </el-table>
@@ -49,6 +49,7 @@
 import { fetchTravels } from '../../../api/daily'
 import Pagination from '../../../components/Pagination/index' // Secondary package based on el-pagination
 
+// TODO: 1）travelerJson的显示，2）peopleSelector组建put的值，3）traveler和travelerJson的一致性
 export default {
   name: 'TravelList',
   components: { Pagination },
@@ -100,5 +101,8 @@ export default {
   .create-btn {
     margin: 10px 10px 10px 10px;
     float: right;
+  }
+  span {
+    text-transform: capitalize;
   }
 </style>

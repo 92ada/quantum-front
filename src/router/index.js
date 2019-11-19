@@ -104,7 +104,7 @@ export const constantRoutes = [
         path: 'index.vue',
         component: () => import('@/views/user-center/index'),
         name: 'Profile',
-        meta: { title: 'profile', icon: 'user', noCache: true }
+        meta: { title: 'profile', icon: 'user' }
       }
     ]
   }
@@ -128,7 +128,7 @@ export const asyncRoutes = [
         path: ':id(\\d+)',
         component: () => import('@/views/role/manage'),
         name: 'roleManage',
-        meta: { title: 'roleManage', noCache: true, activeMenu: '/role' },
+        meta: { title: 'roleManage', activeMenu: '/role' },
         hidden: true
       },
       {
@@ -144,36 +144,35 @@ export const asyncRoutes = [
     component: Layout,
     meta: {
       icon: 'tree',
-      title: 'lab',
-      roles: ['lab']
+      title: 'lab'
     },
     children: [
       {
         path: ':id(\\d+)',
         component: () => import('@/views/lab/detail'),
         name: 'labInfo',
-        meta: { title: 'detail', noCache: true, activeMenu: '/lab' },
+        meta: { title: 'detail', activeMenu: '/lab' },
         hidden: true
       },
       {
         path: ':id(\\d+)/:action_type(edit)',
         component: () => import('@/views/lab/detail'),
         name: 'labEdit',
-        meta: { title: 'edit', noCache: true, activeMenu: '/lab' },
+        meta: { title: 'edit', activeMenu: '/lab' },
         hidden: true
       },
       {
         path: ':action_type(create)',
         component: () => import('@/views/lab/detail'),
         name: 'labCreate',
-        meta: { title: 'create', noCache: true, activeMenu: '/lab' },
+        meta: { title: 'create', activeMenu: '/lab' },
         hidden: true
       },
       {
         path: '',
         name: 'lab',
         component: () => import('@/views/lab/index'),
-        meta: { noCache: true },
+        meta: { },
         hidden: true
       }
     ]
@@ -191,28 +190,28 @@ export const asyncRoutes = [
         path: ':id(\\d+)',
         component: () => import('@/views/people/detail'),
         name: 'peopleInfo',
-        meta: { title: 'detail', noCache: true, activeMenu: '/people' },
+        meta: { title: 'detail', activeMenu: '/people' },
         hidden: true
       },
       {
         path: ':id(\\d+)/:action_type(edit)',
         component: () => import('@/views/people/detail'),
         name: 'peopleEdit',
-        meta: { title: 'edit', noCache: true, activeMenu: '/people' },
+        meta: { title: 'edit', activeMenu: '/people' },
         hidden: true
       },
       {
         path: ':type(\\w+)/:action_type(create)',
         component: () => import('@/views/people/detail'),
         name: 'peopleCreate',
-        meta: { title: 'create', noCache: true, activeMenu: '/people' },
+        meta: { title: 'create', activeMenu: '/people' },
         hidden: true
       },
       {
         path: 'researcher',
         component: () => import('@/views/people/list'),
         name: 'researcher',
-        meta: { title: 'researcher', icon: 'list' }
+        meta: { title: 'researcher', icon: 'list', roles: ['people_researcher'] }
       },
       {
         path: 'administration',
@@ -242,7 +241,6 @@ export const asyncRoutes = [
         path: '',
         name: 'people',
         component: () => import('@/views/people/list'),
-        meta: { roles: ['people'] },
         hidden: true
       }
     ]
@@ -252,61 +250,83 @@ export const asyncRoutes = [
     component: Layout,
     meta: {
       title: 'finance',
-      icon: 'money'
+      icon: 'money',
+      roles: ['finance']
     },
     children: [
       {
         path: 'expenditure/create_index',
         component: () => import('@/views/finance/expCreateIndex'),
         name: 'expCreateIndex',
-        meta: { title: 'create', noCache: true, activeMenu: '/finance' },
+        meta: { title: 'create', activeMenu: '/finance' },
         hidden: true
       },
       {
         path: ':type(expenditure)/:exp_type(\\w+)/:action_type(create)',
         component: () => import('@/views/finance/detail'),
         name: 'expCreate',
-        meta: { title: 'create', noCache: true, activeMenu: '/finance' },
+        meta: { title: 'create', activeMenu: '/finance' },
+        hidden: true
+      },
+      {
+        path: ':type(social_insurance)/:id(\\d+)/:action_type(edit)',
+        component: () => import('@/views/finance/insuranceDetail'),
+        name: 'insuranceEdit',
+        meta: { title: 'edit', activeMenu: '/finance' },
+        hidden: true
+      },
+      {
+        path: ':type(social_insurance)/:action_type(create)',
+        component: () => import('@/views/finance/insuranceDetail'),
+        name: 'insuranceCreate',
+        meta: { title: 'create', activeMenu: '/finance' },
+        hidden: true
+      },
+      {
+        path: ':type(social_insurance)/:id(\\d+)',
+        component: () => import('@/views/finance/insuranceDetail'),
+        name: 'insuranceInfo',
+        meta: { title: 'detail', activeMenu: '/finance' },
         hidden: true
       },
       {
         path: ':type(\\w+)/:id(\\d+)/:action_type(edit)',
         component: () => import('@/views/finance/detail'),
         name: 'financeEdit',
-        meta: { title: 'edit', noCache: true, activeMenu: '/finance' },
+        meta: { title: 'edit', activeMenu: '/finance' },
         hidden: true
       },
       {
         path: ':type(\\w+)/:action_type(create)',
         component: () => import('@/views/finance/detail'),
         name: 'financeCreate',
-        meta: { title: 'create', noCache: true, activeMenu: '/finance' },
+        meta: { title: 'create', activeMenu: '/finance' },
         hidden: true
       },
       {
         path: ':type(\\w+)/:id(\\d+)',
         component: () => import('@/views/finance/detail'),
         name: 'financeInfo',
-        meta: { title: 'detail', noCache: true, activeMenu: '/finance' },
+        meta: { title: 'detail', activeMenu: '/finance' },
         hidden: true
       },
       {
         path: 'social_insurance',
         component: () => import('@/views/finance/list/social_insurance'),
-        name: 'social_insurance',
-        meta: { title: 'social_insurance', icon: 'chart' }
+        name: 'insuranceList',
+        meta: { title: 'social_insurance', icon: 'chart', roles: ['finance_social_insurance'] }
       },
       {
         path: 'social_funds',
         component: () => import('@/views/finance/list/social_funds'),
-        name: 'social_funds',
-        meta: { title: 'social_funds', icon: 'chart' }
+        name: 'fundsList',
+        meta: { title: 'social_funds', icon: 'chart', roles: ['finance_social_fund'] }
       },
       {
         path: 'expenditure',
         component: () => import('@/views/finance/list/expenditure'),
-        name: 'expenditure',
-        meta: { title: 'expenditure', icon: 'chart' }
+        name: 'expList',
+        meta: { title: 'expenditure', icon: 'chart', roles: ['finance_exp'] }
       },
       {
         path: '',
@@ -321,53 +341,54 @@ export const asyncRoutes = [
     component: Layout,
     meta: {
       title: 'research',
-      icon: 'example'
+      icon: 'example',
+      roles: ['research']
     },
     children: [
       {
         path: ':type(\\w+)/:id(\\d+)',
         component: () => import('@/views/research/detail'),
         name: 'researchInfo',
-        meta: { title: 'detail', noCache: true, activeMenu: '/research' },
+        meta: { title: 'detail', activeMenu: '/research' },
         hidden: true
       },
       {
         path: ':type(\\w+)/:id(\\d+)/:action_type(edit)',
         component: () => import('@/views/research/detail'),
         name: 'researchEdit',
-        meta: { title: 'edit', noCache: true, activeMenu: '/research' },
+        meta: { title: 'edit', activeMenu: '/research' },
         hidden: true
       },
       {
         path: ':type(\\w+)/:action_type(create)',
         component: () => import('@/views/research/detail'),
         name: 'researchCreate',
-        meta: { title: 'create', noCache: true, activeMenu: '/research' },
+        meta: { title: 'create', activeMenu: '/research' },
         hidden: true
       },
       {
         path: 'patent',
         component: () => import('@/views/research/list/patent'),
         name: 'patent',
-        meta: { title: 'patent', icon: 'component' }
+        meta: { title: 'patent', icon: 'component', roles: ['research_patent'] }
       },
       {
         path: 'paper',
         component: () => import('@/views/research/list/paper'),
         name: 'paper',
-        meta: { title: 'paper', icon: 'component' }
+        meta: { title: 'paper', icon: 'component', roles: ['research_paper'] }
       },
       {
         path: 'project',
         component: () => import('@/views/research/list/project'),
         name: 'project',
-        meta: { title: 'project', icon: 'component' }
+        meta: { title: 'project', icon: 'component', roles: ['research_project'] }
       },
       {
         path: 'reward',
         component: () => import('@/views/research/list/reward'),
         name: 'reward',
-        meta: { title: 'reward', icon: 'component' }
+        meta: { title: 'reward', icon: 'component', roles: ['research_reward'] }
       },
       {
         path: '',
@@ -382,53 +403,54 @@ export const asyncRoutes = [
     component: Layout,
     meta: {
       title: 'daily',
-      icon: 'documentation'
+      icon: 'documentation',
+      roles: ['daily']
     },
     children: [
       {
         path: ':type(\\w+)/:id(\\d+)',
         component: () => import('@/views/daily/detail'),
         name: 'dailyInfo',
-        meta: { title: 'detail', noCache: true, activeMenu: '/daily' },
+        meta: { title: 'detail', activeMenu: '/daily' },
         hidden: true
       },
       {
         path: ':type(\\w+)/:id(\\d+)/:action_type(edit)',
         component: () => import('@/views/daily/detail'),
         name: 'dailyEdit',
-        meta: { title: 'edit', noCache: true, activeMenu: '/daily' },
+        meta: { title: 'edit', activeMenu: '/daily' },
         hidden: true
       },
       {
         path: ':type(\\w+)/:action_type(create)',
         component: () => import('@/views/daily/detail'),
         name: 'dailyCreate',
-        meta: { title: 'create', noCache: true, activeMenu: '/daily' },
+        meta: { title: 'create', activeMenu: '/daily' },
         hidden: true
       },
       {
         path: 'travel',
         component: () => import('@/views/daily/list/travel'),
         name: 'travel',
-        meta: { title: 'travel', icon: 'guide' }
+        meta: { title: 'travel', icon: 'guide', roles: ['daily_travel'] }
       },
       {
         path: 'visit',
         component: () => import('@/views/daily/list/visit'),
         name: 'visit',
-        meta: { title: 'visit', icon: 'guide' }
+        meta: { title: 'visit', icon: 'guide', roles: ['daily_visit'] }
       },
       {
         path: 'report',
         component: () => import('@/views/daily/list/report'),
         name: 'report',
-        meta: { title: 'report', icon: 'guide' }
+        meta: { title: 'report', icon: 'guide', roles: ['daily_report'] }
       },
       {
         path: 'hosting',
         component: () => import('@/views/daily/list/hosting'),
         name: 'hosting',
-        meta: { title: 'hosting', icon: 'guide' }
+        meta: { title: 'hosting', icon: 'guide', roles: ['daily_hosting'] }
       },
       {
         path: '',
@@ -443,41 +465,42 @@ export const asyncRoutes = [
     component: Layout,
     meta: {
       title: 'equipment',
-      icon: 'lock'
+      icon: 'lock',
+      roles: ['equipment']
     },
     children: [
       {
         path: ':type(\\w+)/:id(\\d+)',
         component: () => import('@/views/equipment/detail'),
         name: 'equipmentInfo',
-        meta: { title: 'detail', noCache: true, activeMenu: '/equipment' },
+        meta: { title: 'detail', activeMenu: '/equipment' },
         hidden: true
       },
       {
         path: ':type(\\w+)/:id(\\d+)/:action_type(edit)',
         component: () => import('@/views/equipment/detail'),
         name: 'equipmentEdit',
-        meta: { title: 'edit', noCache: true, activeMenu: '/equipment' },
+        meta: { title: 'edit', activeMenu: '/equipment' },
         hidden: true
       },
       {
         path: ':type(\\w+)/:action_type(create)',
         component: () => import('@/views/equipment/detail'),
         name: 'equipmentCreate',
-        meta: { title: 'create', noCache: true, activeMenu: '/equipment' },
+        meta: { title: 'create', activeMenu: '/equipment' },
         hidden: true
       },
       {
         path: 'purchasing',
         component: () => import('@/views/equipment/list/purchasing'),
         name: 'purchasing',
-        meta: { title: 'purchasing', icon: 'table' }
+        meta: { title: 'purchasing', icon: 'table', roles: ['equipment_purchasing'] }
       },
       {
         path: 'stock',
         component: () => import('@/views/equipment/list/stock'),
         name: 'stock',
-        meta: { title: 'stock', icon: 'table' }
+        meta: { title: 'stock', icon: 'table', roles: ['equipment_stock'] }
       },
       {
         path: '',

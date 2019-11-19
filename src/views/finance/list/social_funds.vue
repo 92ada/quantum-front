@@ -1,5 +1,12 @@
 <template>
   <div class="app-container">
+    <qt-search
+      :params-source="{}"
+      i18n-index="finance.social_funds"
+      search-url="/finance/social_funds"
+      by-date-range
+    />
+
     <el-link class="create-btn" icon="el-icon-edit" @click="goToCreate">新建</el-link>
     <el-table
       v-loading="listLoading"
@@ -34,9 +41,9 @@
         </template>
       </el-table-column>
 
-      <el-table-column min-width="100" align="center" :label="$t('finance.social_fund.month')">
+      <el-table-column min-width="100" align="center" :label="$t('finance.social_fund.date')">
         <template slot-scope="scope">
-          <span>{{ scope.row.month }}</span>
+          <span>{{ scope.row.date }}</span>
         </template>
       </el-table-column>
 
@@ -85,10 +92,11 @@
 <script>
 import { fetchSocialFunds } from '../../../api/finance'
 import Pagination from '../../../components/Pagination/index' // Secondary package based on el-pagination
+import QtSearch from '../../../components/Search/QtSearch'
 
 export default {
   name: 'SocialFundsList',
-  components: { Pagination },
+  components: { Pagination, QtSearch },
   data() {
     return {
       list: null,
@@ -114,6 +122,8 @@ export default {
       })
     },
     goToDetail(row, event, column) {
+      const url = `/finance/social_funds/${row.id}`
+      this.$router.push(url)
     },
     goToCreate() {
       this.$router.push('/finance/social_funds/create')

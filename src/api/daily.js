@@ -38,3 +38,33 @@ export function fetchFlightInfoByTypeAndId(dailyType, dailyId) {
     method: 'get'
   })
 }
+
+export function deleteFlightInfo(dailyType, dailyId, flightId) {
+  return request({
+    url: `/api/daily/${dailyType}/${dailyId}/flights/${flightId}`,
+    method: 'delete'
+  })
+}
+
+export function updateFlightInfo(dailyType, dailyId, flightId, data) {
+  return request({
+    url: `/api/daily/${dailyType}/${dailyId}/flights/${flightId}`,
+    method: 'put',
+    data: JSON.stringify(data)
+  })
+}
+
+export function createFlightInfo(dailyType, dailyId, data) {
+  return request({
+    url: `/api/daily/${dailyType}/${dailyId}/flights`,
+    method: 'post',
+    data: JSON.stringify(data)
+  })
+}
+
+export function deleteDaily(dailyType, dailyId) {
+  return request({
+    url: `/api/daily/${dailyType}/${dailyId}`,
+    method: 'delete'
+  })
+}

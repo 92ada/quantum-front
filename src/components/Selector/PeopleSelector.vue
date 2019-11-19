@@ -20,7 +20,7 @@
         :value="toNameWithId(item)"
       />
     </el-select>
-    <div v-else style="display: inline-block;">
+    <div v-else style="display: inline-block; margin-left: 7px;">
       <span v-for="label in selected" :key="label" class="people-label">
         <el-link v-if="label.endsWith(')')" :href="'#/people/' + fetchId(label)">{{ label }}</el-link>
         <el-link v-else disabled>{{ label }}</el-link>

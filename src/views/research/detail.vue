@@ -1,14 +1,17 @@
 <template>
   <div class="app-container">
     <el-link v-if="type === 'edit'" icon="el-icon-edit" @click="closeThisView">{{ $t('common.cancel_edit') }}</el-link>
+    <el-link v-if="type === 'edit'" icon="el-icon-edit" @click="onDelete" style="margin-left:20px;">{{ $t('common.delete') }}</el-link>
     <el-link v-if="type === 'show'" icon="el-icon-edit" @click="goToEdit">{{ $t('common.edit') }}</el-link>
 
     <qt-form v-if="type !== 'create'" :type="type" :data-source-url="[requestUrl + '/' + researchType + '/' + researchId + '/structure']" />
-    <qt-form v-else type="create" :data-source-url="[requestUrl + '/' + researchType]" />
+    <qt-form v-else type="create" :data-source-url="[requestUrl + '/' + researchType + '/structure']" />
 
-    <project-member-table v-if="researchType === 'project'" :project-id="researchId" />
-    <project-funds-table v-if="researchType === 'project'" :project-id="researchId" />
-    <attachments :type="type" :data-source-url="requestUrl + '/' + researchType + '/' + researchId + '/attachments'" />
+    <project-member-table :type="type" v-if="researchType === 'project' && type !== 'create'" :project-id="researchId" />
+    <project-funds-table :type="type" v-if="researchType === 'project' && type !== 'create'" :project-id="researchId" />
+
+    <attachments :type="type" :data-source-url="'/api/attachment/' + researchType + '/' + researchId" />
+
   </div>
 </template>
 <script>
@@ -16,6 +19,9 @@ import QtForm from '../../components/Form/QtForm'
 import ProjectFundsTable from './components/ProjectFundsTable'
 import ProjectMemberTable from './components/ProjectMemberTable'
 import Attachments from '../../components/Attachment/Attachments'
+import { closeView } from '../../utils/tag-view'
+import { deleteRequest } from '../../utils/delete'
+import { deleteResearch } from '../../api/research'
 export default {
   name: 'ResearchDetail',
   components: { QtForm, ProjectFundsTable, ProjectMemberTable, Attachments },
@@ -76,10 +82,13 @@ export default {
       const url = `/research/${this.researchType}/${id}/edit`
       this.$router.push(url)
     },
+    onDelete() {
+      deleteRequest(this, _ => {
+        deleteResearch(this.researchType, this.researchId)
+      })
+    },
     closeThisView() {
-      // TODO: 改成this.$store.dispatch
-      const btn = document.getElementById('close-' + this.$route.path)
-      btn.click()
+      closeView(this.$route.path)
     }
   }
 }

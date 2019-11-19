@@ -105,4 +105,7 @@ export default {
     margin: 10px 10px 10px 10px;
     float: right;
   }
+  span {
+    text-transform: capitalize;
+  }
 </style>

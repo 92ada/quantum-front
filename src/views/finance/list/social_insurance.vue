@@ -1,5 +1,12 @@
 <template>
   <div class="app-container">
+    <qt-search
+      :params-source="{}"
+      i18n-index="finance.social_insurance"
+      search-url="/finance/social_insurance"
+      by-date-range
+    />
+
     <el-link class="create-btn" icon="el-icon-edit" @click="goToCreate">新建</el-link>
     <el-table
       v-loading="listLoading"
@@ -12,7 +19,7 @@
     >
       <el-table-column align="center" :label="$t('finance.social_insurance.uid')" min-width="100" sortable prop="id">
         <template slot-scope="scope">
-          <span>{{ scope.row.people.scriptId }}</span>
+          <span>{{ scope.row.people.sid }}</span>
         </template>
       </el-table-column>
 
@@ -151,10 +158,11 @@
 <script>
 import { fetchSocialInsurances } from '../../../api/finance'
 import Pagination from '../../../components/Pagination/index' // Secondary package based on el-pagination
+import QtSearch from '../../../components/Search/QtSearch'
 
 export default {
   name: 'SocialInsuranceList',
-  components: { Pagination },
+  components: { Pagination, QtSearch },
   data() {
     return {
       list: null,
@@ -180,6 +188,8 @@ export default {
       })
     },
     goToDetail(row, event, column) {
+      const url = `/finance/social_insurance/${row.id}`
+      this.$router.push(url)
     },
     goToCreate() {
       this.$router.push('/finance/social_insurance/create')

@@ -1,7 +1,8 @@
 <template>
   <div style="padding-top: 20px;">
     <h3 class="project-funds-title">经费到账情况</h3>
-    <el-link class="create-btn" icon="el-icon-edit" @click="goToCreate">新增到账记录</el-link>
+    <project-funds-dialog v-if="type !== 'show'" type="create" :data-source="{ projectId: projectId, data: {} }" />
+
     <el-table
       v-loading="listLoading"
       :data="list"
@@ -9,7 +10,6 @@
       fit
       highlight-current-row
       style="width: 100%"
-      @row-click="goToDetail"
     >
       <el-table-column align="center" :label="$t('research.project_funds_info.id')" width="100" sortable prop="id">
         <template slot-scope="scope">
@@ -35,36 +35,30 @@
         </template>
       </el-table-column>
 
-    </el-table>
+      <el-table-column v-if="type !== 'show'" min-width="180" align="center" :label="$t('common.operation')">
+        <template slot-scope="scope">
+          <project-funds-dialog :data-source="{ projectId: projectId, data: scope.row }" type="edit" />
+          <el-button type="text" @click="onDelete(scope.row.id)">{{ $t('common.delete') }}</el-button>
+        </template>
+      </el-table-column>
 
-    <pagination
-      v-show="total>1"
-      class="project-funds-pagination"
-      :total="total"
-      :page.sync="listQuery.page"
-      :limit.sync="listQuery.limit"
-      @pagination="getList"
-    />
+    </el-table>
   </div>
 </template>
 
 <script>
-import Pagination from '../../../components/Pagination/index' // Secondary package based on el-pagination
-import { fetchProjectFundsByProject } from '../../../api/research'
+  import { deleteProjectFund, fetchProjectFundsByProject } from '../../../api/research'
+import ProjectFundsDialog from './ProjectFundsDialog'
+import { refresh } from '../../../utils/tag-view'
 
 export default {
   name: 'ProjectFundsTable',
-  components: { Pagination },
-  props: ['projectId'],
+  components: { ProjectFundsDialog },
+  props: ['projectId', 'type'],
   data() {
     return {
       list: null,
-      total: 0,
-      listLoading: true,
-      listQuery: {
-        page: 1,
-        limit: 20
-      }
+      listLoading: false
     }
   },
   created() {
@@ -75,17 +69,29 @@ export default {
       this.listLoading = true
       fetchProjectFundsByProject(this.projectId).then(response => {
         console.log(response)
-        this.list = response.content
-        this.total = response.totalPages
+        this.list = response
         this.listLoading = false
       })
     },
-    goToDetail(row, event, column) {
-      // const url = `/research/project/${this.projectId}/funds/${row.id}`
-      // this.$router.push(url)
-    },
-    goToCreate() {
-      // this.$router.push(`/research/project/${this.projectId}/funds/create`)
+    onDelete(fundId) {
+      this.$confirm('此操作将永久删除该记录, 是否继续?', '提示', {
+        confirmButtonText: '确定',
+        cancelButtonText: '取消',
+        type: 'warning'
+      }).then(_ => {
+        deleteProjectFund(this.projectId, fundId)
+      }).then(res => {
+        this.$message({
+          type: 'success',
+          message: '删除成功!'
+        })
+        refresh(this)
+      }).catch(error => {
+        this.$message({
+          type: 'info',
+          message: '已取消删除'
+        })
+      })
     }
   }
 }

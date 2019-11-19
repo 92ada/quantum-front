@@ -15,3 +15,10 @@ export function fetchStocks(query) {
     params: query
   })
 }
+
+export function deleteEquipment(equipmentType, equipmentId) {
+  return request({
+    url: `/api/equipment/${equipmentType}/${equipmentId}`,
+    method: 'delete'
+  })
+}

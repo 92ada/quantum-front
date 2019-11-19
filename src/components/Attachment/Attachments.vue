@@ -8,14 +8,14 @@
         <el-row type="flex" class="row-bg uploader" justify="end">
           <el-upload
             class="upload-demo"
-            action="https://jsonplaceholder.typicode.com/posts/"
+            :action="uploadApi"
             :multiple="false"
             :limit="1"
             :on-success="handleUploadSuccess"
             :on-error="handleUploadError"
             :file-list="fileList"
           >
-            <el-button v-if="type === 'edit'" size="small" type="primary">上传附件</el-button>
+            <el-button v-if="type !== 'show'" size="small" type="primary">上传附件</el-button>
           </el-upload>
         </el-row>
       </el-col>
@@ -25,31 +25,37 @@
       :data="dataSource"
       border
     >
-      <el-table-column
-        prop="fileType"
-        label="文件类型"
-        width="80"
-      />
-      <el-table-column
-        prop="fileName"
-        label="文件名"
-      />
-      <el-table-column
-        prop="fileUrl"
-        label="下载链接"
-      />
-      <el-table-column
-        prop="createdAt"
-        label="日期"
-        width="200"
-      />
+      <el-table-column :label="$t('attachment.type')" width="80">
+        <template slot-scope="scope">
+          <span>{{ scope.row.type }}</span>
+        </template>
+      </el-table-column>
+
+      <el-table-column :label="$t('attachment.name')" width="180">
+        <template slot-scope="scope">
+          <span>{{ scope.row.name }}</span>
+        </template>
+      </el-table-column>
+
+      <el-table-column :label="$t('attachment.url')">
+        <template slot-scope="scope">
+          <span>{{ scope.row.url }}</span>
+        </template>
+      </el-table-column>
+
+      <el-table-column :label="$t('attachment.createdAt')" width="200">
+        <template slot-scope="scope">
+          <span>{{ scope.row.createdAt }}</span>
+        </template>
+      </el-table-column>
+
       <el-table-column
         fixed="right"
-        label="操作"
+        :label="$t('common.operation')"
         width="100"
       >
         <template slot-scope="scope">
-          <a :href="scope.row.fileUrl" target="_blank" class="el-button el-button--text el-button--small">下载</a>
+          <a :href="scope.row.url" target="_blank" class="el-button el-button--text el-button--small">下载</a>
           <el-button v-if="type === 'edit'" type="text" size="small" @click="handleClickDelete(scope.row)">删除</el-button>
         </template>
       </el-table-column>
@@ -59,18 +65,8 @@
 
 <script>
 import request from '../../utils/request'
-
-const defaultDataSource = {
-  postUrl: '/api/xxx',
-  removeUrl: '/api/xxx/{id}',
-  data: [{
-    id: 0,
-    fileName: '测试图片',
-    fileUrl: 'https://www.baidu.com/img/bd_logo1.png?qua=high&where=super',
-    fileType: 'PNG',
-    createdAt: '2018-09-09 18:34'
-  }]
-}
+import { deleteRequest } from '../../utils/delete'
+import { refresh } from '../../utils/tag-view'
 
 export default {
   name: 'Attachments',
@@ -86,10 +82,9 @@ export default {
   },
   data() {
     return {
-      dataSource: defaultDataSource.data,
-      postUrl: defaultDataSource.postUrl,
-      removeUrl: defaultDataSource.removeUrl,
-      fileList: []
+      dataSource: [],
+      fileList: [],
+      uploadApi: process.env.VUE_APP_BASE_API + '/api/upload'
     }
   },
   created() {
@@ -97,40 +92,42 @@ export default {
       url: this.dataSourceUrl,
       method: 'get'
     }).then(res => {
-      this.dataSource = Object.assign([], this.dataSource, res.data.data)
-      console.log(this.dataSource)
-
-      this.postUrl = res.data.postUrl
-      this.removeUrl = res.data.removeUrl
+      this.dataSource = Object.assign([], this.dataSource, res)
     })
   },
   methods: {
-    handleAttachmentCreate(fileName, fileUrl) {
-      const requestUrl = this.postUrl
+    handleAttachmentCreate(name, url) {
+      const type = name.split('.').reverse()[0]
+      const fullUrl = process.env.VUE_APP_BASE_API + url
       request({
-        url: this.postUrl,
+        url: this.dataSourceUrl, // e.g. '/api/attachment/paper/1'
         method: 'post',
-        data: { fileName, fileUrl }
+        data: { type, name, url: fullUrl }
       }).then(res => {
-        alert('success') // 记得自己改成更友好的提示哦1😯
+        this.$message({
+          message: '上传成功! Uploaded Successfully!',
+          type: 'success'
+        })
+        refresh(this)
+      }).catch(error => {
+        this.$message.error('拉取附件失败! Fetch Attachments Failed!')
+        this.loading = false
       })
     },
     handleClickDelete(row) {
-      request({
-        url: this.removeUrl.replace('{id}', row.id),
+      deleteRequest(this, request({
+        url: `${this.dataSourceUrl}/${row.id}`,
         method: 'delete'
-      }).then(res => {
-        alert('success') // 记得自己改成更友好的提示哦2😯
-      })
+      }))
     },
     // uploader
     handleUploadSuccess(response, file, fileList) {
-      console.log(response)
-      const { fileName, fileUrl } = response.data
-      this.handleAttachmentCreate(fileName, fileUrl)
+      const { fileOriginName, fileUrl } = response
+      this.handleAttachmentCreate(fileOriginName, fileUrl)
     },
     handleUploadError(err, file, fileList) {
       console.error(err)
+      this.$message.error('上传失败! Upload Failed!')
     }
   }
 }

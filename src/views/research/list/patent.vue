@@ -1,7 +1,7 @@
 <template>
   <div class="app-container">
     <qt-search
-      :params-source="{status: ['授权', '申请']}"
+      :params-source="{}"
       i18n-index="research"
       search-url="/research/patent"
     />
@@ -107,13 +107,11 @@ export default {
 </script>
 
 <style scoped>
-  .search-container {
-    span {
-      font-size: 12px;
-    }
-  }
   .create-btn {
     margin: 10px 10px 10px 10px;
     float: right;
+  }
+  .el-tag {
+    text-transform: capitalize;
   }
 </style>

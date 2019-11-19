@@ -14,3 +14,4 @@ export function apiDelete(id) {
     method: 'DELETE'
   })
 }
+

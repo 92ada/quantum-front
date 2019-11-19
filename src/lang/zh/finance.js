@@ -27,7 +27,7 @@ export default {
     base_amount: '缴存基数',
     ratio_of_institutional_payment: '单位缴存比例',
     amount: '缴存额',
-    date: '缴存月份'
+    date: '缴存日期'
   },
   expenditure: {
     TITLE: '',

@@ -1,7 +1,8 @@
 <template>
   <div style="padding-top: 20px;">
     <h3 class="daily-funds-title">航班信息</h3>
-    <el-link v-if="type === 'edit'" class="create-btn" icon="el-icon-edit" @click="onCreate">新增航班记录</el-link>
+    <flight-info-dialog v-if="type !== 'show'" type="create" :data-source="{ dailyType: dailyType, dailyId: dailyId, data: {} }" />
+
     <el-table
       v-loading="listLoading"
       :data="list"
@@ -60,9 +61,9 @@
         </template>
       </el-table-column>
 
-      <el-table-column min-width="180" align="center" :label="$t('daily.flight_info.operation')">
+      <el-table-column v-if="type !== 'show'" min-width="180" align="center" :label="$t('daily.flight_info.operation')">
         <template slot-scope="scope">
-          <flight-info-dialog :data-source="scope.row" />
+          <flight-info-dialog :data-source="{ dailyType: dailyType, dailyId: dailyId, data: scope.row }" type="edit" />
           <el-button type="text" @click="onDelete(scope.row.id)">{{ $t('common.delete') }}</el-button>
         </template>
       </el-table-column>
@@ -72,8 +73,9 @@
 </template>
 
 <script>
-import { fetchFlightInfoByTypeAndId } from '../../../api/daily'
+import { deleteFlightInfo, fetchFlightInfoByTypeAndId } from '../../../api/daily'
 import FlightInfoDialog from './FlightInfoDialog'
+import { refresh } from '../../../utils/tag-view'
 
 export default {
   name: 'FlightInfoTable',
@@ -82,41 +84,42 @@ export default {
   data() {
     return {
       list: null,
-      total: 0,
-      listLoading: true,
-      listQuery: {
-        page: 1,
-        limit: 20
-      }
+      listLoading: false
     }
   },
   created() {
     this.getList()
   },
   methods: {
+    handleDialogOpen(val) {
+      this.dialogOpen = val
+    },
     getList() {
       this.listLoading = true
       fetchFlightInfoByTypeAndId(this.dailyType, this.dailyId).then(response => {
-        console.log(response)
-        this.list = response.content
-        this.total = response.totalPages
+        console.log('in fetch flights', response)
+        this.list = response
         this.listLoading = false
       })
-    },
-    onCreate() {
-      // this.$router.push(`/research/daily/${this.dailyId}/funds/create`)
     },
     onDelete(id) {
       this.$confirm('此操作将永久删除该记录, 是否继续?', '提示', {
         confirmButtonText: '确定',
         cancelButtonText: '取消',
         type: 'warning'
-      }).then(() => {
+      }).then(_ => {
+        const dailyType = this.dailyType
+        const dailyId = this.dailyId
+        const flightId = id
+
+        deleteFlightInfo(dailyType, dailyId, flightId)
+        refresh(this)
+      }).then(res => {
         this.$message({
           type: 'success',
           message: '删除成功!'
         })
-      }).catch(() => {
+      }).catch(error => {
         this.$message({
           type: 'info',
           message: '已取消删除'
@@ -131,9 +134,5 @@ export default {
   .daily-funds-title {
     margin-top: 10px;
     float: left;
-  }
-  .create-btn {
-    margin: 13px 10px 10px 10px;
-    float: right;
   }
 </style>
