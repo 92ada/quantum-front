@@ -12,7 +12,7 @@
           <template slot-scope="{row}">
             <div>
               <span class="message-title">Msg:</span>
-              <el-tag type="danger">
+              <el-tag type="info">
                 {{ row.err.message }}
               </el-tag>
             </div>

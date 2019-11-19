@@ -30,7 +30,7 @@
       <el-button type="primary" @click="onSubmit">{{ $t('common.search') }}</el-button>
     </el-form-item>
 
-    <el-form-item>
+    <el-form-item v-permission="['export_excel']">
       <el-button v-if="exportExcel" type="primary" plain @click="onExport">{{ $t('common.export') }}</el-button>
     </el-form-item>
   </el-form>

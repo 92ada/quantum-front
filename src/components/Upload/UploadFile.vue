@@ -1,5 +1,5 @@
 <template>
-  <div class="upload-container">
+  <div class="upload-container" v-permission="['import_excel']">
     <el-button type="primary" plain @click="downloadTemplate">{{ $t('common.download_template') }}</el-button>
 
     <el-upload
