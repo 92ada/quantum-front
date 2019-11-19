@@ -1,5 +1,5 @@
 <template>
-  <el-form ref="form" :model="searchObj" label-width="60px" inline class="search-container">
+  <el-form ref="form" :model="searchObj" label-width="65px" inline class="search-container">
     <el-form-item :label="$t('common.keyword')">
       <el-input v-model="searchObj.word" />
     </el-form-item>

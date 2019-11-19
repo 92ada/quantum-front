@@ -1,42 +1,49 @@
-import PeopleTranslation from './zh/people'
-import RouteTranslation from './zh/route'
-import ResearchTranslation from './zh/research'
-import DailyTranslation from './zh/daily'
-import EquipmentTranslation from './zh/equipment'
-import FinanceTranslation from './zh/finance'
+import PeopleTranslation from './en/people'
+import LabTranslation from './en/lab'
+import RouteTranslation from './en/route'
+import ResearchTranslation from './en/research'
+import DailyTranslation from './en/daily'
+import EquipmentTranslation from './en/equipment'
+import FinanceTranslation from './en/finance'
+import AttachmentTranslation from './en/attachment'
 
 export default {
   common: {
-    update: '更新',
-    edit: '编辑',
-    cancel_edit: '取消编辑',
-    create: '创建',
-    pleaseChoose: '请选择',
-    pleaseSearch: '请搜索',
-    delete: '删除',
-    keyword: '关键词',
-    operation: '操作',
-    manageRole: '编辑权限'
+    new: 'New',
+    update: 'Update',
+    edit: 'Edit',
+    search: 'Search',
+    export: 'Export Excel',
+    download_template: 'Download Template',
+    upload: 'Upload',
+    cancel: 'Cancel',
+    cancel_edit: 'Cancel Edit',
+    create: 'Create',
+    pleaseChoose: 'Please Choose',
+    pleaseSearch: 'Please Search',
+    delete: 'Delete',
+    keyword: 'Keyword',
+    operation: 'Operation',
+    manageRole: 'Edit Roles',
+    from: 'From',
+    to: 'To'
   },
-  // titles: {
-  //   basic_info: '基本信息',
-  //   emergency_contact: '紧急联系人信息'
-  // },
 
   route: RouteTranslation,
   people: PeopleTranslation,
+  lab: LabTranslation,
   research: ResearchTranslation,
   daily: DailyTranslation,
   equipment: EquipmentTranslation,
   finance: FinanceTranslation,
-
+  attachment: AttachmentTranslation,
   navbar: {
-    dashboard: '首页',
-    github: '项目地址',
-    logOut: '退出登录',
-    profile: '个人中心',
-    theme: '换肤',
-    size: '布局大小'
+    dashboard: 'Dashboard',
+    github: 'Github',
+    logOut: 'Logout',
+    profile: 'Profile',
+    theme: 'Theme',
+    size: 'Size'
   },
   login: {
     title: 'Quantum Institute Data Management System',
@@ -46,16 +53,16 @@ export default {
     tips: 'Please use CAS account to login.'
   },
   tagsView: {
-    refresh: '刷新',
-    close: '关闭',
-    closeOthers: '关闭其它',
-    closeAll: '关闭所有'
+    refresh: 'Refresh',
+    close: 'Close',
+    closeOthers: 'Close Others',
+    closeAll: 'Close All'
   },
   settings: {
-    title: '系统布局配置',
-    theme: '主题色',
-    tagsView: '开启 Tags-View',
-    fixedHeader: '固定 Header',
-    sidebarLogo: '侧边栏 Logo'
+    title: 'Title',
+    theme: 'Theme',
+    tagsView: 'Open Tags View',
+    fixedHeader: 'Fix Header',
+    sidebarLogo: 'Sidebar Logo'
   }
 }

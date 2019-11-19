@@ -9,6 +9,7 @@ import AttachmentTranslation from './zh/attachment'
 
 export default {
   common: {
+    new: '新建',
     update: '更新',
     edit: '编辑',
     search: '搜索',

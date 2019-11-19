@@ -6,7 +6,7 @@
       search-url="/research/reward"
     />
 
-    <el-link class="create-btn" icon="el-icon-edit" @click="goToCreate">新建</el-link>
+    <el-link class="create-btn" icon="el-icon-edit" @click="goToCreate">{{  $t('common.new') }}</el-link>
     <el-table
       v-loading="listLoading"
       :data="list"

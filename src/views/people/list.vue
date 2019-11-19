@@ -10,7 +10,7 @@
       export-excel
     />
 
-    <el-link v-if="peopleType" class="create-btn" icon="el-icon-edit" @click="goToCreate">新建</el-link>
+    <el-link v-if="peopleType" class="create-btn" icon="el-icon-edit" @click="goToCreate">{{  $t('common.new') }}</el-link>
     <el-table
       v-loading="listLoading"
       :data="list"
