@@ -1,25 +1,28 @@
 <template>
   <div class="finance-index-container">
     <dl>
-      <dd><el-link icon="el-icon-right" href="#/finance/expenditure/equipment/create">{{ $t('finance.expenditure.equipment') }}</el-link></dd>
-      <dd><el-link icon="el-icon-right" href="#/finance/expenditure/material/create">{{ $t('finance.expenditure.material') }}</el-link></dd>
-      <dd><el-link icon="el-icon-right" href="#/finance/expenditure/processing/create">{{ $t('finance.expenditure.processing') }}</el-link></dd>
-      <dd><el-link icon="el-icon-right" href="#/finance/expenditure/travel/create">{{ $t('finance.expenditure.travel') }}</el-link></dd>
-      <dd><el-link icon="el-icon-right" href="#/finance/expenditure/conference/create">{{ $t('finance.expenditure.conference') }}</el-link></dd>
-      <dd><el-link icon="el-icon-right" href="#/finance/expenditure/international/create">{{ $t('finance.expenditure.international') }}</el-link></dd>
-      <dd><el-link icon="el-icon-right" href="#/finance/expenditure/publication/create">{{ $t('finance.expenditure.publication') }}</el-link></dd>
-      <dd><el-link icon="el-icon-right" href="#/finance/expenditure/labor/create">{{ $t('finance.expenditure.labor') }}</el-link></dd>
-      <dd><el-link icon="el-icon-right" href="#/finance/expenditure/consultation/create">{{ $t('finance.expenditure.consultation') }}</el-link></dd>
-      <dd><el-link icon="el-icon-right" href="#/finance/expenditure/other/create">{{ $t('finance.expenditure.other') }}</el-link></dd>
-      <dd><el-link icon="el-icon-right" href="#/finance/expenditure/indirective/create">{{ $t('finance.expenditure.indirective') }}</el-link></dd>
+      <dd v-for="exp in expenditures" :key="exp">
+        <el-link
+          v-permission="['edit_finance', 'edit_finance_expenditure', `edit_finance_expenditure_${exp}`]"
+          :href="`#/finance/expenditure/${exp}/create`"
+          icon="el-icon-right">
+          {{ $t('finance.expenditure.' + exp) }}
+        </el-link>
+      </dd>
     </dl>
   </div>
 </template>
 
 <script>
-  export default {
-    name: 'ExpCreateIndex'
+export default {
+  name: 'ExpCreateIndex',
+  data() {
+    return {
+      expenditures: ['equipment', 'material', 'processing', 'travel', 'conference', 'international', 'publication',
+        'labor', 'consultation', 'other', 'indirective']
+    }
   }
+}
 </script>
 
 <style lang="scss" scoped>

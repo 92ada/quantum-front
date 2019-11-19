@@ -1,6 +1,6 @@
 <template>
   <el-row :gutter="40" class="panel-group">
-    <el-col :xs="12" :sm="12" :lg="6" class="card-panel-col">
+    <el-col v-permission="['people']" :xs="12" :sm="12" :lg="6" class="card-panel-col">
       <div class="card-panel" @click="goTo('people')">
         <div class="card-panel-icon-wrapper icon-people">
           <svg-icon icon-class="peoples" class-name="card-panel-icon" />
@@ -12,7 +12,7 @@
         </div>
       </div>
     </el-col>
-    <el-col :xs="12" :sm="12" :lg="6" class="card-panel-col">
+    <el-col v-permission="['research']" :xs="12" :sm="12" :lg="6" class="card-panel-col">
       <div class="card-panel" @click="goTo('research')">
         <div class="card-panel-icon-wrapper icon-research">
           <svg-icon icon-class="example" class-name="card-panel-icon" />
@@ -24,7 +24,7 @@
         </div>
       </div>
     </el-col>
-    <el-col :xs="12" :sm="12" :lg="6" class="card-panel-col">
+    <el-col v-permission="['finance']" :xs="12" :sm="12" :lg="6" class="card-panel-col">
       <div class="card-panel" @click="goTo('finance')">
         <div class="card-panel-icon-wrapper icon-finance">
           <svg-icon icon-class="money" class-name="card-panel-icon" />
@@ -36,7 +36,7 @@
         </div>
       </div>
     </el-col>
-    <el-col :xs="12" :sm="12" :lg="6" class="card-panel-col">
+    <el-col v-permission="['daily']" :xs="12" :sm="12" :lg="6" class="card-panel-col">
       <div class="card-panel" @click="goTo('daily')">
         <div class="card-panel-icon-wrapper icon-daily">
           <svg-icon icon-class="documentation" class-name="card-panel-icon" />
@@ -48,7 +48,7 @@
         </div>
       </div>
     </el-col>
-    <el-col :xs="12" :sm="12" :lg="6" class="card-panel-col">
+    <el-col v-permission="['equipment']" :xs="12" :sm="12" :lg="6" class="card-panel-col">
       <div class="card-panel" @click="goTo('equipment')">
         <div class="card-panel-icon-wrapper icon-equipment">
           <svg-icon icon-class="lock" class-name="card-panel-icon" />

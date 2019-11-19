@@ -1,8 +1,8 @@
 <template>
   <div class="equipment-index-container">
     <dl>
-      <dd><el-link icon="el-icon-right" href="#/equipment/purchasing">{{ $t('route.purchasing') }}</el-link></dd>
-      <dd><el-link icon="el-icon-right" href="#/equipment/stock">{{ $t('route.stock') }}</el-link></dd>
+      <dd><el-link v-permission="['equipment', 'equipment_purchasing']" icon="el-icon-right" href="#/equipment/purchasing">{{ $t('route.purchasing') }}</el-link></dd>
+      <dd><el-link v-permission="['equipment', 'equipment_stock']" icon="el-icon-right" href="#/equipment/stock">{{ $t('route.stock') }}</el-link></dd>
     </dl>
   </div>
 </template>

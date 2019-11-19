@@ -17,7 +17,7 @@
       style="width: 100%"
       @row-click="goToDetail"
     >
-      <el-table-column align="center" :label="$t('finance.social_fund.uid')" min-width="100" sortable prop="id">
+      <el-table-column align="center" :label="$t('finance.social_fund.sid')" min-width="100" sortable prop="id">
         <template slot-scope="scope">
           <span>{{ scope.row.people.sid }}</span>
         </template>
