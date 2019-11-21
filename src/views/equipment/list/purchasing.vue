@@ -1,5 +1,7 @@
 <template>
   <div class="app-container">
+    <upload-file v-permission="['edit_equipment, edit_equipment_purchasing']" url="/api/excel/equipment/purchasing" style="float: right;"></upload-file>
+
     <qt-search
       :params-source="{}"
       i18n-index="equipment.purchasing"
