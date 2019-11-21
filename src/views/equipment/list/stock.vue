@@ -1,5 +1,7 @@
 <template>
   <div class="app-container">
+    <upload-file v-permission="['edit_equipment, edit_equipment_stock']" url="/api/excel/equipment/stock" style="float: right;"></upload-file>
+
     <qt-search
       :params-source="{}"
       i18n-index="equipment.stock"
@@ -62,10 +64,11 @@
 import { fetchStocks } from '../../../api/equipment'
 import Pagination from '../../../components/Pagination/index' // Secondary package based on el-pagination
 import QtSearch from '../../../components/Search/QtSearch'
+import UploadFile from '../../../components/Upload/UploadFile' // Secondary package based on el-pagination
 
 export default {
   name: 'StockList',
-  components: { Pagination, QtSearch },
+  components: { Pagination, QtSearch, UploadFile },
   filters: {
     statusFilter(status) {
       const statusMap = {

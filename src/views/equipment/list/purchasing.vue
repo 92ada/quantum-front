@@ -1,5 +1,7 @@
 <template>
   <div class="app-container">
+    <upload-file v-permission="['edit_equipment, edit_equipment_purchasing']" url="/api/excel/equipment/purchasing" style="float: right;"></upload-file>
+
     <qt-search
       :params-source="{}"
       i18n-index="equipment.purchasing"
@@ -56,10 +58,11 @@
 import { fetchPurchasings } from '../../../api/equipment'
 import Pagination from '../../../components/Pagination/index' // Secondary package based on el-pagination
 import QtSearch from '../../../components/Search/QtSearch'
+import UploadFile from '../../../components/Upload/UploadFile' // Secondary package based on el-pagination
 
 export default {
   name: 'PurchasingList',
-  components: { Pagination, QtSearch },
+  components: { Pagination, QtSearch, UploadFile },
   filters: {
     statusFilter(status) {
       const statusMap = {
