@@ -15,7 +15,7 @@
         v-for="item in options"
         :key="item.id"
         :label="item.name"
-        :value="item"
+        :value="formatOption(item)"
       />
     </el-select>
     <div v-else class="not-editable">
@@ -27,7 +27,7 @@
 import { searchOptionsByWord } from '../../api/options'
 
 export default {
-  name: 'ObjectSelector',
+  name: 'PerseonSelector',
   model: {
     prop: 'selected',
     event: 'change'
@@ -67,6 +67,9 @@ export default {
       } else {
         this.options = []
       }
+    },
+    formatOption(item) {
+      return { id: item.id, name: item.name }
     },
     toNameWithId(item) {
       return item.name + ' (' + item.id + ')'

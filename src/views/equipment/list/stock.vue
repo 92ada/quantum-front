@@ -64,10 +64,11 @@
 import { fetchStocks } from '../../../api/equipment'
 import Pagination from '../../../components/Pagination/index' // Secondary package based on el-pagination
 import QtSearch from '../../../components/Search/QtSearch'
+import UploadFile from '../../../components/Upload/UploadFile' // Secondary package based on el-pagination
 
 export default {
   name: 'StockList',
-  components: { Pagination, QtSearch },
+  components: { Pagination, QtSearch, UploadFile },
   filters: {
     statusFilter(status) {
       const statusMap = {
