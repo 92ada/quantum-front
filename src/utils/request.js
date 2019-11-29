@@ -51,8 +51,15 @@ service.interceptors.response.use(
     console.log(response)
     const status = response.status
     const res = response.data
+    if (status === 400) {
+      Message({
+        message: res.message || 'Error',
+        type: 'error',
+        duration: 5 * 1000
+      })
+    }
 
-    if (status >= 300) {
+    if (status >= 500) {
       Message({
         message: res.message || 'Error',
         type: 'error',
