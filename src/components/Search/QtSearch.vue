@@ -82,7 +82,7 @@ export default {
     },
     onExport() {
       const name = this.searchUrl.split('/')[1].replace('/', '_')
-      const url = '/api/excel' + this.searchUrl + '/' + name + '.xls'
+      const url = '/api/excel' + this.searchUrl + '/' + name + '.xlsx'
       const query = this.searchObj
 
       downloadByUrlAndQuery(url, query)

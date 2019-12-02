@@ -4,7 +4,7 @@
 
     <breadcrumb id="breadcrumb-container" class="breadcrumb-container" />
 
-    <div class="right-menu" style="margin-right: 20px;">
+    <div class="right-menu">
       <template v-if="device!=='mobile'">
         <search id="header-search" class="right-menu-item" />
 
@@ -16,27 +16,27 @@
 
       </template>
 
-<!--      <el-dropdown class="avatar-container right-menu-item hover-effect" trigger="click">-->
-<!--        <div class="avatar-wrapper">-->
-<!--          <img :src="avatar+'?imageView2/1/w/80/h/80'" class="user-avatar">-->
-<!--          <i class="el-icon-caret-bottom" />-->
-<!--        </div>-->
-<!--        <el-dropdown-menu slot="dropdown">-->
-<!--          <router-link to="/profile/index">-->
-<!--            <el-dropdown-item>-->
-<!--              {{ $t('navbar.profile') }}-->
-<!--            </el-dropdown-item>-->
-<!--          </router-link>-->
-<!--          <router-link to="/">-->
-<!--            <el-dropdown-item>-->
-<!--              {{ $t('navbar.dashboard') }}-->
-<!--            </el-dropdown-item>-->
-<!--          </router-link>-->
-<!--          <el-dropdown-item divided>-->
-<!--            <span style="display:block;" @click="logout">{{ $t('navbar.logOut') }}</span>-->
-<!--          </el-dropdown-item>-->
-<!--        </el-dropdown-menu>-->
-<!--      </el-dropdown>-->
+      <el-dropdown class="avatar-container right-menu-item hover-effect" trigger="click">
+        <div class="avatar-wrapper">
+          <img :src="avatar+'?imageView2/1/w/80/h/80'" class="user-avatar">
+          <i class="el-icon-caret-bottom" />
+        </div>
+        <el-dropdown-menu slot="dropdown">
+          <!--          <router-link to="/profile/index">-->
+          <!--            <el-dropdown-item>-->
+          <!--              {{ $t('navbar.profile') }}-->
+          <!--            </el-dropdown-item>-->
+          <!--          </router-link>-->
+          <router-link to="/">
+            <el-dropdown-item>
+              {{ $t('navbar.dashboard') }}
+            </el-dropdown-item>
+          </router-link>
+          <el-dropdown-item divided>
+            <span style="display:block;" @click="logout">{{ $t('navbar.logOut') }}</span>
+          </el-dropdown-item>
+        </el-dropdown-menu>
+      </el-dropdown>
     </div>
   </div>
 </template>

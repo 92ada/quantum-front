@@ -3,7 +3,7 @@ import request from '../utils/request'
 export function getFile(url, query) {
   const name = url.replace('/', '_')
   return request({
-    url: '/api/excel' + url + '/' + name + '.xls',
+    url: '/api/excel' + url + '/' + name + '.xlsx',
     method: 'get',
     query
   })
@@ -17,7 +17,7 @@ export function saveFile(data, name) {
   const link = document.createElement('a')
   link.style.display = 'none'
   link.href = url
-  link.setAttribute('download', `${name}.xls`)
+  link.setAttribute('download', `${name}.xlsx`)
   document.body.appendChild(link)
   link.click()
 }

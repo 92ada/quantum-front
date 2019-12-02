@@ -1,10 +1,13 @@
 <template>
   <div class="app-container">
+    <upload-file v-permission="['edit_finance,edit_finance_expenditure']" url="/api/excel/finance/exps" style="float: right;" />
+
     <qt-search
       :params-source="{}"
       i18n-index="finance.expenditure"
       search-url="/finance/expenditure"
       by-date-range
+      export-excel
     />
 
     <el-link v-permission="['edit_finance_expenditure', 'edit_finance']" class="create-btn" icon="el-icon-edit" @click="goToCreate">{{ $t('common.new') }} </el-link>
@@ -45,7 +48,7 @@
 
       <el-table-column width="180" align="center" :label="$t('finance.expenditure.lab')">
         <template slot-scope="scope">
-          <span>{{ scope.row.lab.name }}</span>
+          <span>{{ scope.row.lab && scope.row.lab.name }}</span>
         </template>
       </el-table-column>
 
@@ -65,10 +68,11 @@
 import { fetchExpenditure } from '../../../api/finance'
 import Pagination from '../../../components/Pagination/index' // Secondary package based on el-pagination
 import QtSearch from '../../../components/Search/QtSearch'
+import UploadFile from '../../../components/Upload/UploadFile'
 
 export default {
   name: 'ExpenditureList',
-  components: { Pagination, QtSearch },
+  components: { Pagination, QtSearch, UploadFile },
   data() {
     return {
       list: null,

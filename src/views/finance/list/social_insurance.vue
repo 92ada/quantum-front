@@ -5,9 +5,10 @@
       i18n-index="finance.social_insurance"
       search-url="/finance/social_insurance"
       by-date-range
+      export-excel
     />
 
-    <el-link v-permission="['edit_finance_social_insurance', 'edit_finance']" class="create-btn" icon="el-icon-edit" @click="goToCreate">{{  $t('common.new') }}</el-link>
+    <el-link v-permission="['edit_finance_social_insurance', 'edit_finance']" class="create-btn" icon="el-icon-edit" @click="goToCreate">{{ $t('common.new') }}</el-link>
     <el-table
       v-loading="listLoading"
       :data="list"
