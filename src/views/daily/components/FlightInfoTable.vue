@@ -97,7 +97,6 @@ export default {
     getList() {
       this.listLoading = true
       fetchFlightInfoByTypeAndId(this.dailyType, this.dailyId).then(response => {
-        console.log('in fetch flights', response)
         this.list = response
         this.listLoading = false
       })

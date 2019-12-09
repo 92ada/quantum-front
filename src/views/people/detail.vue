@@ -32,14 +32,10 @@ export default {
     // https://github.com/PanJiaChen/vue-element-admin/issues/1221
     this.tempRoute = Object.assign({}, this.$route)
 
-    console.log('in people view page')
     const lang = this.$store.getters.language
     const peopleId = this.$route.params.id
     const type = this.$route.params.action_type || 'show'
     const idOrType = type === 'create' ? this.$route.params.type : peopleId
-
-    console.log(peopleId, type, idOrType)
-    console.log(this.$route)
 
     this.type = type
     this.peopleId = peopleId

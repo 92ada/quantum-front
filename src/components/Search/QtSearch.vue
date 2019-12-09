@@ -72,9 +72,6 @@ export default {
   created() {
     this.searchObj = Object.assign({}, this.searchObj, this.$route.query)
   },
-  updated() {
-    console.log(this.searchObj)
-  },
   methods: {
     onSubmit() {
       this.$router.push({ path: this.searchUrl, query: this.searchObj })

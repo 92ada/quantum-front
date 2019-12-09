@@ -78,7 +78,6 @@ export default {
     },
     // api
     postData(data) {
-      console.log("in post", data)
       const dailyType = this.dataSource.dailyType
       const dailyId = this.dataSource.dailyId
 

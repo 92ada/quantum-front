@@ -93,7 +93,6 @@ export default {
     getList() {
       this.listLoading = true
       fetchReports({ ...this.listQuery, ...this.$route.query }).then(response => {
-        console.log(response)
         this.list = response.content
         this.total = response.totalPages
         this.listLoading = false

@@ -27,7 +27,6 @@ export default {
   },
   computed: {
     checkAlls() {
-      console.log('in computed', this.postDataSource)
       return this.postDataSource.map((x, index) => x.length === this.roles[index].auths.length)
     },
     isIndeterminates() {
@@ -60,7 +59,6 @@ export default {
        **/
       for (let i = 0; i < this.roles.length; i++) {
         const checked = this.roles[i].auths.filter(x => x.hasAuth).map(x => x.key)
-        console.log('in created', checked)
         this.postDataSource.push(checked)
       }
     })
@@ -69,7 +67,6 @@ export default {
     onSubmit() {
       const postDataResult = { roles: this.postDataSource.reduce((res, c) => res.concat(c), []) }
       const id = this.$route.params.id
-      console.log(id, postDataResult)
       updateRole(id, postDataResult).then(res => {
         this.$message({
           message: '更新成功! Updated Successfully!',

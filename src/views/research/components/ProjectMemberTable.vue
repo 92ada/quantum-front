@@ -79,7 +79,6 @@ export default {
     getList() {
       this.listLoading = true
       fetchProjectMemberByProject(this.projectId).then(response => {
-        console.log(response)
         this.list = this.formatList(response)
         this.listLoading = false
       })

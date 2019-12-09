@@ -68,7 +68,6 @@ export default {
     getList() {
       this.listLoading = true
       fetchProjectFundsByProject(this.projectId).then(response => {
-        console.log(response)
         this.list = response
         this.listLoading = false
       })

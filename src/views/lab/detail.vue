@@ -31,14 +31,10 @@ export default {
     // https://github.com/PanJiaChen/vue-element-admin/issues/1221
     this.tempRoute = Object.assign({}, this.$route)
 
-    console.log('in lab view page')
     const lang = this.$store.getters.language
     const labId = this.$route.params.id
     const type = this.$route.params.action_type || 'show'
     const idOrType = type === 'create' ? 'Lab' : labId
-
-    console.log(labId, type, idOrType)
-    console.log(this.$route)
 
     this.type = type
     this.labId = labId
