@@ -47,7 +47,7 @@
     </el-form-item>
 
     <el-form-item v-if="col.type === 'photo' && col.editable" :label="col.name+':'" class="form-item">
-      <single-image v-model="postForm[col.index]" style="width: 100px; height: 100px;"></single-image>
+      <single-image v-model="postForm[col.index]" style="width: 100px; height: 100px;" />
     </el-form-item>
 
     <el-form-item v-if="col.type === 'people'" :label="col.name+':'" class="form-item">
@@ -56,6 +56,10 @@
 
     <el-form-item v-if="col.type === 'person'" :label="col.name+':'" class="form-item">
       <person-selector v-model="postForm[col.index]" :editable="col.editable" :option-url="col.option_url" />
+    </el-form-item>
+
+    <el-form-item v-if="col.type === 'labs'" :label="col.name+':'" class="form-item">
+      <labs-selector v-model="postForm[col.index]" :editable="col.editable" :option-url="col.option_url" />
     </el-form-item>
 
     <el-form-item v-if="col.type === 'lab'" :label="col.name+':'" class="form-item">
@@ -67,13 +71,14 @@
 import FormItem from './QtFormItem'
 import PeopleSelector from '../Selector/PeopleSelector'
 import LabSelector from '../Selector/LabSelector'
+import LabsSelector from '../Selector/LabsSelector'
 import PersonSelector from '../Selector/PersonSelector'
 import SingleImage from '../Upload/SingleImage'
 
 // TODO: 时间、日期、月份选择不一样哦 e.g. Hosting里面要选时间
 export default {
   name: 'QtFormCol',
-  components: { PeopleSelector, LabSelector, PersonSelector, FormItem, SingleImage },
+  components: { PeopleSelector, LabSelector, LabsSelector, PersonSelector, FormItem, SingleImage },
   props: {
     postForm: {
       default: () => {},
