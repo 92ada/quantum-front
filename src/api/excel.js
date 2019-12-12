@@ -1,27 +1,7 @@
 import request from '../utils/request'
 
-export function getFile(url, query) {
-  const name = url.replace('/', '_')
-  return request({
-    url: '/api/excel' + url + '/' + name + '.xlsx',
-    method: 'get',
-    query
-  })
-}
-
-export function saveFile(data, name) {
-  if (!data) {
-    return
-  }
-  const url = window.URL.createObjectURL(new Blob([data]))
-  const link = document.createElement('a')
-  link.style.display = 'none'
-  link.href = url
-  link.setAttribute('download', `${name}.xlsx`)
-  document.body.appendChild(link)
-  link.click()
-}
-
+/** Old Version
+ *
 export function downloadByUrlAndQuery(url, query) {
   const queryStr = serialize(query)
   downloadByUrl(url + '?' + queryStr)
@@ -44,4 +24,27 @@ function serialize(obj) {
     return a
   }, []).join('&')
   return str
+}
+
+ */
+
+export function downloadByUrl(url) {
+  downloadByUrlAndQuery(url)
+}
+
+export const downloadByUrlAndQuery = async(url, query) => {
+  const response = await request({
+    url: url,
+    method: 'get',
+    responseType: 'blob',
+    query: query
+  })
+  const fileName = url.split('/').reverse()[0]
+  const blob = new Blob([response])
+  const href = window.URL.createObjectURL(blob)
+  const a = document.createElement('a')
+  a.href = href
+  a.download = [fileName] // 重要，后缀不能错
+  a.click()
+  window.URL.revokeObjectURL(href)
 }
