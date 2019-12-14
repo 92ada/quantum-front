@@ -49,7 +49,7 @@ export default {
     warranty_date: 'Warranty Date (If existing)',
     subject: 'Subject',
     content: 'Content',
-    travel_people: 'Traveler',
+    traveler: 'Traveler',
     start_date: 'Start Date',
     end_date: 'End Date',
     matter: 'Matter',

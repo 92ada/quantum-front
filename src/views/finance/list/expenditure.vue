@@ -52,6 +52,12 @@
         </template>
       </el-table-column>
 
+      <el-table-column width="180" align="center" :label="$t('finance.expenditure.handler')">
+        <template slot-scope="scope">
+          <span>{{ scope.row.handler && scope.row.handler.name }}</span>
+        </template>
+      </el-table-column>
+
     </el-table>
 
     <pagination

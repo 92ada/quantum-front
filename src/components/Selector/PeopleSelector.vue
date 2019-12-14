@@ -2,7 +2,7 @@
   <div class="index-container">
     <el-select
       v-if="editable"
-      v-model="selected"
+      v-model="childrenSelected"
       value-key="id"
       multiple
       allow-create
@@ -11,7 +11,7 @@
       :placeholder="$t('common.pleaseSearch')"
       :remote-method="remoteMethod"
       :loading="loading"
-      @change="selected => $emit('change', selected)"
+      @change="value => $emit('change', value)"
     >
       <el-option
         v-for="item in options"
@@ -31,7 +31,6 @@
 <script>
 import { searchOptionsByWord } from '../../api/options'
 
-// TODO: 等后段把Json改成Json
 export default {
   name: 'Index',
   model: {
@@ -59,8 +58,12 @@ export default {
   data() {
     return {
       options: [],
-      loading: false
+      loading: false,
+      childrenSelected: []
     }
+  },
+  created() {
+    this.childrenSelected = this.selected
   },
   methods: {
     remoteMethod(word) {

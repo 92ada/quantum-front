@@ -49,7 +49,7 @@ export default {
     warranty_date: '质保金支付日期（如有）',
     subject: '科目',
     content: '内容',
-    travel_people: '出行人',
+    traveler: '出行人',
     start_date: '起始日期',
     end_date: '结束日期',
     matter: '事项',

@@ -2,14 +2,14 @@
   <div class="labSelector-container">
     <el-select
       v-if="editable"
-      v-model="selected"
+      v-model="childSelected"
       value-key="id"
       filterable
       remote
       :placeholder="$t('common.pleaseSearch')"
       :remote-method="remoteMethod"
       :loading="loading"
-      @change="selected => $emit('change', selected)"
+      @change="value => $emit('change', value)"
     >
       <el-option
         v-for="item in options"
@@ -27,7 +27,7 @@
 import { searchOptionsByWord } from '../../api/options'
 
 export default {
-  name: 'PerseonSelector',
+  name: 'PersonSelector',
   model: {
     prop: 'selected',
     event: 'change'
@@ -53,8 +53,12 @@ export default {
   data() {
     return {
       options: [],
-      loading: false
+      loading: false,
+      childSelected: []
     }
+  },
+  created() {
+    this.childSelected = this.selected
   },
   methods: {
     remoteMethod(word) {
