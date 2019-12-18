@@ -22,7 +22,7 @@
         </template>
       </el-table-column>
 
-      <el-table-column width="420" align="center" :label="$t('research.project_info.title')" sortable prop="name">
+      <el-table-column min-width="420" align="center" :label="$t('research.project_info.title')" sortable prop="name">
         <template slot-scope="scope">
           <span>{{ scope.row.title }}</span>
         </template>

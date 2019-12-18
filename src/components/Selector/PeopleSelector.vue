@@ -32,7 +32,7 @@
 import { searchOptionsByWord } from '../../api/options'
 
 export default {
-  name: 'Index',
+  name: 'PeopleSelector',
   model: {
     prop: 'selected',
     event: 'change'

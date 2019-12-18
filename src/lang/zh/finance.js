@@ -31,6 +31,7 @@ export default {
   },
   expenditure: {
     TITLE: '',
+    expenditure_no: '经费号',
     abstract: '摘要',
     expenditure_id: '业务编号',
     lab: '所属课题组',

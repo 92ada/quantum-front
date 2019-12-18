@@ -8,6 +8,7 @@
       search-url="/finance/expenditure"
       by-date-range
       export-excel
+      export-url="/api/excel/finance/exps"
     />
 
     <el-link v-permission="['edit_finance_expenditure', 'edit_finance']" class="create-btn" icon="el-icon-edit" @click="goToCreate">{{ $t('common.new') }} </el-link>

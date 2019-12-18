@@ -44,6 +44,8 @@ export default {
 
   project_info: {
     TITLE: '项目信息',
+    expenditure_no: '经费号',
+    authed: '可查看经费的人员列表',
     id: '序号',
     title: '项目名称',
     type: '项目类型',
@@ -54,6 +56,13 @@ export default {
     way_of_taking: '承担方式',
     approved_funds: '获批经费（万元）',
     member: '项目成员'
+  },
+
+  project_admin_info: {
+    TITLE: '',
+    sid: '工号',
+    name: '姓名',
+    person: '人员'
   },
 
   project_member_info: {

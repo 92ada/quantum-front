@@ -40,6 +40,13 @@ export function fetchAllResearchList(query) {
   })
 }
 
+export function deleteResearch(researchType, researchId) {
+  return request({
+    url: `/api/research/${researchType}/${researchId}`,
+    method: 'delete'
+  })
+}
+
 /**
  * Project Funds
  */
@@ -99,9 +106,27 @@ export function deleteProjectMember(projectId, peopleId) {
   })
 }
 
-export function deleteResearch(researchType, researchId) {
+/**
+ * Project Admins
+ */
+
+export function fetchProjectAdminByProject(projectId) {
   return request({
-    url: `/api/research/${researchType}/${researchId}`,
+    url: `/api/research/project/${projectId}/admin`,
+    method: 'get'
+  })
+}
+
+export function createProjectAdmin(projectId, peopleId) {
+  return request({
+    url: `/api/research/project/${projectId}/admin/${peopleId}`,
+    method: 'post'
+  })
+}
+
+export function deleteProjectAdmin(projectId, peopleId) {
+  return request({
+    url: `/api/research/project/${projectId}/admin/${peopleId}`,
     method: 'delete'
   })
 }

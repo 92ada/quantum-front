@@ -9,8 +9,14 @@
 
     <project-member-table :type="type" v-if="researchType === 'project' && type !== 'create'" :project-id="researchId" />
     <project-funds-table :type="type" v-if="researchType === 'project' && type !== 'create'" :project-id="researchId" />
+    <project-admin-table :type="type" v-if="researchType === 'project' && type !== 'create'" :project-id="researchId" />
 
-    <attachments v-if="type !== 'create'" :type="type" :data-source-url="'/api/attachment/' + researchType + '/' + researchId" />
+    <attachments
+      v-if="type !== 'create'"
+      v-permission="['edit_research_'+researchType, 'edit_research']"
+      :type="type"
+      :data-source-url="'/api/attachment/' + researchType + '/' + researchId"
+    />
 
   </div>
 </template>
@@ -18,13 +24,14 @@
 import QtForm from '../../components/Form/QtForm'
 import ProjectFundsTable from './components/ProjectFundsTable'
 import ProjectMemberTable from './components/ProjectMemberTable'
+import ProjectAdminTable from './components/ProjectAdminTable'
 import Attachments from '../../components/Attachment/Attachments'
 import { closeView } from '../../utils/tag-view'
 import { deleteRequest } from '../../utils/delete'
 import { deleteResearch } from '../../api/research'
 export default {
   name: 'ResearchDetail',
-  components: { QtForm, ProjectFundsTable, ProjectMemberTable, Attachments },
+  components: { QtForm, ProjectFundsTable, ProjectMemberTable, ProjectAdminTable, Attachments },
   data() {
     return {
       tempRoute: {},

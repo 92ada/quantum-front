@@ -19,7 +19,7 @@
       />
     </el-select>
     <div v-else class="not-editable">
-      <el-link :href="'#/lab/' + selected.id">{{ selected.name }}</el-link>
+      <el-link v-if="selected" :href="'#/lab/' + selected.id">{{ selected.name }}</el-link>
     </div>
   </div>
 </template>

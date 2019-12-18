@@ -1,5 +1,5 @@
 <template>
-  <el-form ref="form" :model="searchObj" label-width="65px" inline class="search-container">
+  <el-form ref="form" :model="searchObj" label-width="70px" inline class="search-container">
     <el-form-item :label="$t('common.keyword')">
       <el-input v-model="searchObj.word" />
     </el-form-item>
@@ -55,6 +55,10 @@ export default {
       type: String,
       default: ''
     },
+    exportUrl: {
+      type: String,
+      default: ''
+    },
     byDateRange: {
       type: Boolean,
       default: false
@@ -80,7 +84,9 @@ export default {
     onExport() {
       const query = this.searchObj
       const name = '0'
-      const url = '/api/excel' + this.searchUrl + '/' + name + '.xlsx'
+      const baseUrl = this.exportUrl || '/api/excel' + this.searchUrl
+
+      const url = baseUrl + '/' + name + '.xlsx'
 
       downloadByUrlAndQuery(url, query)
     }
