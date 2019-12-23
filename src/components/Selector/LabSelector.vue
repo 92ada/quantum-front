@@ -2,20 +2,20 @@
   <div class="labSelector-container">
     <el-select
       v-if="editable"
-      v-model="childrenSelected"
+      v-model="childSelected"
       value-key="id"
       filterable
       remote
       :placeholder="$t('common.pleaseSearch')"
       :remote-method="remoteMethod"
       :loading="loading"
-      @change="value => $emit('change', value)"
+      @change="value => $emit('change', loadSelected(value))"
     >
       <el-option
         v-for="item in options"
         :key="item.id"
-        :label="toNameWithId(item)"
-        :value="{ name: item.name, id: item.id }"
+        :label="renderChildSelected(item)"
+        :value="renderChildSelected(item)"
       />
     </el-select>
     <div v-else class="not-editable">
@@ -54,13 +54,23 @@ export default {
     return {
       options: [],
       loading: false,
-      childrenSelected: []
+      childSelected: {}
     }
   },
   created() {
-    this.childrenSelected = this.selected
+    this.childSelected = this.renderChildSelected(this.selected)
   },
   methods: {
+    renderChildSelected(selected) {
+      if (!selected) return null
+      return `${selected.name} (${selected.id})`
+    },
+    loadSelected(childSelected) {
+      if (!childSelected) return null
+      const name = childSelected.split(' ')[0]
+      const id = childSelected.split('(')[1].split(')')[0]
+      return { name, id }
+    },
     remoteMethod(word) {
       if (word !== '') {
         this.loading = true
@@ -71,9 +81,6 @@ export default {
       } else {
         this.options = []
       }
-    },
-    toNameWithId(item) {
-      return item.name + ' (' + item.id + ')'
     }
   }
 }

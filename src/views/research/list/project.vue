@@ -16,11 +16,7 @@
       style="width: 100%"
       @row-click="goToDetail"
     >
-      <el-table-column align="center" :label="$t('research.id')" width="80" sortable prop="id">
-        <template slot-scope="scope">
-          <span>{{ scope.row.id }}</span>
-        </template>
-      </el-table-column>
+      <el-table-column type="index" align="center" width="80" sortable prop="id" />
 
       <el-table-column min-width="420" align="center" :label="$t('research.project_info.title')" sortable prop="name">
         <template slot-scope="scope">
@@ -30,7 +26,7 @@
 
       <el-table-column width="180" align="center" :label="$t('research.project_info.leader')">
         <template slot-scope="scope">
-          <span>{{ scope.row.leader }}</span>
+          <span>{{ scope.row.leader && scope.row.leader.name }}</span>
         </template>
       </el-table-column>
 
@@ -56,6 +52,7 @@ import { fetchProjectList } from '../../../api/research'
 import Pagination from '../../../components/Pagination/index'
 import QtSearch from '../../../components/Search/QtSearch'
 
+// TODO: 这个leader没填啊哥，selector的问题嗷
 export default {
   name: 'ProjectList',
   components: { QtSearch, Pagination },

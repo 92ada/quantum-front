@@ -8,6 +8,7 @@
       i18n-index="people"
       search-url="/people"
       export-excel
+      :export-query="{ type: peopleType }"
     />
 
     <el-link v-permission="['edit_people']" v-if="peopleType" class="create-btn" icon="el-icon-edit" @click="goToCreate">{{  $t('common.new') }}</el-link>
@@ -58,7 +59,7 @@
 
       <el-table-column class-name="status-col" :label="$t('people.status')" min-width="120" sortable prop="status">
         <template slot-scope="{row}">
-          <el-tag :type="row.status | statusFilter">
+          <el-tag v-if="row.status" :type="row.status | statusFilter">
             {{ row.status }}
           </el-tag>
         </template>

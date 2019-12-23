@@ -3,7 +3,7 @@
     <qt-search
       :params-source="{}"
       i18n-index="research"
-      search-url="/research/paper"
+      search-url="/research/hosting"
     />
 
     <el-link v-permission="['edit_daily_hosting', 'edit_daily']" class="create-btn" icon="el-icon-edit"  @click="goToCreate">{{  $t('common.new') }}</el-link>
@@ -16,11 +16,7 @@
       style="width: 100%"
       @row-click="goToDetail"
     >
-      <el-table-column align="center" :label="$t('daily.hosting.id')" min-width="80" sortable prop="id">
-        <template slot-scope="scope">
-          <span>{{ scope.row.id }}</span>
-        </template>
-      </el-table-column>
+      <el-table-column type="index" align="center" width="80" sortable prop="id" />
 
       <el-table-column min-width="420" align="center" :label="$t('daily.hosting.title')">
         <template slot-scope="scope">
@@ -42,7 +38,7 @@
 
       <el-table-column min-width="180" align="center" :label="$t('daily.hosting.is_reimbursement')">
         <template slot-scope="{row}">
-          <el-tag :type="row.is_reimbursement | statusFilter">
+          <el-tag v-if="row.is_reimbursement" :type="row.is_reimbursement | statusFilter">
             {{ row.is_reimbursement.toString().toUpperCase() }}
           </el-tag>
         </template>

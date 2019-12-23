@@ -32,7 +32,7 @@ export default {
   expenditure: {
     TITLE: '',
     expenditure_no: 'Expenditure No',
-    abstract: 'Abstract',
+    summary: 'Abstract',
     expenditure_id: 'Expenditure ID',
     lab: 'Lab',
     type: 'Expenditure Type',

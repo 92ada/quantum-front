@@ -27,7 +27,7 @@
     >
       <el-table-column :label="$t('attachment.type')" width="80">
         <template slot-scope="scope">
-          <span>{{ scope.row.type }}</span>
+          <span style="text-transform:uppercase;">{{ scope.row.type }}</span>
         </template>
       </el-table-column>
 

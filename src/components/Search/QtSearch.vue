@@ -59,6 +59,10 @@ export default {
       type: String,
       default: ''
     },
+    exportQuery: {
+      type: Object,
+      default: () => {}
+    },
     byDateRange: {
       type: Boolean,
       default: false
@@ -82,13 +86,21 @@ export default {
       refresh(this)
     },
     onExport() {
-      const query = this.searchObj
-      const name = '0'
+      const query = { ...this.searchObj, ...this.exportQuery }
+      console.log("in qtSearch", query)
       const baseUrl = this.exportUrl || '/api/excel' + this.searchUrl
+      const name = this.format(baseUrl)
 
       const url = baseUrl + '/' + name + '.xlsx'
 
       downloadByUrlAndQuery(url, query)
+    },
+    format(str) {
+      // remove leading
+      if (str.startsWith('/api/excel/')) str = str.substr(11)
+
+      // replace slash with hyphen
+      return str.split('/').join('-')
     }
   }
 }

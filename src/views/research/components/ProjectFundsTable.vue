@@ -11,11 +11,7 @@
       highlight-current-row
       style="width: 100%"
     >
-      <el-table-column align="center" :label="$t('research.project_funds_info.id')" width="100" sortable prop="id">
-        <template slot-scope="scope">
-          <span>{{ scope.row.id }}</span>
-        </template>
-      </el-table-column>
+      <el-table-column type="index" align="center" width="80" sortable prop="id" />
 
       <el-table-column width="180" align="center" :label="$t('research.project_funds_info.arrival_date')" sortable prop="name">
         <template slot-scope="scope">

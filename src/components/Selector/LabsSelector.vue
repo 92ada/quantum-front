@@ -10,7 +10,7 @@
       :placeholder="$t('common.pleaseSearch')"
       :remote-method="remoteMethod"
       :loading="loading"
-      @change="value => $emit('change', loadSelected(value))"
+      @change="handleChange"
     >
       <el-option
         v-for="item in options"
@@ -99,6 +99,9 @@ export default {
     fetchId(label) {
       if (!label) return ''
       return label.split('(')[1].split(')')[0]
+    },
+    handleChange(value) {
+      this.$emit('change', this.loadSelected(value))
     }
   }
 }

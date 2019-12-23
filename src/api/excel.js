@@ -37,7 +37,7 @@ export const downloadByUrlAndQuery = async(url, query) => {
     url: url,
     method: 'get',
     responseType: 'blob',
-    query: query
+    params: query
   })
   const fileName = url.split('/').reverse()[0]
   const blob = new Blob([response])

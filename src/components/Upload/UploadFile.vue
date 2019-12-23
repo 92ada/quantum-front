@@ -48,8 +48,15 @@ export default {
       })
     },
     downloadTemplate() {
-      const name = '0'
+      const name = this.format(this.url)
       downloadByUrl(this.url + `/${name}-template.xlsx`)
+    },
+    format(str) {
+      // remove leading
+      if (str.startsWith('/api/excel/')) str = str.substr(11)
+
+      // replace slash with hyphen
+      return str.split('/').join('-')
     }
   }
 }

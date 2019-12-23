@@ -10,11 +10,7 @@
       style="width: 100%"
       @row-click="goToDetail"
     >
-      <el-table-column align="center" :label="$t('daily.travel.id')" min-width="80" sortable prop="id">
-        <template slot-scope="scope">
-          <span>{{ scope.row.id }}</span>
-        </template>
-      </el-table-column>
+      <el-table-column type="index" align="center" width="80" sortable prop="id" />
 
       <el-table-column min-width="420" align="center" :label="$t('daily.travel.traveler')" sortable prop="name">
         <template slot-scope="scope">

@@ -3,7 +3,7 @@
     <qt-search
       :params-source="{}"
       i18n-index="research"
-      search-url="/research/paper"
+      search-url="/research/report"
     />
 
     <el-link v-permission="['edit_daily_report', 'edit_daily']" class="create-btn" icon="el-icon-edit" @click="goToCreate">{{  $t('common.new') }}</el-link>
@@ -16,11 +16,7 @@
       style="width: 100%"
       @row-click="goToDetail"
     >
-      <el-table-column align="center" :label="$t('daily.report.id')" min-width="80" sortable prop="id">
-        <template slot-scope="scope">
-          <span>{{ scope.row.id }}</span>
-        </template>
-      </el-table-column>
+      <el-table-column type="index" align="center" width="80" sortable prop="id" />
 
       <el-table-column min-width="420" align="center" :label="$t('daily.report.title')">
         <template slot-scope="scope">
@@ -28,21 +24,21 @@
         </template>
       </el-table-column>
 
-      <el-table-column min-width="180" align="center" :label="$t('daily.report.invitee_name')" sortable prop="name">
+      <el-table-column min-width="180" align="center" :label="$t('daily.report.invitee_name')">
         <template slot-scope="scope">
           <span>{{ scope.row.invitee_name }}</span>
         </template>
       </el-table-column>
 
-      <el-table-column min-width="180" align="center" :label="$t('daily.report.time')">
+      <el-table-column min-width="180" align="center" :label="$t('daily.report.time')" sortable prop="time">
         <template slot-scope="scope">
           <span>{{ scope.row.time }}</span>
         </template>
       </el-table-column>
 
-      <el-table-column min-width="180" align="center" :label="$t('daily.report.people_count')">
+      <el-table-column min-width="180" align="center" :label="$t('daily.report.location')">
         <template slot-scope="scope">
-          <span>{{ scope.row.people_count }}</span>
+          <span>{{ scope.row.location }}</span>
         </template>
       </el-table-column>
     </el-table>

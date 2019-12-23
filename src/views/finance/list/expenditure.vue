@@ -23,13 +23,13 @@
     >
       <el-table-column type="index" align="center" width="80" sortable prop="id" />
 
-      <el-table-column align="center" :label="$t('finance.expenditure.expenditure_id')" width="180" sortable prop="id">
+      <el-table-column align="center" :label="$t('finance.expenditure.expenditure_no')" width="180" sortable prop="id">
         <template slot-scope="scope">
-          <span>{{ scope.row.expenditure_id }}</span>
+          <span>{{ scope.row.expenditure_no }}</span>
         </template>
       </el-table-column>
 
-      <el-table-column min-width="180" align="center" :label="$t('finance.expenditure.abstract')">
+      <el-table-column min-width="180" align="center" :label="$t('finance.expenditure.summary')">
         <template slot-scope="scope">
           <span>{{ scope.row.title || scope.row.matter || scope.row.subject }}</span>
         </template>

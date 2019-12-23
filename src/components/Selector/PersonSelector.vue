@@ -9,13 +9,13 @@
       :placeholder="$t('common.pleaseSearch')"
       :remote-method="remoteMethod"
       :loading="loading"
-      @change="value => $emit('change', value)"
+      @change="value => $emit('change', loadSelected(value))"
     >
       <el-option
         v-for="item in options"
         :key="item.id"
-        :label="item.name"
-        :value="formatOption(item)"
+        :label="renderChildSelected(item)"
+        :value="renderChildSelected(item)"
       />
     </el-select>
     <div v-else class="not-editable">
@@ -58,9 +58,19 @@ export default {
     }
   },
   created() {
-    this.childSelected = this.selected
+    this.childSelected = this.renderChildSelected(this.selected)
   },
   methods: {
+    renderChildSelected(selected) {
+      if (!selected) return null
+      return `${selected.name} (${selected.id})`
+    },
+    loadSelected(childSelected) {
+      if (!childSelected) return null
+      const name = childSelected.split(' ')[0]
+      const id = childSelected.split('(')[1].split(')')[0]
+      return { name, id }
+    },
     remoteMethod(word) {
       if (word !== '') {
         this.loading = true
@@ -71,15 +81,6 @@ export default {
       } else {
         this.options = []
       }
-    },
-    formatOption(item) {
-      return { id: item.id, name: item.name }
-    },
-    toNameWithId(item) {
-      return item.name + ' (' + item.id + ')'
-    },
-    fetchId(label) {
-      return label.split('(')[1].split(')')[0]
     }
   }
 }
