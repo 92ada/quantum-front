@@ -1,5 +1,14 @@
 <template>
   <div class="app-container">
+    <upload-file v-permission="['edit_daily, edit_daily_visit']" url="/api/excel/daily/visit" style="float: right;"></upload-file>
+
+    <qt-search
+      :params-source="{}"
+      i18n-index="daily.visit"
+      search-url="/daily/visit"
+      export
+    />
+
     <el-link v-permission="['edit_daily_visit', 'edit_daily']" class="create-btn" icon="el-icon-edit" @click="goToCreate">{{  $t('common.new') }}</el-link>
     <el-table
       v-loading="listLoading"
@@ -46,10 +55,12 @@
 <script>
 import { fetchVisits } from '../../../api/daily'
 import Pagination from '../../../components/Pagination/index' // Secondary package based on el-pagination
+import UploadFile from '../../../components/Upload/UploadFile'
+import QtSearch from '../../../components/Search/QtSearch' // Secondary package based on el-pagination
 
 export default {
   name: 'VisitList',
-  components: { Pagination },
+  components: { Pagination, UploadFile, QtSearch },
   filters: {
     statusFilter(status) {
       const statusMap = {

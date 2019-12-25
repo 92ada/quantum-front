@@ -56,7 +56,7 @@ export default {
       if (str.startsWith('/api/excel/')) str = str.substr(11)
 
       // replace slash with hyphen
-      return str.split('/').join('-')
+      return str.split('/').join('_')
     }
   }
 }

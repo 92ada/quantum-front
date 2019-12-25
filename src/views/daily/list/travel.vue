@@ -1,5 +1,14 @@
 <template>
   <div class="app-container">
+    <upload-file v-permission="['edit_daily, edit_daily_travel']" url="/api/excel/daily/travel" style="float: right;"></upload-file>
+
+    <qt-search
+      :params-source="{}"
+      i18n-index="daily.travel"
+      search-url="/daily/travel"
+      export
+    />
+
     <el-link v-permission="['edit_daily_travel', 'edit_daily']" class="create-btn" icon="el-icon-edit" @click="goToCreate">{{  $t('common.new') }}</el-link>
     <el-table
       v-loading="listLoading"
@@ -44,11 +53,13 @@
 <script>
 import { fetchTravels } from '../../../api/daily'
 import Pagination from '../../../components/Pagination/index' // Secondary package based on el-pagination
+import UploadFile from '../../../components/Upload/UploadFile'
+import QtSearch from '../../../components/Search/QtSearch'
 
 // TODO: 1）travelerJson的显示，2）peopleSelector组建put的值，3）traveler和travelerJson的一致性
 export default {
   name: 'TravelList',
-  components: { Pagination },
+  components: { Pagination, UploadFile, QtSearch },
   filters: {
     statusFilter(status) {
       const statusMap = {

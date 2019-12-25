@@ -123,7 +123,7 @@ import { closeView } from '../../utils/tag-view'
 import { deleteRequest } from '../../utils/delete'
 
 export default {
-  name: 'Downloads',
+  name: 'InsuranceDetail',
   components: { FormItem, PersonSelector },
   data() {
     return {
@@ -234,9 +234,6 @@ export default {
         deleteSocialInsurance(id)
       })
     },
-    closeView() {
-      closeView(this.$route.path)
-    },
     onSubmit() {
       const finalPostData = { ...this.tableData, ...this.tableDataComputed,
         people: this.person, peopleJson: this.person, ...this.otherData }
@@ -277,6 +274,9 @@ export default {
         })
       }
       return
+    },
+    closeThisView() {
+      closeView(this.$route.path)
     }
   }
 }

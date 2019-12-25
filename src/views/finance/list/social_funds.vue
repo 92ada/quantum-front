@@ -1,10 +1,11 @@
 <template>
   <div class="app-container">
+    <upload-file v-permission="['edit_finance, edit_finance_social_funds']" url="/api/excel/finance/social_funds" style="float: right;"></upload-file>
+
     <qt-search
       :params-source="{}"
       i18n-index="finance.social_funds"
       search-url="/finance/social_funds"
-      by-date-range
       export-excel
     />
 
@@ -93,11 +94,12 @@
 <script>
 import { fetchSocialFunds } from '../../../api/finance'
 import Pagination from '../../../components/Pagination/index' // Secondary package based on el-pagination
-import QtSearch from '../../../components/Search/QtSearch'
+import QtSearch from '../../../components/Search/QtSearchDate'
+import UploadFile from '../../../components/Upload/UploadFile'
 
 export default {
   name: 'SocialFundsList',
-  components: { Pagination, QtSearch },
+  components: { Pagination, QtSearch, UploadFile },
   data() {
     return {
       list: null,

@@ -1,9 +1,12 @@
 <template>
   <div class="app-container">
+    <upload-file v-permission="['edit_daily, edit_daily_hosting']" url="/api/excel/daily/hosting" style="float: right;"></upload-file>
+
     <qt-search
       :params-source="{}"
-      i18n-index="research"
-      search-url="/research/hosting"
+      i18n-index="daily.hosting"
+      search-url="/daily/hosting"
+      export-excel
     />
 
     <el-link v-permission="['edit_daily_hosting', 'edit_daily']" class="create-btn" icon="el-icon-edit"  @click="goToCreate">{{  $t('common.new') }}</el-link>
@@ -60,10 +63,11 @@
 import { fetchHostings } from '../../../api/daily'
 import Pagination from '../../../components/Pagination/index'
 import QtSearch from '../../../components/Search/QtSearch' // Secondary package based on el-pagination
+import UploadFile from '../../../components/Upload/UploadFile'
 
 export default {
   name: 'HostingList',
-  components: { QtSearch, Pagination },
+  components: { QtSearch, Pagination, UploadFile },
   filters: {
     statusFilter(status) {
       const statusMap = {

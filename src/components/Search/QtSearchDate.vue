@@ -1,15 +1,12 @@
 <template>
   <el-form ref="form" :model="searchObj" label-width="70px" inline class="search-container">
-    <el-form-item :label="$t('common.keyword')">
-      <el-input v-model="searchObj.word" />
-    </el-form-item>
     <el-form-item v-for="(options, label) in paramsSource" :key="label" :label="$t(i18nIndex + '.' + label)">
       <el-select v-model="searchObj[label]" :placeholder="$t('common.pleaseChoose')">
         <el-option v-for="option in options" :key="option" :label="option" :value="option" />
       </el-select>
     </el-form-item>
 
-    <el-form-item v-if="byDateRange" :label="$t('common.from') + ': '">
+    <el-form-item :label="$t('common.from') + ': '">
       <el-date-picker
         v-model="searchObj.start"
         value-format="yyyy-MM-dd"
@@ -17,7 +14,7 @@
         :placeholder="$t('common.pleaseChoose')"
       />
     </el-form-item>
-    <el-form-item v-if="byDateRange" :label="$t('common.to') + ': '">
+    <el-form-item :label="$t('common.to') + ': '">
       <el-date-picker
         v-model="searchObj.end"
         value-format="yyyy-MM-dd"
@@ -41,7 +38,7 @@ import { refresh } from '../../utils/tag-view'
 import { downloadByUrlAndQuery } from '../../api/excel'
 
 export default {
-  name: 'QtSearch',
+  name: 'QtSearchDate',
   props: {
     paramsSource: {
       type: Object,
@@ -63,10 +60,6 @@ export default {
       type: Object,
       default: () => {}
     },
-    byDateRange: {
-      type: Boolean,
-      default: false
-    },
     exportExcel: {
       type: Boolean,
       default: false
@@ -87,7 +80,6 @@ export default {
     },
     onExport() {
       const query = { ...this.searchObj, ...this.exportQuery }
-      console.log("in qtSearch", query)
       const baseUrl = this.exportUrl || '/api/excel' + this.searchUrl
       const name = this.format(baseUrl)
 

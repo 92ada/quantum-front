@@ -1,9 +1,12 @@
 <template>
   <div class="app-container">
+    <upload-file v-permission="['edit_daily, edit_daily_report']" url="/api/excel/daily/report" style="float: right;"></upload-file>
+
     <qt-search
       :params-source="{}"
-      i18n-index="research"
-      search-url="/research/report"
+      i18n-index="daily.report"
+      search-url="/daily/report"
+      export
     />
 
     <el-link v-permission="['edit_daily_report', 'edit_daily']" class="create-btn" icon="el-icon-edit" @click="goToCreate">{{  $t('common.new') }}</el-link>
@@ -57,10 +60,11 @@
 import { fetchReports } from '../../../api/daily'
 import Pagination from '../../../components/Pagination/index'
 import QtSearch from '../../../components/Search/QtSearch' // Secondary package based on el-pagination
+import UploadFile from '../../../components/Upload/UploadFile'
 
 export default {
   name: 'ReportList',
-  components: { QtSearch, Pagination },
+  components: { UploadFile, QtSearch, Pagination },
   filters: {
     statusFilter(status) {
       const statusMap = {
