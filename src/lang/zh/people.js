@@ -10,7 +10,6 @@ export default {
 
   basic_info: {
     TITLE: '基本信息',
-    research_direction: '研究领域',
     sid: '工号',
     photo: '照片',
     type: '人员类型',
@@ -64,6 +63,7 @@ export default {
   other_info: {
     TITLE: '其他信息',
     office_card_no: '公务卡卡号',
+    research_direction: '研究领域',
     original_institution: '原工作单位',
     position_title: '岗位名称',
     job: '职务',
@@ -89,6 +89,8 @@ export default {
     category: '学生分类',
     advisor: '主导师',
     vice_advisor: '副导师',
+    supervisor: '负责人',
+    co_supervisor: '联培负责人',
     midterm_assessment_status: '中期考核进程',
     opening_assessment_status: '开题考核进程'
   }
