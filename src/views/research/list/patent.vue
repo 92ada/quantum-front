@@ -6,7 +6,7 @@
       search-url="/research/patent"
     />
 
-    <el-link v-permission="['edit_research_patent', 'edit_research']" class="create-btn" icon="el-icon-edit" @click="goToCreate">{{  $t('common.new') }}</el-link>
+    <el-link v-permission="['edit_research_patent', 'edit_research']" class="create-btn" icon="el-icon-edit" @click="goToCreate">{{ $t('common.new') }}</el-link>
     <el-table
       v-loading="listLoading"
       :data="list"
@@ -26,7 +26,7 @@
 
       <el-table-column min-width="180" align="center" :label="$t('research.applicant')">
         <template slot-scope="scope">
-          <span>{{ scope.row.applicant }}</span>
+          <span>{{ renderPeople(scope.row.applicantJson) }}</span>
         </template>
       </el-table-column>
 
@@ -82,6 +82,9 @@ export default {
     this.getList()
   },
   methods: {
+    renderPeople(array) {
+      return array.join(', ')
+    },
     getList() {
       this.listLoading = true
       fetchPatentList({ ...this.listQuery, ...this.$route.query }).then(response => {

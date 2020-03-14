@@ -6,7 +6,7 @@
       search-url="/research/paper"
     />
 
-    <el-link v-permission="['edit_research_paper', 'edit_research']" class="create-btn" icon="el-icon-edit" @click="goToCreate">{{  $t('common.new') }}</el-link>
+    <el-link v-permission="['edit_research_paper', 'edit_research']" class="create-btn" icon="el-icon-edit" @click="goToCreate">{{ $t('common.new') }}</el-link>
     <el-table
       v-loading="listLoading"
       :data="list"
@@ -26,7 +26,7 @@
 
       <el-table-column min-width="180" align="center" :label="$t('research.paper_info.author')">
         <template slot-scope="scope">
-          <span>{{ scope.row.author }}</span>
+          <span>{{ renderPeople(scope.row.authorJson) }}</span>
         </template>
       </el-table-column>
 
@@ -70,6 +70,9 @@ export default {
     this.getList()
   },
   methods: {
+    renderPeople(array) {
+      return array.join(', ')
+    },
     getList() {
       this.listLoading = true
       fetchPaperList({ ...this.listQuery, ...this.$route.query }).then(response => {
