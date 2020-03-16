@@ -60,14 +60,14 @@ export default {
 
   project_admin_info: {
     TITLE: '',
-    sid: '工号',
+    sid: 'SID',
     name: '姓名',
     person: '人员'
   },
 
   project_member_info: {
     TITLE: '',
-    sid: '工号',
+    sid: 'SID',
     name: '姓名',
     person: '人员',
     institution: '工作单位',

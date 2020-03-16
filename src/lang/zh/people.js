@@ -1,5 +1,5 @@
 export default {
-  sid: '工号',
+  sid: 'SID',
   status: '状态',
   name: '姓名',
   mobile_phone: '移动电话',
@@ -10,7 +10,7 @@ export default {
 
   basic_info: {
     TITLE: '基本信息',
-    sid: '工号',
+    sid: 'SID',
     photo: '照片',
     type: '人员类型',
     status: '状态',

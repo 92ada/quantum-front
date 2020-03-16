@@ -1,6 +1,6 @@
 export default {
   social_insurance: {
-    sid: '工号',
+    sid: 'SID',
     name: '姓名',
     fund_source: '经费来源',
     receivable: '应收金额',
@@ -16,7 +16,7 @@ export default {
   },
   social_fund: {
     TITLE: '',
-    sid: '工号',
+    sid: 'SID',
     name: '姓名',
     people: '人员',
     fund_account_no: '个人公积金账号',
