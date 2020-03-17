@@ -11,6 +11,11 @@
       style="display: inline-block;"
     >
       <el-button type="primary" plain>{{ $t('common.upload') }}</el-button>
+
+      <el-switch
+        v-model="force"
+        active-text="强制导入"
+      />
     </el-upload>
   </div>
 </template>
@@ -26,9 +31,14 @@ export default {
       default: ''
     }
   },
+  data() {
+    return {
+      force: false
+    }
+  },
   computed: {
     postApi() {
-      return process.env.VUE_APP_BASE_API + this.url
+      return process.env.VUE_APP_BASE_API + this.url + '?force=' + this.force
     }
   },
   methods: {
@@ -39,10 +49,15 @@ export default {
       })
     },
     handleUploadError(e) {
-      const msg = JSON.parse(e.message)
+      let msg
+      try {
+        msg = JSON.parse(e.message).message
+      } catch (_) {
+        msg = e.message
+      }
       this.$message({
         type: 'error',
-        message: '上传失败!' + msg.message,
+        message: '上传失败! ' + msg,
         duration: 0,
         showClose: true
       })

@@ -1,7 +1,7 @@
 <template>
   <div class="app-container">
 
-    <upload-file v-permission="['edit_people']" url="/api/excel/people" style="float: right;"></upload-file>
+    <upload-file v-permission="['edit_people']" :url="getUploadUrl()" style="float: right;" />
 
     <qt-search
       :params-source="{}"
@@ -11,7 +11,7 @@
       :export-query="{ type: peopleType }"
     />
 
-    <el-link v-permission="['edit_people']" v-if="peopleType" class="create-btn" icon="el-icon-edit" @click="goToCreate">{{  $t('common.new') }}</el-link>
+    <el-link v-if="peopleType" v-permission="['edit_people']" class="create-btn" icon="el-icon-edit" @click="goToCreate">{{ $t('common.new') }}</el-link>
     <el-table
       v-loading="listLoading"
       :data="list"
@@ -113,6 +113,9 @@ export default {
     this.getList(this.peopleType)
   },
   methods: {
+    getUploadUrl() {
+      return `/api/excel/people/${this.peopleType}`
+    },
     getType() {
       const type = this.$route.meta.title
       return type
