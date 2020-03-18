@@ -1,6 +1,6 @@
 <template>
   <div v-permission="['import_excel']" class="upload-container">
-    <el-button type="primary" plain @click="downloadTemplate">{{ $t('common.download_template') }}</el-button>
+    <!--    <el-button type="primary" plain @click="downloadTemplate">{{ $t('common.download_template') }}</el-button>-->
 
     <el-upload
       :multiple="false"
@@ -11,12 +11,12 @@
       style="display: inline-block;"
     >
       <el-button type="primary" plain>{{ $t('common.upload') }}</el-button>
-
-      <el-switch
-        v-model="force"
-        active-text="强制导入"
-      />
     </el-upload>
+
+    <el-switch
+      v-model="force"
+      active-text="强制导入"
+    />
   </div>
 </template>
 
