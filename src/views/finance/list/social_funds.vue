@@ -1,6 +1,6 @@
 <template>
   <div class="app-container">
-    <upload-file v-permission="['edit_finance, edit_finance_social_funds']" url="/api/excel/finance/social_funds" style="float: right;"></upload-file>
+    <upload-file v-permission="['edit_finance, edit_finance_social_funds']" url="/api/excel/finance/social_funds" style="float: right;" />
 
     <qt-search
       :params-source="{}"
@@ -119,7 +119,7 @@ export default {
       this.listLoading = true
       fetchSocialFunds({ ...this.listQuery, ...this.$route.query }).then(response => {
         this.list = response.content
-        this.total = response.totalPages
+        this.total = response.totalElements
         this.listLoading = false
       })
     },

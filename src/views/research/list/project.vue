@@ -6,7 +6,7 @@
       search-url="/research/project"
     />
 
-    <el-link v-permission="['edit_research_project', 'edit_research']" class="create-btn" icon="el-icon-edit" @click="goToCreate">{{  $t('common.new') }}</el-link>
+    <el-link v-permission="['edit_research_project', 'edit_research']" class="create-btn" icon="el-icon-edit" @click="goToCreate">{{ $t('common.new') }}</el-link>
     <el-table
       v-loading="listLoading"
       :data="list"
@@ -75,7 +75,7 @@ export default {
       this.listLoading = true
       fetchProjectList({ ...this.listQuery, ...this.$route.query }).then(response => {
         this.list = response.content
-        this.total = response.totalPages
+        this.total = response.totalElements
         this.listLoading = false
       })
     },

@@ -120,11 +120,11 @@ export default {
       const type = this.$route.meta.title
       return type
     },
-    getList(type) {
+    getList() {
       this.listLoading = true
-      fetchList({ ...this.listQuery, ...this.$route.query, type: type }).then(response => {
+      fetchList({ ...this.listQuery, ...this.$route.query, type: this.peopleType }).then(response => {
         this.list = response.content
-        this.total = response.totalPages
+        this.total = response.totalElements
         this.listLoading = false
       })
     },

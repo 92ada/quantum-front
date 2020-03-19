@@ -77,7 +77,7 @@ export default {
       this.listLoading = true
       fetchPaperList({ ...this.listQuery, ...this.$route.query }).then(response => {
         this.list = response.content
-        this.total = response.totalPages
+        this.total = response.totalElements
         this.listLoading = false
       })
     },

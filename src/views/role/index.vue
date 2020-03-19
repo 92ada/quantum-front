@@ -119,11 +119,11 @@ export default {
     this.getList()
   },
   methods: {
-    getList(type) {
+    getList() {
       this.listLoading = true
       fetchList({ ...this.listQuery, ...this.$route.query }).then(response => {
         this.list = response.content
-        this.total = response.totalPages
+        this.total = response.totalElements
         this.listLoading = false
       })
     },

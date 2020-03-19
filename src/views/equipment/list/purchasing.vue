@@ -1,6 +1,6 @@
 <template>
   <div class="app-container">
-    <upload-file v-permission="['edit_equipment, edit_equipment_purchasing']" url="/api/excel/equipment/purchasing" style="float: right;"></upload-file>
+    <upload-file v-permission="['edit_equipment, edit_equipment_purchasing']" url="/api/excel/equipment/purchasing" style="float: right;" />
 
     <qt-search
       :params-source="{}"
@@ -9,7 +9,7 @@
       export-excel
     />
 
-    <el-link v-permission="['edit_equipment_purchasing', 'edit_equipment']" class="create-btn" icon="el-icon-edit" @click="goToCreate">{{  $t('common.new') }}</el-link>
+    <el-link v-permission="['edit_equipment_purchasing', 'edit_equipment']" class="create-btn" icon="el-icon-edit" @click="goToCreate">{{ $t('common.new') }}</el-link>
     <el-table
       v-loading="listLoading"
       :data="list"
@@ -91,7 +91,7 @@ export default {
       this.listLoading = true
       fetchPurchasings({ ...this.listQuery, ...this.$route.query }).then(response => {
         this.list = response.content
-        this.total = response.totalPages
+        this.total = response.totalElements
         this.listLoading = false
       })
     },
