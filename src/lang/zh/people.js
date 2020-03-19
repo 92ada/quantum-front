@@ -86,12 +86,12 @@ export default {
     salary: '薪酬',
     remark: '备注',
     edu_system: '学制',
-    category: '学生分类',
+    category: '专业',
     advisor: '主导师',
     vice_advisor: '副导师',
     supervisor: '负责人',
     co_supervisor: '联培负责人',
-    midterm_assessment_status: '中期考核进程',
-    opening_assessment_status: '开题考核进程'
+    midterm_assessment_status: '年度考核进展',
+    opening_assessment_status: '开题考核进展'
   }
 }

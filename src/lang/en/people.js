@@ -89,7 +89,7 @@ export default {
     category: 'Student Category',
     advisor: 'Advisor',
     vice_advisor: 'Vice Advisor',
-    midterm_assessment_status: 'Midterm Assessment Status',
+    midterm_assessment_status: 'Yearly Assessment Status',
     opening_assessment_status: 'Opening Assessment Status'
   }
 }
