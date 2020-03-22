@@ -29,12 +29,23 @@
       </el-select>
     </form-item>
 
-    <form-item v-if="col.type === 'date' || col.type === 'datetime'" :label="col.name+':'" :editable="col.editable" class="form-item">
+    <form-item v-if="col.type === 'date'" :label="col.name+':'" :editable="col.editable" class="form-item">
       <el-date-picker
         v-model="postForm[col.index]"
         class="form-date"
-        :type="col.type"
+        type="date"
         :placeholder="$t('common.pleaseChoose')"
+        value-format="yyyy-MM-dd"
+      />
+    </form-item>
+
+    <form-item v-if="col.type === 'datetime'" :label="col.name+':'" :editable="col.editable" class="form-item">
+      <el-date-picker
+        v-model="postForm[col.index]"
+        class="form-date"
+        type="datetime"
+        :placeholder="$t('common.pleaseChoose')"
+        value-format="yyyy-MM-dd HH:mm:ss"
       />
     </form-item>
 
@@ -43,7 +54,7 @@
     </form-item>
 
     <el-form-item v-if="col.type === 'photo' && !col.editable" :label="col.name+':'" class="form-item">
-      <img :src="toFullUrl(col.value)" height="100px">
+      <img :src="toFullUrl(col.value)" height="100px" alt="">
     </el-form-item>
 
     <el-form-item v-if="col.type === 'photo' && col.editable" :label="col.name+':'" class="form-item">
