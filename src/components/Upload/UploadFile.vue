@@ -15,7 +15,7 @@
 
     <el-switch
       v-model="force"
-      active-text="强制导入"
+      active-text="覆盖模式"
     />
   </div>
 </template>

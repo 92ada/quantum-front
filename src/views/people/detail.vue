@@ -1,14 +1,18 @@
 <template>
   <div class="app-container">
     <el-link v-if="type === 'edit'" icon="el-icon-edit" @click="closeThisView">{{ $t('common.cancel_edit') }}</el-link>
-    <el-link v-if="type === 'edit'" v-permission="['delete_people']" icon="el-icon-edit" @click="onDelete" style="margin-left:20px;">{{ $t('common.delete') }}</el-link>
+    <el-link v-if="type === 'edit'" v-permission="['delete_people']" icon="el-icon-edit" style="margin-left:20px;" @click="onDelete">{{ $t('common.delete') }}</el-link>
     <el-link v-if="type === 'show'" v-permission="['edit_people']" icon="el-icon-edit" @click="goToEdit">{{ $t('common.edit') }}</el-link>
 
     <qt-form v-if="type !== 'create'" :type="type" :data-source-url="[requestUrl + '/' + peopleId + '/base/structure', requestUrl + '/' + peopleId + '/extra/structure']" />
     <qt-form v-else type="create" :data-source-url="[requestUrl + '/base/structure', requestUrl + '/' + idOrType + '/structure']" />
+
+    <attachments v-if="type !== 'create'" :type="type" :data-source-url="'/api/attachment/people/' + peopleId " />
+
   </div>
 </template>
 <script>
+import Attachments from '../../components/Attachment/Attachments'
 import QtForm from '../../components/Form/QtForm'
 import { deleteRequest } from '../../utils/delete'
 import { closeView } from '../../utils/tag-view'
@@ -16,7 +20,7 @@ import { apiDelete } from '../../api/people'
 
 export default {
   name: 'PeopleDetail',
-  components: { QtForm },
+  components: { QtForm, Attachments },
   data() {
     return {
       tempRoute: {},
