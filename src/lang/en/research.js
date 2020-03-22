@@ -44,7 +44,7 @@ export default {
 
   project_info: {
     TITLE: 'Project Info',
-    expenditure_no: 'Expenditure No',
+    expenditureNo: 'Expenditure No',
     authed: 'Authorized People Who Can View Expenditure',
     id: 'ID',
     title: 'Project Title',
