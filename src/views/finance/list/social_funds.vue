@@ -21,13 +21,13 @@
     >
       <el-table-column align="center" :label="$t('finance.social_fund.sid')" min-width="100" sortable prop="id">
         <template slot-scope="scope">
-          <span>{{ scope.row.people.sid }}</span>
+          <span>{{ scope.row.people && scope.row.people.sid }}</span>
         </template>
       </el-table-column>
 
       <el-table-column min-width="100" align="center" :label="$t('finance.social_fund.name')" sortable prop="name">
         <template slot-scope="scope">
-          <span>{{ scope.row.people.name }}</span>
+          <span>{{ scope.row.people && scope.row.people.name }}</span>
         </template>
       </el-table-column>
 

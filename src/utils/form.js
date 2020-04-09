@@ -22,13 +22,7 @@ function resolveStructuredData(structuredData) {
 }
 
 function hideId(columns) {
-  const ret = []
-  for (let i = 0; i < columns.length; i++) {
-    if (columns[i].index !== 'id') {
-      ret.push(columns[i])
-    }
-  }
-  return ret
+  return columns.filter(x => x.index !== 'id')
 }
 
 function underlineToSentenceFormat(str) {

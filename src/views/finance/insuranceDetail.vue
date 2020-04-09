@@ -1,13 +1,13 @@
 <template>
   <div class="app-container">
     <el-link v-if="type === 'edit'" icon="el-icon-edit" @click="closeThisView">{{ $t('common.cancel_edit') }}</el-link>
-    <el-link v-if="type === 'edit'" v-permission="['delete_finance_social_insurance', 'delete_finance']" icon="el-icon-edit" @click="onDelete" style="margin-left:20px;">{{ $t('common.delete') }}</el-link>
+    <el-link v-if="type === 'edit'" v-permission="['delete_finance_social_insurance', 'delete_finance']" icon="el-icon-edit" style="margin-left:20px;" @click="onDelete">{{ $t('common.delete') }}</el-link>
     <el-link v-if="type === 'show'" v-permission="['edit_finance_social_insurance', 'edit_finance']" icon="el-icon-edit" @click="goToEdit">{{ $t('common.edit') }}</el-link>
 
     <el-form :inline="true" :model="tableData" label-width="80px" label-position="left" class="insurance-form">
       <el-row>
         <el-form-item label="人员">
-          <person-selector v-model="person" :editable="editable" option-url="/api/people/options" />
+          <person-selector v-model="person" :editable="type === 'create'" option-url="/api/people/options" />
         </el-form-item>
       </el-row>
       <el-row>
@@ -33,60 +33,60 @@
       <el-row class="insurance-row">
         <form-item :editable="editable" label="养老保险" class="insurance-form-item" />
         <form-item :editable="editable" label="" class="insurance-form-item">
-          <el-input type="number" v-model="tableData.pension_base_amount" />
+          <el-input v-model="tableData.pension_base_amount" type="number" />
         </form-item>
         <form-item :editable="editable" label="" class="insurance-form-item">
-          <el-input type="number" v-model="tableData.pension_by_individual" />
+          <el-input v-model="tableData.pension_by_individual" type="number" />
         </form-item>
         <form-item :editable="editable" label="" class="insurance-form-item">
-          <el-input type="number" v-model="tableData.pension_by_institution" />
+          <el-input v-model="tableData.pension_by_institution" type="number" />
         </form-item>
       </el-row>
       <el-row class="insurance-row">
         <form-item :editable="editable" label="医疗保险" class="insurance-form-item" />
         <form-item :editable="editable" label="" class="insurance-form-item">
-          <el-input type="number" v-model="tableData.medical_base_amount" />
+          <el-input v-model="tableData.medical_base_amount" type="number" />
         </form-item>
         <form-item :editable="editable" label="" class="insurance-form-item">
-          <el-input type="number" v-model="tableData.medical_by_individual" />
+          <el-input v-model="tableData.medical_by_individual" type="number" />
         </form-item>
         <form-item :editable="editable" label="" class="insurance-form-item">
-          <el-input type="number" v-model="tableData.medical_by_institution" />
+          <el-input v-model="tableData.medical_by_institution" type="number" />
         </form-item>
       </el-row>
 
       <el-row class="insurance-row">
         <form-item :editable="editable" label="工伤保险" class="insurance-form-item" />
         <form-item :editable="editable" label="" class="insurance-form-item">
-          <el-input type="number" v-model="tableData.work_injury_base_amount" />
+          <el-input v-model="tableData.work_injury_base_amount" type="number" />
         </form-item>
         <form-item :editable="editable" label="" class="insurance-form-item" />
         <form-item :editable="editable" label="" class="insurance-form-item">
-          <el-input type="number" v-model="tableData.work_injury_by_institution" />
+          <el-input v-model="tableData.work_injury_by_institution" type="number" />
         </form-item>
       </el-row>
 
       <el-row class="insurance-row">
         <form-item :editable="editable" label="医疗保险" class="insurance-form-item" />
         <form-item :editable="editable" label="" class="insurance-form-item">
-          <el-input type="number" v-model="tableData.unemployment_base_amount" />
+          <el-input v-model="tableData.unemployment_base_amount" type="number" />
         </form-item>
         <form-item :editable="editable" label="" class="insurance-form-item">
-          <el-input type="number" v-model="tableData.unemployment_by_individual" />
+          <el-input v-model="tableData.unemployment_by_individual" type="number" />
         </form-item>
         <form-item :editable="editable" label="" class="insurance-form-item">
-          <el-input type="number" v-model="tableData.unemployment_by_institution" />
+          <el-input v-model="tableData.unemployment_by_institution" type="number" />
         </form-item>
       </el-row>
 
       <el-row class="insurance-row">
         <form-item :editable="editable" label="生育医疗" class="insurance-form-item" />
         <form-item :editable="editable" label="" class="insurance-form-item">
-          <el-input type="number" v-model="tableData.fertility_base_amount" />
+          <el-input v-model="tableData.fertility_base_amount" type="number" />
         </form-item>
         <form-item :editable="editable" label="" class="insurance-form-item" />
         <form-item :editable="editable" label="" class="insurance-form-item">
-          <el-input type="number" v-model="tableData.fertility_by_institution" />
+          <el-input v-model="tableData.fertility_by_institution" type="number" />
         </form-item>
       </el-row>
 

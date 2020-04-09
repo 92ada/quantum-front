@@ -17,9 +17,9 @@
       @row-click="goToDetail"
     >
 
-      <el-table-column min-width="180" align="center" :label="$t('lab.name')" sortable prop="name">
+      <el-table-column min-width="180" align="center" :label="$t('lab.pi')">
         <template slot-scope="scope">
-          <span>{{ scope.row.name }}</span>
+          <span>{{ scope.row.pi && scope.row.pi.name }}</span>
         </template>
       </el-table-column>
 
@@ -29,11 +29,6 @@
         </template>
       </el-table-column>
 
-      <el-table-column min-width="180" align="center" :label="$t('lab.pi')">
-        <template slot-scope="scope">
-          <span>{{ scope.row.pi && scope.row.pi.name }}</span>
-        </template>
-      </el-table-column>
     </el-table>
 
     <pagination

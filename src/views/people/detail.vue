@@ -9,6 +9,8 @@
 
     <attachments v-if="type !== 'create'" :type="type" :data-source-url="'/api/attachment/people/' + peopleId " />
 
+    <student-achievements-table v-if="type !== 'create'" :type="type" :people-id="peopleId" />
+
   </div>
 </template>
 <script>
@@ -17,10 +19,11 @@ import QtForm from '../../components/Form/QtForm'
 import { deleteRequest } from '../../utils/delete'
 import { closeView } from '../../utils/tag-view'
 import { apiDelete } from '../../api/people'
+import StudentAchievementsTable from './components/StudentAchievementsTable'
 
 export default {
   name: 'PeopleDetail',
-  components: { QtForm, Attachments },
+  components: { StudentAchievementsTable, QtForm, Attachments },
   data() {
     return {
       tempRoute: {},

@@ -94,5 +94,16 @@ export default {
     co_supervisor: '联培负责人',
     midterm_assessment_status: '年度考核进展',
     opening_assessment_status: '开题考核进展'
+  },
+  student_achievements: {
+    research: {
+      title: '参与科研项目名称',
+      leader_name: '项目负责人',
+      type: '项目性质',
+      col_type: '纵向项目类别',
+      start_month: '参与开始时间',
+      end_month: '参与结束时间',
+      remark: '备注'
+    }
   }
 }

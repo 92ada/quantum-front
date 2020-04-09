@@ -58,11 +58,13 @@ export default {
         url: url,
         method: 'get'
       }).then(res => {
-        console.log("in QtForm created", url, res)
+        console.log('in QtForm created', url, res)
         this.dataSource = Object.assign([], this.dataSource, this.dataSource.push({
           title: { index: res.index },
-          columns: hideId(res.data)
+          columns: hideId(res.data).filter(x => !x.hidden)
         }))
+
+        console.log(this.dataSource)
 
         this.setTitleName()
         this.setLabelName()
