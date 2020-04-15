@@ -14,6 +14,7 @@
     </el-upload>
 
     <el-switch
+      v-if="forceMode"
       v-model="force"
       active-text="覆盖模式"
     />
@@ -26,6 +27,10 @@ import { downloadByUrl } from '../../api/excel'
 export default {
   name: 'UploadFile',
   props: {
+    forceMode: {
+      type: Boolean,
+      default: false
+    },
     url: {
       type: String,
       default: ''

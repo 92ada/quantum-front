@@ -1,7 +1,7 @@
 <template>
   <div class="app-container">
 
-    <upload-file v-if="peopleType" v-permission="['edit_people']" :url="getUploadUrl()" style="float: right;" />
+    <upload-file v-if="peopleType" v-permission="['edit_people']" :url="getUploadUrl()" force-mode style="float: right;" />
 
     <qt-search
       :params-source="{}"

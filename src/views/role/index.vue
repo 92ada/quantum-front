@@ -2,8 +2,7 @@
   <div class="app-container">
     <qt-search
       :params-source="{}"
-      i18n-index="people"
-      search-url="/people"
+      search-url="/role"
     />
     <el-table
       v-loading="listLoading"
