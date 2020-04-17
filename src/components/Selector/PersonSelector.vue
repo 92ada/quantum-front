@@ -6,6 +6,7 @@
       value-key="id"
       filterable
       remote
+      clearable
       :placeholder="$t('common.pleaseSearch')"
       :remote-method="remoteMethod"
       :loading="loading"
