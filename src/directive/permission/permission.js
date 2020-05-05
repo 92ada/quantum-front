@@ -11,6 +11,7 @@ export default {
       const permissionRoles = value
 
       const hasPermission = roles.some(role => {
+        role = role.trim()
         return permissionRoles.includes(role)
       })
 

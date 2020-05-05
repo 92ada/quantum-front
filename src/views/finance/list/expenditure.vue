@@ -1,6 +1,6 @@
 <template>
   <div class="app-container">
-    <upload-file v-permission="['edit_finance,edit_finance_expenditure']" url="/api/excel/finance/exps" style="float: right;" />
+<!--    <upload-file v-permission="['edit_finance,edit_finance_expenditure']" url="/api/excel/finance/exps" style="float: right;" />-->
 
     <qt-search
       :params-source="{}"
@@ -23,9 +23,9 @@
     >
       <el-table-column type="index" align="center" width="80" sortable prop="id" />
 
-      <el-table-column align="center" :label="$t('finance.expenditure.expenditure_no')" width="180" sortable prop="id">
+      <el-table-column align="center" :label="$t('finance.expenditure.expenditureNo')" width="180" sortable prop="id">
         <template slot-scope="scope">
-          <span>{{ scope.row.expenditure_no }}</span>
+          <span>{{ scope.row.expenditureNo }}</span>
         </template>
       </el-table-column>
 

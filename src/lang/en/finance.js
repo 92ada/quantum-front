@@ -31,7 +31,7 @@ export default {
   },
   expenditure: {
     TITLE: '',
-    expenditure_no: 'Expenditure No',
+    expenditureNo: 'Expenditure No',
     summary: 'Abstract',
     expenditure_id: 'Expenditure ID',
     lab: 'Lab',

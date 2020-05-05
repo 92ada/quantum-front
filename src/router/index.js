@@ -245,97 +245,97 @@ export const asyncRoutes = [
       }
     ]
   },
-  // {
-  //   path: '/finance',
-  //   component: Layout,
-  //   meta: {
-  //     title: 'finance',
-  //     icon: 'money',
-  //     roles: ['finance']
-  //   },
-  //   children: [
-  //     {
-  //       path: 'expenditure/create_index',
-  //       component: () => import('@/views/finance/expCreateIndex'),
-  //       name: 'expCreateIndex',
-  //       meta: { title: 'create', activeMenu: '/finance' },
-  //       hidden: true
-  //     },
-  //     {
-  //       path: ':type(expenditure)/:exp_type(\\w+)/:action_type(create)',
-  //       component: () => import('@/views/finance/detail'),
-  //       name: 'expCreate',
-  //       meta: { title: 'create', activeMenu: '/finance' },
-  //       hidden: true
-  //     },
-  //     {
-  //       path: ':type(social_insurance)/:id(\\d+)/:action_type(edit)',
-  //       component: () => import('@/views/finance/insuranceDetail'),
-  //       name: 'insuranceEdit',
-  //       meta: { title: 'edit', activeMenu: '/finance' },
-  //       hidden: true
-  //     },
-  //     {
-  //       path: ':type(social_insurance)/:action_type(create)',
-  //       component: () => import('@/views/finance/insuranceDetail'),
-  //       name: 'insuranceCreate',
-  //       meta: { title: 'create', activeMenu: '/finance' },
-  //       hidden: true
-  //     },
-  //     {
-  //       path: ':type(social_insurance)/:id(\\d+)',
-  //       component: () => import('@/views/finance/insuranceDetail'),
-  //       name: 'insuranceInfo',
-  //       meta: { title: 'detail', activeMenu: '/finance' },
-  //       hidden: true
-  //     },
-  //     {
-  //       path: ':type(\\w+)/:id(\\d+)/:action_type(edit)',
-  //       component: () => import('@/views/finance/detail'),
-  //       name: 'financeEdit',
-  //       meta: { title: 'edit', activeMenu: '/finance' },
-  //       hidden: true
-  //     },
-  //     {
-  //       path: ':type(\\w+)/:action_type(create)',
-  //       component: () => import('@/views/finance/detail'),
-  //       name: 'financeCreate',
-  //       meta: { title: 'create', activeMenu: '/finance' },
-  //       hidden: true
-  //     },
-  //     {
-  //       path: ':type(\\w+)/:id(\\d+)',
-  //       component: () => import('@/views/finance/detail'),
-  //       name: 'financeInfo',
-  //       meta: { title: 'detail', activeMenu: '/finance' },
-  //       hidden: true
-  //     },
-  //     {
-  //       path: 'social_insurance',
-  //       component: () => import('@/views/finance/list/social_insurance'),
-  //       name: 'insuranceList',
-  //       meta: { title: 'social_insurance', icon: 'chart', roles: ['finance_social_insurance', 'finance'] }
-  //     },
-  //     {
-  //       path: 'social_funds',
-  //       component: () => import('@/views/finance/list/social_funds'),
-  //       name: 'fundsList',
-  //       meta: { title: 'social_funds', icon: 'chart', roles: ['finance_social_fund', 'finance'] }
-  //     },
-  //     {
-  //       path: 'expenditure',
-  //       component: () => import('@/views/finance/list/expenditure'),
-  //       name: 'expList',
-  //       meta: { title: 'expenditure', icon: 'chart', roles: ['finance_exp', 'finance'] }
-  //     },
-  //     {
-  //       path: '',
-  //       component: () => import('@/views/finance/index'),
-  //       name: 'finance',
-  //       hidden: true
-  //     }
-  //   ]
-  // },
+  {
+    path: '/finance',
+    component: Layout,
+    meta: {
+      title: 'finance',
+      icon: 'money',
+      roles: ['finance']
+    },
+    children: [
+      {
+        path: 'expenditure/create_index',
+        component: () => import('@/views/finance/expCreateIndex'),
+        name: 'expCreateIndex',
+        meta: { title: 'create', activeMenu: '/finance' },
+        hidden: true
+      },
+      {
+        path: ':type(expenditure)/:exp_type(\\w+)/:action_type(create)',
+        component: () => import('@/views/finance/detail'),
+        name: 'expCreate',
+        meta: { title: 'create', activeMenu: '/finance' },
+        hidden: true
+      },
+      {
+        path: ':type(social_insurance)/:id(\\d+)/:action_type(edit)',
+        component: () => import('@/views/finance/insuranceDetail'),
+        name: 'insuranceEdit',
+        meta: { title: 'edit', activeMenu: '/finance' },
+        hidden: true
+      },
+      {
+        path: ':type(social_insurance)/:action_type(create)',
+        component: () => import('@/views/finance/insuranceDetail'),
+        name: 'insuranceCreate',
+        meta: { title: 'create', activeMenu: '/finance' },
+        hidden: true
+      },
+      {
+        path: ':type(social_insurance)/:id(\\d+)',
+        component: () => import('@/views/finance/insuranceDetail'),
+        name: 'insuranceInfo',
+        meta: { title: 'detail', activeMenu: '/finance' },
+        hidden: true
+      },
+      {
+        path: ':type(\\w+)/:id(\\d+)/:action_type(edit)',
+        component: () => import('@/views/finance/detail'),
+        name: 'financeEdit',
+        meta: { title: 'edit', activeMenu: '/finance' },
+        hidden: true
+      },
+      {
+        path: ':type(\\w+)/:action_type(create)',
+        component: () => import('@/views/finance/detail'),
+        name: 'financeCreate',
+        meta: { title: 'create', activeMenu: '/finance' },
+        hidden: true
+      },
+      {
+        path: ':type(\\w+)/:id(\\d+)',
+        component: () => import('@/views/finance/detail'),
+        name: 'financeInfo',
+        meta: { title: 'detail', activeMenu: '/finance' },
+        hidden: true
+      },
+      {
+        path: 'social_insurance',
+        component: () => import('@/views/finance/list/social_insurance'),
+        name: 'insuranceList',
+        meta: { title: 'social_insurance', icon: 'chart', roles: ['finance_social_insurance', 'finance'] }
+      },
+      {
+        path: 'social_funds',
+        component: () => import('@/views/finance/list/social_funds'),
+        name: 'fundsList',
+        meta: { title: 'social_funds', icon: 'chart', roles: ['finance_social_fund', 'finance'] }
+      },
+      {
+        path: 'expenditure',
+        component: () => import('@/views/finance/list/expenditure'),
+        name: 'expList',
+        meta: { title: 'expenditure', icon: 'chart', roles: ['finance_exp', 'finance'] }
+      },
+      {
+        path: '',
+        component: () => import('@/views/finance/index'),
+        name: 'finance',
+        hidden: true
+      }
+    ]
+  },
   {
     path: '/research',
     component: Layout,

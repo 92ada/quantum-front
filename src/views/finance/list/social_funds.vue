@@ -1,6 +1,6 @@
 <template>
   <div class="app-container">
-    <upload-file v-permission="['edit_finance, edit_finance_social_funds']" url="/api/excel/finance/social_funds" style="float: right;" />
+<!--    <upload-file v-permission="['edit_finance, edit_finance_social_funds']" url="/api/excel/finance/social_funds" style="float: right;" />-->
 
     <qt-search
       :params-source="{}"
