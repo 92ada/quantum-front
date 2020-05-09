@@ -1,6 +1,6 @@
 <template>
   <el-row :gutter="40" class="panel-group">
-    <el-col v-permission="['people']" :xs="12" :sm="12" :lg="6" class="card-panel-col">
+    <el-col v-permission="['people', 'people_inlab']" :xs="12" :sm="12" :lg="6" class="card-panel-col">
       <div class="card-panel" @click="goTo('people')">
         <div class="card-panel-icon-wrapper icon-people">
           <svg-icon icon-class="peoples" class-name="card-panel-icon" />

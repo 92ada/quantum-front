@@ -183,7 +183,7 @@ export const asyncRoutes = [
     meta: {
       icon: 'peoples',
       title: 'people',
-      roles: ['people']
+      roles: ['people', 'people_inlab']
     },
     children: [
       {
@@ -211,31 +211,31 @@ export const asyncRoutes = [
         path: 'researcher',
         component: () => import('@/views/people/list'),
         name: 'researcher',
-        meta: { title: 'researcher', icon: 'list', roles: ['people_researcher', 'people'] }
+        meta: { title: 'researcher', icon: 'list', roles: ['people_inlab', 'people'] }
       },
       {
         path: 'administration',
         component: () => import('@/views/people/list'),
         name: 'administration',
-        meta: { title: 'administration', icon: 'list', roles: ['people_admin', 'people'] }
+        meta: { title: 'administration', icon: 'list', roles: ['people_inlab', 'people'] }
       },
       {
         path: 'visitor',
         component: () => import('@/views/people/list'),
         name: 'visitor',
-        meta: { title: 'visitor', icon: 'list', roles: ['people_visitor', 'people'] }
+        meta: { title: 'visitor', icon: 'list', roles: ['people_inlab', 'people'] }
       },
       {
         path: 'postdoctoral',
         component: () => import('@/views/people/list'),
         name: 'postdoctoral',
-        meta: { title: 'postdoctoral', icon: 'list', roles: ['people_postdoctoral', 'people'] }
+        meta: { title: 'postdoctoral', icon: 'list', roles: ['people_inlab', 'people'] }
       },
       {
         path: 'student',
         component: () => import('@/views/people/list'),
         name: 'student',
-        meta: { title: 'student', icon: 'list', roles: ['people_student', 'people'] }
+        meta: { title: 'student', icon: 'list', roles: ['people_inlab', 'people'] }
       },
       {
         path: '',

@@ -48,11 +48,25 @@ service.interceptors.response.use(
    */
 
   response => {
-    const status = response.status
-    const res = response.data
+    return response.data
+  },
+  error => {
+    const status = Number(error.response.status)
+    const message = error.message
+
+    console.log(status)
+
     if (status === 400) {
       Message({
-        message: res.message || 'Error',
+        message: message || 'Error',
+        type: 'error',
+        duration: 5 * 1000
+      })
+    }
+
+    if (status === 403) {
+      Message({
+        message: '抱歉，您没有该页面的访问权限',
         type: 'error',
         duration: 5 * 1000
       })
@@ -60,7 +74,7 @@ service.interceptors.response.use(
 
     if (status >= 500) {
       Message({
-        message: res.message || 'Error',
+        message: message || 'Error',
         type: 'error',
         duration: 5 * 1000
       })
@@ -78,18 +92,9 @@ service.interceptors.response.use(
           })
         })
       }
-      return Promise.reject(new Error(res.message || 'Error'))
-    } else {
-      return res
+      return Promise.reject(new Error(message || 'Error'))
     }
-  },
-  error => {
-    console.log('err' + error) // for debug
-    Message({
-      message: error.message,
-      type: 'error',
-      duration: 5 * 1000
-    })
+
     return Promise.reject(error)
   }
 )

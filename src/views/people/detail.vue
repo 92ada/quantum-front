@@ -1,8 +1,8 @@
 <template>
   <div class="app-container">
     <el-link v-if="type === 'edit'" icon="el-icon-edit" @click="closeThisView">{{ $t('common.cancel_edit') }}</el-link>
-    <el-link v-if="type === 'edit'" v-permission="['delete_people']" icon="el-icon-edit" style="margin-left:20px;" @click="onDelete">{{ $t('common.delete') }}</el-link>
-    <el-link v-if="type === 'show'" v-permission="['edit_people']" icon="el-icon-edit" @click="goToEdit">{{ $t('common.edit') }}</el-link>
+    <el-link v-if="type === 'edit'" v-permission="['delete_people', 'delete_people_inlab']" icon="el-icon-edit" style="margin-left:20px;" @click="onDelete">{{ $t('common.delete') }}</el-link>
+    <el-link v-if="type === 'show'" v-permission="['edit_people', 'edit_people_inlab']" icon="el-icon-edit" @click="goToEdit">{{ $t('common.edit') }}</el-link>
 
     <qt-form v-if="type !== 'create'" :type="type" :data-source-url="[requestUrl + '/' + peopleId + '/base/structure', requestUrl + '/' + peopleId + '/extra/structure']" />
     <qt-form v-else type="create" :data-source-url="[requestUrl + '/base/structure', requestUrl + '/' + idOrType + '/structure']" />
