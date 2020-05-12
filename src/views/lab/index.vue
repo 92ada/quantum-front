@@ -4,6 +4,8 @@
       :params-source="{}"
       i18n-index="lab"
       search-url="/lab"
+      export-excel
+      :export-query="{}"
     />
 
     <el-link class="create-btn" icon="el-icon-edit" @click="goToCreate">{{ $t('common.new') }}</el-link>
