@@ -251,7 +251,7 @@ export const asyncRoutes = [
     meta: {
       title: 'finance',
       icon: 'money',
-      roles: ['finance']
+      roles: ['finance', 'finance_expenditure', 'finance_social_funds', 'finance_social_insurance']
     },
     children: [
       {
@@ -320,13 +320,13 @@ export const asyncRoutes = [
         path: 'social_funds',
         component: () => import('@/views/finance/list/social_funds'),
         name: 'fundsList',
-        meta: { title: 'social_funds', icon: 'chart', roles: ['finance_social_fund', 'finance'] }
+        meta: { title: 'social_funds', icon: 'chart', roles: ['finance_social_funds', 'finance'] }
       },
       {
         path: 'expenditure',
         component: () => import('@/views/finance/list/expenditure'),
         name: 'expList',
-        meta: { title: 'expenditure', icon: 'chart', roles: ['finance_exp', 'finance'] }
+        meta: { title: 'expenditure', icon: 'chart', roles: ['finance_expenditure', 'finance'] }
       },
       {
         path: '',
@@ -342,7 +342,7 @@ export const asyncRoutes = [
     meta: {
       title: 'research',
       icon: 'example',
-      roles: ['research']
+      roles: ['research', 'research_patent', 'research_paper', 'research_project', 'research_reward']
     },
     children: [
       {
@@ -404,7 +404,7 @@ export const asyncRoutes = [
     meta: {
       title: 'daily',
       icon: 'documentation',
-      roles: ['daily']
+      roles: ['daily', 'daily_hosting', 'daily_report', 'daily_travel', 'daily_visit']
     },
     children: [
       {
@@ -466,7 +466,7 @@ export const asyncRoutes = [
     meta: {
       title: 'equipment',
       icon: 'lock',
-      roles: ['equipment']
+      roles: ['equipment', 'equipment_purchasing', 'equipment_stock']
     },
     children: [
       {
