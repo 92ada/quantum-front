@@ -6,7 +6,7 @@
       :params-source="{}"
       i18n-index="daily.report"
       search-url="/daily/report"
-      export
+      export-excel
     />
 
     <el-link v-permission="['edit_daily_report', 'edit_daily']" class="create-btn" icon="el-icon-edit" @click="goToCreate">{{ $t('common.new') }}</el-link>

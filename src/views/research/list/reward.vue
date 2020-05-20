@@ -1,9 +1,12 @@
 <template>
   <div class="app-container">
+    <upload-file v-permission="['edit_research_reward', 'edit_research']" force-mode url="/api/excel/research/reward" style="float: right;" />
+
     <qt-search
       :params-source="{level: ['国家级', '省部级', '地市级', '其他']}"
       i18n-index="research.reward_info"
       search-url="/research/reward"
+      export-excel
     />
 
     <el-link v-permission="['edit_research_reward', 'edit_research']" class="create-btn" icon="el-icon-edit" @click="goToCreate">{{ $t('common.new') }}</el-link>
@@ -26,7 +29,7 @@
 
       <el-table-column width="180" align="center" :label="$t('research.reward_info.rewarded')">
         <template slot-scope="scope">
-          <span>{{ scope.row.rewarded }}</span>
+          <span>{{ renderJson(scope.row.rewardedJson) }}</span>
         </template>
       </el-table-column>
 
@@ -57,10 +60,12 @@
 import { fetchRewardList } from '../../../api/research'
 import Pagination from '../../../components/Pagination/index'
 import QtSearch from '../../../components/Search/QtSearch' // Secondary package based on el-pagination
+import UploadFile from '../../../components/Upload/UploadFile'
+import { renderJson } from './util'
 
 export default {
   name: 'RewardList',
-  components: { QtSearch, Pagination },
+  components: { QtSearch, Pagination, UploadFile },
   data() {
     return {
       list: null,
@@ -76,6 +81,7 @@ export default {
     this.getList()
   },
   methods: {
+    renderJson,
     getList() {
       this.listLoading = true
       fetchRewardList({ ...this.listQuery, ...this.$route.query }).then(response => {

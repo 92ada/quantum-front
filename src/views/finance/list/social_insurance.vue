@@ -1,6 +1,6 @@
 <template>
   <div class="app-container">
-<!--    <upload-file v-permission="['edit_finance, edit_finance_social_insurance']" url="/api/excel/finance/social_insurances" style="float: right;" />-->
+    <upload-file v-permission="['edit_finance, edit_finance_social_insurance']" url="/api/excel/finance/social_insurances" style="float: right;" />
 
     <qt-search
       :params-source="{}"
@@ -31,9 +31,9 @@
         </template>
       </el-table-column>
 
-      <el-table-column min-width="100" align="center" :label="$t('finance.social_insurance.fund_source')">
+      <el-table-column min-width="100" align="center" :label="$t('finance.social_insurance.date')">
         <template slot-scope="scope">
-          <span>{{ scope.row.fund_source }}</span>
+          <span>{{ scope.row.date }}</span>
         </template>
       </el-table-column>
 

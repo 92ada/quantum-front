@@ -1,6 +1,6 @@
 <template>
   <div class="app-container">
-<!--    <upload-file v-permission="['edit_finance,edit_finance_expenditure']" url="/api/excel/finance/exps" style="float: right;" />-->
+    <!--    <upload-file v-permission="['edit_finance,edit_finance_expenditure']" url="/api/excel/finance/exps" style="float: right;" />-->
 
     <qt-search
       :params-source="{}"
@@ -31,7 +31,7 @@
 
       <el-table-column min-width="180" align="center" :label="$t('finance.expenditure.summary')">
         <template slot-scope="scope">
-          <span>{{ scope.row.title || scope.row.matter || scope.row.subject }}</span>
+          <span>{{ scope.row.summary }}</span>
         </template>
       </el-table-column>
 

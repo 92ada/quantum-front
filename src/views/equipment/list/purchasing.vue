@@ -1,6 +1,6 @@
 <template>
   <div class="app-container">
-    <upload-file v-permission="['edit_equipment, edit_equipment_purchasing']" url="/api/excel/equipment/purchasing" style="float: right;" />
+    <upload-file v-permission="['edit_equipment, edit_equipment_purchasing']" force-mode url="/api/excel/equipment/purchasing" style="float: right;" />
 
     <qt-search
       :params-source="{}"
@@ -33,13 +33,13 @@
 
       <el-table-column min-width="180" align="center" :label="$t('equipment.purchasing.pi')">
         <template slot-scope="scope">
-          <span>{{ scope.row.pi }}</span>
+          <span>{{ scope.row.pi && scope.row.pi.name }}</span>
         </template>
       </el-table-column>
 
       <el-table-column min-width="180" align="center" :label="$t('equipment.purchasing.handler')">
         <template slot-scope="scope">
-          <span>{{ scope.row.handler }}</span>
+          <span>{{ scope.row.handler && scope.row.handler.name }}</span>
         </template>
       </el-table-column>
     </el-table>

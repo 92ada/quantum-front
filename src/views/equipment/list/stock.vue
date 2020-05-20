@@ -1,6 +1,6 @@
 <template>
   <div class="app-container">
-    <upload-file v-permission="['edit_equipment, edit_equipment_stock']" url="/api/excel/equipment/stock" style="float: right;" />
+    <upload-file v-permission="['edit_equipment, edit_equipment_stock']" force-mode url="/api/excel/equipment/stock" style="float: right;" />
 
     <qt-search
       :params-source="{}"
@@ -45,7 +45,7 @@
 
       <el-table-column min-width="180" align="center" :label="$t('equipment.stock.taker')">
         <template slot-scope="scope">
-          <span>{{ scope.row.taker }}</span>
+          <span>{{ scope.row.taker && scope.row.taker.name }}</span>
         </template>
       </el-table-column>
     </el-table>

@@ -6,7 +6,7 @@
       :params-source="{}"
       i18n-index="daily.travel"
       search-url="/daily/travel"
-      export
+      export-excel
     />
 
     <el-link v-permission="['edit_daily_travel', 'edit_daily']" class="create-btn" icon="el-icon-edit" @click="goToCreate">{{ $t('common.new') }}</el-link>
@@ -23,7 +23,7 @@
 
       <el-table-column min-width="420" align="center" :label="$t('daily.travel.traveler')" sortable prop="name">
         <template slot-scope="scope">
-          <span>{{ scope.row.travelerJson }}</span>
+          <span>{{ scope.row.traveler && scope.row.traveler.name }}</span>
         </template>
       </el-table-column>
 

@@ -2,6 +2,7 @@ export default {
   social_insurance: {
     sid: 'SID',
     name: '姓名',
+    date: '日期',
     fund_source: '经费来源',
     receivable: '应收金额',
     individual: '个人',

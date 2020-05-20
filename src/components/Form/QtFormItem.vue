@@ -2,7 +2,7 @@
   <el-form-item :label="label" class="form-item">
     <slot v-if="editable" />
     <div v-else class="not-editable">
-      <el-tag v-if="type === 'enumerated' && content" :type="content | statusFilter">
+      <el-tag v-if="type === 'enumerated' && content || content === false" :type="content | statusFilter">
         {{ format(content.toString()) }}
       </el-tag>
       <span v-else>{{ content }}</span>

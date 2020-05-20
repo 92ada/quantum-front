@@ -1,9 +1,12 @@
 <template>
   <div class="app-container">
+    <upload-file v-permission="['edit_research_patent', 'edit_research']" force-mode url="/api/excel/research/patent" style="float: right;" />
+
     <qt-search
       :params-source="{}"
       i18n-index="research"
       search-url="/research/patent"
+      export-excel
     />
 
     <el-link v-permission="['edit_research_patent', 'edit_research']" class="create-btn" icon="el-icon-edit" @click="goToCreate">{{ $t('common.new') }}</el-link>
@@ -26,7 +29,7 @@
 
       <el-table-column min-width="180" align="center" :label="$t('research.applicant')">
         <template slot-scope="scope">
-          <span>{{ renderPeople(scope.row.applicantJson) }}</span>
+          <span>{{ renderJson(scope.row.applicantJson) }}</span>
         </template>
       </el-table-column>
 
@@ -53,10 +56,12 @@
 import { fetchPatentList } from '../../../api/research'
 import Pagination from '../../../components/Pagination/index'
 import QtSearch from '../../../components/Search/QtSearch' // Secondary package based on el-pagination
+import UploadFile from '../../../components/Upload/UploadFile'
+import { renderJson } from './util'
 
 export default {
   name: 'PatentList',
-  components: { QtSearch, Pagination },
+  components: { QtSearch, Pagination, UploadFile },
   filters: {
     statusFilter(status) {
       const statusMap = {
@@ -82,9 +87,7 @@ export default {
     this.getList()
   },
   methods: {
-    renderPeople(array) {
-      return array.join(', ')
-    },
+    renderJson,
     getList() {
       this.listLoading = true
       fetchPatentList({ ...this.listQuery, ...this.$route.query }).then(response => {
