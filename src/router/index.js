@@ -403,8 +403,7 @@ export const asyncRoutes = [
     component: Layout,
     meta: {
       title: 'daily',
-      icon: 'documentation',
-      roles: ['daily', 'daily_hosting', 'daily_report', 'daily_travel', 'daily_visit']
+      icon: 'documentation'
     },
     children: [
       {
@@ -432,25 +431,25 @@ export const asyncRoutes = [
         path: 'travel',
         component: () => import('@/views/daily/list/travel'),
         name: 'travel',
-        meta: { title: 'travel', icon: 'guide', roles: ['daily_travel', 'daily'] }
+        meta: { title: 'travel', icon: 'guide' }
       },
       {
         path: 'visit',
         component: () => import('@/views/daily/list/visit'),
         name: 'visit',
-        meta: { title: 'visit', icon: 'guide', roles: ['daily_visit', 'daily'] }
+        meta: { title: 'visit', icon: 'guide' }
       },
       {
         path: 'report',
         component: () => import('@/views/daily/list/report'),
         name: 'report',
-        meta: { title: 'report', icon: 'guide', roles: ['daily_report', 'daily'] }
+        meta: { title: 'report', icon: 'guide' }
       },
       {
         path: 'hosting',
         component: () => import('@/views/daily/list/hosting'),
         name: 'hosting',
-        meta: { title: 'hosting', icon: 'guide', roles: ['daily_hosting', 'daily'] }
+        meta: { title: 'hosting', icon: 'guide' }
       },
       {
         path: '',
