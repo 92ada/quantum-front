@@ -1,5 +1,5 @@
 <template>
-  <el-form-item :label="label" class="form-item">
+  <el-form-item :label="label" class="form-item" :required="required">
     <slot v-if="editable" />
     <div v-else class="not-editable">
       <el-tag v-if="type === 'enumerated' && content || content === false" :type="content | statusFilter">
@@ -26,6 +26,10 @@ export default {
   },
   props: {
     editable: {
+      type: Boolean,
+      default: false
+    },
+    required: {
       type: Boolean,
       default: false
     },

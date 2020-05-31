@@ -5,7 +5,6 @@
       v-model="childrenSelected"
       value-key="id"
       multiple
-      allow-create
       filterable
       remote
       :placeholder="$t('common.pleaseSearch')"
