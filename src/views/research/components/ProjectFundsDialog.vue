@@ -58,7 +58,6 @@ export default {
     // api
     postData(data) {
       const projectId = this.dataSource.projectId
-      console.log("create!!!!!!", data)
 
       if (!this.loading) {
         this.loading = true

@@ -92,16 +92,25 @@ export function fetchProjectMemberByProject(projectId) {
   })
 }
 
-export function createProjectMember(projectId, peopleId) {
+export function createProjectMember(projectId, data) {
   return request({
-    url: `/api/research/project/${projectId}/member/${peopleId}`,
-    method: 'post'
+    url: `/api/research/project/${projectId}/member`,
+    method: 'post',
+    data
   })
 }
 
-export function deleteProjectMember(projectId, peopleId) {
+export function updateProjectMember(projectId, memberId, data) {
   return request({
-    url: `/api/research/project/${projectId}/member/${peopleId}`,
+    url: `/api/research/project/${projectId}/member/${memberId}`,
+    method: 'put',
+    data
+  })
+}
+
+export function deleteProjectMember(projectId, memberId) {
+  return request({
+    url: `/api/research/project/${projectId}/member/${memberId}`,
     method: 'delete'
   })
 }

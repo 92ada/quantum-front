@@ -2,7 +2,7 @@
   <div>
     <div v-for="(form, index) in dataSource" :key="index" class="form-container">
       <h3>{{ form.title.name }}</h3>
-      <el-form label-position="right" label-width="120px" size="small" :model="postForms[index].data" :ref="'form'+index" :rules="rules">
+      <el-form :ref="'form'+index" label-position="right" label-width="120px" size="small" :model="postForms[index].data" :rules="rules">
         <el-row v-for="row_index in Math.ceil(form.columns.length/2)" :key="row_index" class="form-row">
           <qt-form-col :col="form.columns[(row_index-1) *2]" :post-form="postForms[index].data" />
           <qt-form-col v-if="(row_index-1) * 2 + 1 < form.columns.length" :col="form.columns[(row_index-1) * 2 + 1]" :post-form="postForms[index].data" />
@@ -166,7 +166,7 @@ export default {
         case 'create':
           console.log(this.$refs['form0'])
           this.$refs['form0'][0].validate((valid) => {
-            console.log("????", valid)
+            console.log('????', valid)
             if (valid) { this.postData(finalPostForm) }
           })
       }

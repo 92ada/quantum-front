@@ -9,7 +9,7 @@
 
     <project-member-table :type="type" v-if="researchType === 'project' && type !== 'create'" :project-id="researchId" />
     <project-funds-table :type="type" v-if="researchType === 'project' && type !== 'create'" :project-id="researchId" />
-    <project-admin-table :type="type" v-if="researchType === 'project' && type !== 'create'" :project-id="researchId" />
+<!--    <project-admin-table :type="type" v-if="researchType === 'project' && type !== 'create'" :project-id="researchId" />-->
 
     <attachments
       v-if="type !== 'create'"
