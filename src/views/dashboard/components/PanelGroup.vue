@@ -24,18 +24,18 @@
         </div>
       </div>
     </el-col>
-    <el-col v-permission="['finance', 'finance_expenditure', 'finance_social_funds', 'finance_social_insurance']" :xs="12" :sm="12" :lg="6" class="card-panel-col">
-      <div class="card-panel" @click="goTo('finance')">
-        <div class="card-panel-icon-wrapper icon-finance">
-          <svg-icon icon-class="money" class-name="card-panel-icon" />
-        </div>
-        <div class="card-panel-description">
-          <div class="card-panel-text">
-            {{ $t('route.finance') }}
-          </div>
-        </div>
-      </div>
-    </el-col>
+    <!--    <el-col v-permission="['finance', 'finance_expenditure', 'finance_social_funds', 'finance_social_insurance']" :xs="12" :sm="12" :lg="6" class="card-panel-col">-->
+    <!--      <div class="card-panel" @click="goTo('finance')">-->
+    <!--        <div class="card-panel-icon-wrapper icon-finance">-->
+    <!--          <svg-icon icon-class="money" class-name="card-panel-icon" />-->
+    <!--        </div>-->
+    <!--        <div class="card-panel-description">-->
+    <!--          <div class="card-panel-text">-->
+    <!--            {{ $t('route.finance') }}-->
+    <!--          </div>-->
+    <!--        </div>-->
+    <!--      </div>-->
+    <!--    </el-col>-->
     <el-col v-permission="['daily', 'daily_hosting', 'daily_report', 'daily_travel', 'daily_visit']" :xs="12" :sm="12" :lg="6" class="card-panel-col">
       <div class="card-panel" @click="goTo('daily')">
         <div class="card-panel-icon-wrapper icon-daily">
