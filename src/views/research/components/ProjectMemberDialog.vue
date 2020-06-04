@@ -10,6 +10,14 @@
           <el-input v-model="postForm.memberName" autocomplete="off" />
         </el-form-item>
 
+        <el-form-item :label="$t('research.project_member_info.phone')" class="flight-form-item">
+          <el-input v-model="postForm.phone" autocomplete="off" />
+        </el-form-item>
+
+        <el-form-item :label="$t('research.project_member_info.email')" class="flight-form-item">
+          <el-input v-model="postForm.email" autocomplete="off" />
+        </el-form-item>
+
         <el-form-item :label="$t('research.project_member_info.institution')" class="flight-form-item">
           <el-input v-model="postForm.institution" autocomplete="off" />
         </el-form-item>
@@ -50,7 +58,7 @@ export default {
     }
   },
   created() {
-    this.person = Object.assign({}, this.person, this.dataSource.person)
+    this.postForm = Object.assign({}, this.dataSource.data, this.postForm)
   },
   methods: {
     handleSubmit() {

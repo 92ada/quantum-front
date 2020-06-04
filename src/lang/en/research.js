@@ -62,6 +62,8 @@ export default {
     TITLE: '',
     sid: 'ID',
     name: 'Name',
+    phone: 'Contact',
+    email: 'Email',
     person: 'Person',
     institution: 'Institution',
     position_title: 'Position Title',

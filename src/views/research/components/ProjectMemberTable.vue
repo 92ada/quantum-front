@@ -18,6 +18,18 @@
         </template>
       </el-table-column>
 
+      <el-table-column width="180" align="center" :label="$t('research.project_member_info.phone')" >
+        <template slot-scope="scope">
+          <span>{{ scope.row.phone }}</span>
+        </template>
+      </el-table-column>
+
+      <el-table-column width="180" align="center" :label="$t('research.project_member_info.email')" >
+        <template slot-scope="scope">
+          <span>{{ scope.row.email }}</span>
+        </template>
+      </el-table-column>
+
       <el-table-column width="180" align="center" :label="$t('research.project_member_info.institution')">
         <template slot-scope="scope">
           <span>{{ scope.row.institution }}</span>
@@ -45,7 +57,7 @@
       <el-table-column v-if="type !== 'show'" min-width="180" align="center" :label="$t('common.operation')">
         <template slot-scope="scope">
           <project-member-dialog :data-source="{ projectId: projectId, data: scope.row }" type="edit" />
-          <el-button type="text" @click="onDelete(scope.row.peopleId)">{{ $t('common.delete') }}</el-button>
+          <el-button type="text" @click="onDelete(scope.row.id)">{{ $t('common.delete') }}</el-button>
         </template>
       </el-table-column>
 
@@ -79,13 +91,13 @@ export default {
         this.listLoading = false
       })
     },
-    onDelete(peopleId) {
+    onDelete(recordId) {
       this.$confirm('此操作将永久删除该记录, 是否继续?', '提示', {
         confirmButtonText: '确定',
         cancelButtonText: '取消',
         type: 'warning'
       }).then(_ => {
-        deleteProjectMember(this.projectId, peopleId)
+        deleteProjectMember(this.projectId, recordId)
         refresh(this)
       }).then(res => {
         this.$message({

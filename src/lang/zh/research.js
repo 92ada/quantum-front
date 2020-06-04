@@ -69,6 +69,8 @@ export default {
     TITLE: '',
     sid: 'SID',
     name: '姓名',
+    phone: '联系电话',
+    email: '邮箱',
     person: '人员',
     institution: '工作单位',
     position_title: '职位',
