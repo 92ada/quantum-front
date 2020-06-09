@@ -39,7 +39,7 @@
       />
     </form-item>
 
-    <form-item v-if="col.type === 'datetime'" :label="col.name+':'" :editable="col.editable" prop="time" class="form-item">
+    <form-item v-if="col.type === 'datetime'" :label="col.name+':'" :editable="col.editable" :required="col.required" prop="time" class="form-item">
       <el-date-picker
         v-model="postForm[col.index]"
         class="form-date"

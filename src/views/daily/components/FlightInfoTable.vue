@@ -11,13 +11,7 @@
       highlight-current-row
       style="width: 100%"
     >
-
-      <el-table-column align="center" :label="$t('daily.flight_info.id')" width="80" sortable prop="id">
-        <template slot-scope="scope">
-          <span>{{ scope.row.id }}</span>
-        </template>
-      </el-table-column>
-
+      
       <el-table-column min-width="100" align="center" :label="$t('daily.flight_info.departure_site')" sortable prop="name">
         <template slot-scope="scope">
           <span>{{ scope.row.departure_site }}</span>

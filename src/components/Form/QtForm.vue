@@ -2,7 +2,7 @@
   <div>
     <div v-for="(form, index) in dataSource" :key="index" class="form-container">
       <h3>{{ form.title.name }}</h3>
-      <el-form :ref="'form'+index" label-position="right" label-width="120px" size="small" :model="postForms[index].data" :rules="rules">
+      <el-form label-position="right" label-width="120px" size="small">
         <el-row v-for="row_index in Math.ceil(form.columns.length/2)" :key="row_index" class="form-row">
           <qt-form-col :col="form.columns[(row_index-1) *2]" :post-form="postForms[index].data" />
           <qt-form-col v-if="(row_index-1) * 2 + 1 < form.columns.length" :col="form.columns[(row_index-1) * 2 + 1]" :post-form="postForms[index].data" />
@@ -143,6 +143,7 @@ export default {
       }))
     },
     handleSubmit() {
+      // 准备数据
       let tmp_priority = 0
       const finalPostForm = { data: {}}
       for (const postForm of this.postForms) {
@@ -160,15 +161,26 @@ export default {
           finalPostForm.deleteUrl = postForm.deleteUrl
         }
       }
+
+      // 检查必填项
+      const errMessages = []
+      this.dataSource.forEach(form => {
+        form.columns.forEach(item => {
+          if (item.required === true && finalPostForm.data[item.index] === null) {
+            errMessages.push(`${item.name} 不能为空`)
+          }
+        })
+      })
+      if (errMessages.length !== 0) {
+        this.$message.error(errMessages.join('，'))
+        return
+      }
+
+      // 发请求
       switch (this.type) {
         case 'show': return
         case 'edit': this.updateData(finalPostForm); return
-        case 'create':
-          console.log(this.$refs['form0'])
-          this.$refs['form0'][0].validate((valid) => {
-            console.log('????', valid)
-            if (valid) { this.postData(finalPostForm) }
-          })
+        case 'create': this.postData(finalPostForm); return
       }
     },
     // api

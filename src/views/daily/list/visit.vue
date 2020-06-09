@@ -33,11 +33,9 @@
         </template>
       </el-table-column>
 
-      <el-table-column min-width="180" align="center" :label="$t('daily.visit.approval_status')">
-        <template slot-scope="{row}">
-          <el-tag :type="row.approval_status | statusFilter">
-            {{ row.approval_status }}
-          </el-tag>
+      <el-table-column min-width="180" align="center" :label="$t('daily.visit.time')">
+        <template slot-scope="scope">
+            {{ scope.row.time }}
         </template>
       </el-table-column>
     </el-table>
@@ -56,21 +54,11 @@
 import { fetchVisits } from '../../../api/daily'
 import Pagination from '../../../components/Pagination/index' // Secondary package based on el-pagination
 import UploadFile from '../../../components/Upload/UploadFile'
-import QtSearch from '../../../components/Search/QtSearch' // Secondary package based on el-pagination
+import QtSearch from '../../../components/Search/QtSearch'
 
 export default {
   name: 'VisitList',
   components: { Pagination, UploadFile, QtSearch },
-  filters: {
-    statusFilter(status) {
-      const statusMap = {
-        '已批准': 'success',
-        '审批中': 'info',
-        '未提交': 'danger'
-      }
-      return statusMap[status]
-    }
-  },
   data() {
     return {
       list: null,
@@ -102,7 +90,8 @@ export default {
       this.$router.push('/daily/visit/create')
     },
     format(lst) {
-      return lst.join(' ')
+      if (lst) return lst.join(' ')
+      else return ''
     }
   }
 }
