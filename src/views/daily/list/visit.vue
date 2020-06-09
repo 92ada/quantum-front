@@ -35,7 +35,7 @@
 
       <el-table-column min-width="180" align="center" :label="$t('daily.visit.time')">
         <template slot-scope="scope">
-            {{ scope.row.time }}
+          {{ scope.row.time }}
         </template>
       </el-table-column>
     </el-table>
