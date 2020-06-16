@@ -29,7 +29,7 @@
 
       <el-table-column min-width="180" align="center" :label="$t('daily.visit.receptionist')">
         <template slot-scope="scope">
-          <span>{{ format(scope.row.receptionistJson) }}</span>
+          <span>{{ scope.row.receptionist && scope.row.receptionist.name }}</span>
         </template>
       </el-table-column>
 
@@ -89,10 +89,6 @@ export default {
     goToCreate() {
       this.$router.push('/daily/visit/create')
     },
-    format(lst) {
-      if (lst) return lst.join(' ')
-      else return ''
-    }
   }
 }
 </script>

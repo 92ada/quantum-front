@@ -4,7 +4,7 @@
     <el-button v-if="type === 'edit'" type="text" @click="dialogFormVisible = true">{{ $t('common.edit') }}</el-button>
 
     <el-dialog :title="$t('research.project_member_info.TITLE')" :visible.sync="dialogFormVisible" class="dialog">
-      <el-form :model="person" label-width="100px" label-position="left">
+      <el-form label-width="100px" label-position="left">
 
         <el-form-item :label="$t('research.project_member_info.name')" class="flight-form-item">
           <el-input v-model="postForm.memberName" autocomplete="off" />
