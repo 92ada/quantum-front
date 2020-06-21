@@ -36,7 +36,7 @@
     <!--        </div>-->
     <!--      </div>-->
     <!--    </el-col>-->
-    <el-col v-permission="['daily', 'daily_hosting', 'daily_report', 'daily_travel', 'daily_visit']" :xs="12" :sm="12" :lg="6" class="card-panel-col">
+    <el-col :xs="12" :sm="12" :lg="6" class="card-panel-col">
       <div class="card-panel" @click="goTo('daily')">
         <div class="card-panel-icon-wrapper icon-daily">
           <svg-icon icon-class="documentation" class-name="card-panel-icon" />
