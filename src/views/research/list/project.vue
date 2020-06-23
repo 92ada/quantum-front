@@ -29,7 +29,7 @@
 
       <el-table-column width="180" align="center" :label="$t('research.project_info.leader')">
         <template slot-scope="scope">
-          <span>{{ renderJson(scope.row.leaderJson) }}</span>
+          <span>{{ scope.row.leader && scope.row.leader.name }}</span>
         </template>
       </el-table-column>
 
