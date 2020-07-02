@@ -1,7 +1,7 @@
 <template>
   <div class="app-container">
 
-    <upload-file v-if="peopleType" v-permission="['edit_people']" :url="getUploadUrl()" force-mode style="float: right;" />
+    <upload-file v-if="peopleType" v-permission="['edit_people', 'edit_people_inlab']" :url="getUploadUrl()" force-mode style="float: right;" />
 
     <qt-search
       :params-source="{}"
@@ -11,7 +11,7 @@
       :export-query="{ type: peopleType }"
     />
 
-    <el-link v-if="peopleType" v-permission="['edit_people']" class="create-btn" icon="el-icon-edit" @click="goToCreate">{{ $t('common.new') }}</el-link>
+    <el-link v-if="peopleType" v-permission="['edit_people', 'edit_people_inlab']" class="create-btn" icon="el-icon-edit" @click="goToCreate">{{ $t('common.new') }}</el-link>
     <el-table
       v-loading="listLoading"
       :data="list"
