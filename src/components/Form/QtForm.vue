@@ -143,6 +143,20 @@ export default {
       }))
     },
     handleSubmit() {
+      // 检查必填项
+      const errMessages = []
+      this.dataSource.forEach((form, formIndex) => {
+        form.columns.forEach(item => {
+          if (item.required === true && this.postForms[formIndex].data[item.index] === null) {
+            errMessages.push(`${item.name} 不能为空`)
+          }
+        })
+      })
+      if (errMessages.length !== 0) {
+        this.$message.error(errMessages.join('，'))
+        return
+      }
+
       // 准备数据
       let tmp_priority = 0
       const finalPostForm = { data: {}}
@@ -160,20 +174,6 @@ export default {
           finalPostForm.updateUrl = postForm.updateUrl
           finalPostForm.deleteUrl = postForm.deleteUrl
         }
-      }
-
-      // 检查必填项
-      const errMessages = []
-      this.dataSource.forEach(form => {
-        form.columns.forEach(item => {
-          if (item.required === true && finalPostForm.data[item.index] === null) {
-            errMessages.push(`${item.name} 不能为空`)
-          }
-        })
-      })
-      if (errMessages.length !== 0) {
-        this.$message.error(errMessages.join('，'))
-        return
       }
 
       // 发请求

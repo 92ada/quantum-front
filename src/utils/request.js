@@ -52,7 +52,7 @@ service.interceptors.response.use(
   },
   error => {
     const status = Number(error.response.status)
-    const message = error.message
+    const message = error.response.data.message
 
     console.log(status)
 
