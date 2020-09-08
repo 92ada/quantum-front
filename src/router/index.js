@@ -509,6 +509,23 @@ export const asyncRoutes = [
       }
     ]
   },
+  {
+    path: '/log',
+    component: Layout,
+    meta: {
+      roles: ['root'],
+      icon: 'skill',
+      title: 'log'
+    },
+    children: [
+      {
+        path: '',
+        name: 'log',
+        component: () => import('@/views/log/index'),
+        hidden: true
+      }
+    ]
+  },
   { path: '*', redirect: '/404', hidden: true }
 ]
 

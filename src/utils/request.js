@@ -16,7 +16,10 @@ console.log(process.env.VUE_APP_BASE_API)
 service.interceptors.request.use(
   config => {
     // do something before request is sent
-    config.headers['Authorization'] = 'Bearer ' + getToken()
+    const token = getToken()
+    if (token) {
+      config.headers['Authorization'] = 'Bearer ' + token
+    }
     config.headers['Content-Type'] = 'application/json'
 
     // if (store.getters.token) {

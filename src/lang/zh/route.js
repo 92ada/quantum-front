@@ -66,5 +66,10 @@ export default {
    */
   equipment: '固定资产',
   purchasing: '采购',
-  stock: '库存'
+  stock: '库存',
+
+  /**
+   *  path: /log
+   */
+  log: '日志'
 }
