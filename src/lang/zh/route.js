@@ -71,5 +71,11 @@ export default {
   /**
    *  path: /log
    */
-  log: '日志'
+  log: '日志',
+
+  /**
+   *  path: /my
+   */
+  my: '我的',
+  myInfo: '个人信息'
 }

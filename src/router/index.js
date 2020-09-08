@@ -178,6 +178,99 @@ export const asyncRoutes = [
     ]
   },
   {
+    path: '/my',
+    component: Layout,
+    meta: {
+      title: 'my',
+      icon: 'people'
+    },
+    children: [
+      {
+        path: 'people',
+        component: () => import('@/views/my/people/detail'),
+        name: 'myInfo',
+        meta: { title: 'myInfo', icon: 'people' }
+      },
+      // index
+      {
+        path: 'equipment',
+        component: () => import('@/views/my/equipment/index'),
+        name: 'myEquipment',
+        meta: { title: 'equipment', icon: 'lock' }
+      },
+      {
+        path: 'research',
+        component: () => import('@/views/my/research/index'),
+        name: 'myResearch',
+        meta: { title: 'research', icon: 'example' }
+      },
+      {
+        path: '',
+        name: 'my',
+        component: () => import('@/views/my/people/detail'),
+        hidden: true
+      },
+      // list
+      {
+        path: 'equipment/purchasing',
+        component: () => import('@/views/my/equipment/list/purchasing'),
+        name: 'myEquipmentPurchasing',
+        meta: { title: 'purchasing', icon: 'lock' },
+        hidden: true
+      },
+      {
+        path: 'equipment/stock',
+        component: () => import('@/views/my/equipment/list/stock'),
+        name: 'myEquipmentStock',
+        meta: { title: 'stock', icon: 'lock' },
+        hidden: true
+      },
+      {
+        path: 'research/project',
+        component: () => import('@/views/my/research/list/project'),
+        name: 'myResearchProject',
+        meta: { title: 'project', icon: 'example' },
+        hidden: true
+      },
+      {
+        path: 'research/patent',
+        component: () => import('@/views/my/research/list/patent'),
+        name: 'myResearchPatent',
+        meta: { title: 'patent', icon: 'example' },
+        hidden: true
+      },
+      {
+        path: 'research/paper',
+        component: () => import('@/views/my/research/list/paper'),
+        name: 'myResearchPaper',
+        meta: { title: 'paper', icon: 'example' },
+        hidden: true
+      },
+      {
+        path: 'research/reward',
+        component: () => import('@/views/my/research/list/reward'),
+        name: 'myResearchReward',
+        meta: { title: 'reward', icon: 'example' },
+        hidden: true
+      },
+      // detail
+      {
+        path: 'research/:type(\\w+)/:id(\\d+)',
+        component: () => import('@/views/research/detail'),
+        name: 'myResearchInfo',
+        meta: { title: 'detail' },
+        hidden: true
+      },
+      {
+        path: 'equipment/:type(\\w+)/:id(\\d+)',
+        component: () => import('@/views/research/detail'),
+        name: 'myEquipmentInfo',
+        meta: { title: 'detail' },
+        hidden: true
+      }
+    ]
+  },
+  {
     path: '/people',
     component: Layout,
     meta: {
